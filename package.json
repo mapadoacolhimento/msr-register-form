@@ -1,7 +1,6 @@
 {
   "name": "msr-register-form",
   "private": false,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -56,6 +55,7 @@
     "type": "git",
     "url": "https://github.com/mapadoacolhimento/msr-register-form.git"
   },
+  "homepage": "https://github.com/mapadoacolhimento/msr-register-form/#readme",
   "license": "CC-BY-SA-4.0",
   "lint-staged": {
     "*.json": "prettier --write --ignore-unknown",
@@ -63,5 +63,11 @@
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix"
     ]
-  }
+  },
+  "author": {
+    "name": "Desenvolvedoras Mapa",
+    "email": "dev@mapa.org.br",
+    "url": "https://mapadoacolhimento.org"
+  },
+  "description": "Formulário de cadastro das acolhidas do Mapa do Acolhimento."
 }
