@@ -62,5 +62,10 @@ jobs:
       - name: Run build
         run: pnpm run build
 
-      - name: Run tests
+      - name: Run unit tests
         run: pnpm run test:ci
+
+      - name: Run e2e tests
+        uses: cypress-io/github-action@v6
+        with:
+          start: pnpm preview
