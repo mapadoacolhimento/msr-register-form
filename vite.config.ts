@@ -13,5 +13,12 @@ export default defineConfig({
     environment: "jsdom",
     globals: true,
     setupFiles: ["./vitest-setup.ts"],
+    exclude: ["node_modules", "cypress", "dist"],
+  },
+  server: {
+    port: 3000,
+  },
+  preview: {
+    port: 3000,
   },
 });
