@@ -9,7 +9,12 @@ module.exports = {
     "plugin:react/jsx-runtime",
     "prettier",
   ],
-  ignorePatterns: ["dist", ".eslintrc.cjs", "pnpm-lock.yaml"],
+  ignorePatterns: [
+    "dist",
+    ".eslintrc.cjs",
+    "pnpm-lock.yaml",
+    "cypress.config.js",
+  ],
   parser: "@typescript-eslint/parser",
   plugins: ["react-refresh"],
   rules: {
