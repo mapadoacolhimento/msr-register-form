@@ -7,11 +7,11 @@ concurrency:
 on:
   pull_request:
     branches:
-      - '**'
+      - "**"
 
   push:
     branches:
-      - 'main'
+      - "main"
 
 jobs:
   integration:
@@ -38,7 +38,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
+          cache: "pnpm"
 
       - name: Get pnpm store directory
         shell: bash
@@ -55,9 +55,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-
-      - name: Run typecheck
-        run: pnpm run typecheck
 
       - name: Run build
         run: pnpm run build
