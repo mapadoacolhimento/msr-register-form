@@ -29,6 +29,10 @@ module.exports = {
       // 3) Now we enable eslint-plugin-testing-library rules or preset only for matching testing files!
       files: ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
       extends: ["plugin:testing-library/react", "plugin:jest-dom/recommended"],
+      rules: {
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-unsafe-member-access": "off",
+      },
     },
     {
       // 3) Now we enable eslint-plugin-testing-library rules or preset only for matching testing files!
