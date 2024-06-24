@@ -68,3 +68,4 @@ jobs:
           start: pnpm run preview
           wait-on: "http://localhost:3000"
           wait-on-timeout: 120
+          browser: chrome
