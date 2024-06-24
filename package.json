@@ -14,7 +14,8 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:ci": "vitest run --coverage",
-    "cy:open": "cypress open"
+    "e2e": "cypress open",
+    "e2e:ci": "pnpm cypress run"
   },
   "dependencies": {
     "react": "^18.3.1",

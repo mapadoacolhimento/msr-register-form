@@ -65,4 +65,7 @@ jobs:
       - name: Run e2e tests
         uses: cypress-io/github-action@v6
         with:
-          start: pnpm preview
+          build: pnpm run build
+          start: pnpm run preview
+          wait-on: "http://localhost:4173"
+          wait-on-timeout: 120
