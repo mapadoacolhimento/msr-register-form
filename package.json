@@ -13,8 +13,8 @@
     "prepare": "husky",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:ci": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:ci": "vitest run --coverage",
+    "typecheck": "tsc"
   },
   "dependencies": {
     "react": "^18.3.1",
