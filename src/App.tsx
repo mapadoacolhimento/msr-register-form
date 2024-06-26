@@ -1,5 +1,5 @@
 import { Grid } from "@radix-ui/themes";
-import { Header, MainForm, DesktopIllustration } from "./components";
+import { Header, MainForm, DesktopIllustration, Steps } from "./components";
 
 function App() {
   return (
@@ -11,6 +11,12 @@ function App() {
         </div>
         <DesktopIllustration />
       </Grid>
+      <Steps
+        stepName="Seus dados"
+        stepNumber={1}
+        onClick={() => true}
+        isValid
+      />
     </main>
   );
 }

@@ -3,6 +3,7 @@ import "./theme/colors/purple.css";
 import "./theme/colors/yellow.css";
 import "./theme/colors/pink.css";
 import "./theme/colors/gray.css";
+import "./theme/index.css";
 
 import React from "react";
 import ReactDOM from "react-dom/client";
