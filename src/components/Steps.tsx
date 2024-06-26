@@ -1,10 +1,12 @@
-import { Box, Button, Flex, Heading } from "@radix-ui/themes";
+import "./styles/steps.css";
+import { Box, Button, Flex, Heading, Progress } from "@radix-ui/themes";
 
 type StepsProps = {
   stepName: string;
   stepNumber: number;
   isValid: boolean;
   onClick: () => void;
+  progress: number;
 };
 
 export default function Steps({
@@ -12,6 +14,7 @@ export default function Steps({
   stepNumber,
   isValid,
   onClick,
+  progress,
 }: StepsProps) {
   return (
     <Box
@@ -20,6 +23,13 @@ export default function Steps({
       height={{ initial: "80px", md: "70px" }}
       width={"100%"}
     >
+      <Progress
+        color={"yellow"}
+        size={"3"}
+        radius="none"
+        value={progress}
+        variant={"soft"}
+      />
       <Flex p={"6"} width={"100%"} justify={"between"} align={"center"}>
         <Heading color="purple" highContrast size={"4"}>
           {stepNumber}. {stepName}
