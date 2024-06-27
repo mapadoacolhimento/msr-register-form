@@ -17,6 +17,7 @@
     "e2e:ci": "pnpm cypress run --browser chrome"
   },
   "dependencies": {
+    "@fontsource-variable/nunito-sans": "^5.0.14",
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/themes": "^3.1.1",
     "react": "^18.3.1",
