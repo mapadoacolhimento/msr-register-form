@@ -31,7 +31,7 @@ export default function Steps({
         variant={"soft"}
       />
       <Flex p={"6"} width={"100%"} justify={"between"} align={"center"}>
-        <Heading color="purple" highContrast size={"4"}>
+        <Heading color="purple" highContrast size={"4"} as="h2">
           {stepNumber}. {stepName}
         </Heading>
         <Button onClick={onClick} disabled={!isValid} size={"4"}>
