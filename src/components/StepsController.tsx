@@ -4,17 +4,17 @@ import { Box, Button, Flex, Heading, Progress } from "@radix-ui/themes";
 type StepsProps = {
   stepName: string;
   stepNumber: number;
-  isValid: boolean;
-  onClick: () => void;
+  isButtonDisabled: boolean;
   progress: number;
+  isLastStep: boolean;
 };
 
 export default function Steps({
   stepName,
   stepNumber,
-  isValid,
-  onClick,
+  isButtonDisabled,
   progress,
+  isLastStep,
 }: StepsProps) {
   return (
     <Box
@@ -34,8 +34,8 @@ export default function Steps({
         <Heading color="purple" highContrast size={"4"} as="h2">
           {stepNumber}. {stepName}
         </Heading>
-        <Button onClick={onClick} disabled={!isValid} size={"4"}>
-          Continuar
+        <Button disabled={isButtonDisabled} size={"4"} type={"submit"}>
+          {isLastStep ? "Enviar" : "Continuar"}
         </Button>
       </Flex>
     </Box>
