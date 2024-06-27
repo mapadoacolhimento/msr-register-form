@@ -6,6 +6,8 @@ describe("App", () => {
   test("renders headline", () => {
     render(<App />);
 
-    expect(screen.getByRole("heading", { name: /vite/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /continuar/i }),
+    ).toBeInTheDocument();
   });
 });

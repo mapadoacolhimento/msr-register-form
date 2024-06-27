@@ -1,6 +1,6 @@
 describe("App", () => {
   it("should render heading", () => {
     cy.visit("/");
-    cy.findByRole("heading", { name: /vite/i }).should("exist");
+    cy.findByRole("button", { name: /continuar/i }).should("exist");
   });
 });
