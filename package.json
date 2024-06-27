@@ -62,10 +62,10 @@
   "license": "CC-BY-SA-4.0",
   "lint-staged": {
     "*.json": "prettier --write --ignore-unknown",
-    "*.{js,jsx,ts,tsx,md,html,css,cjs}": "prettier --write --ignore-unknown",
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix"
-    ]
+    ],
+    "*.{js,jsx,ts,tsx,md,html,css,cjs}": "prettier --write --ignore-unknown"
   },
   "author": {
     "name": "Desenvolvedoras Mapa",
