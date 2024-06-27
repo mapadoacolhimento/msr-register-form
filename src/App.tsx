@@ -1,5 +1,10 @@
 import { Grid } from "@radix-ui/themes";
-import { Header, MainForm, DesktopIllustration, Steps } from "./components";
+import {
+  Header,
+  MultiPageForm,
+  DesktopIllustration,
+  StepsController,
+} from "./components";
 import { useState } from "react";
 
 const Fields = () => <div>Fields!</div>;
@@ -8,19 +13,19 @@ const isValid = () => true;
 const STEPS = [
   {
     title: "Seus dados",
-    Fields: <Fields />,
+    StepFields: <Fields />,
     isValid,
   },
   {
     title: "Sobre o acolhimento",
     subtitle: "Você aceitaria ser atendida online?",
-    Fields: <Fields />,
+    StepFields: <Fields />,
     isValid,
   },
   {
     title: "Sobre o acolhimento",
     subtitle: "Que tipo de acolhimento você precisa?",
-    Fields: <Fields />,
+    StepFields: <Fields />,
     isValid,
   },
 ];
@@ -47,13 +52,17 @@ function App() {
       <Grid columns={{ initial: "1", md: "1fr 55%" }} width="auto">
         <div>
           <Header />
-          <MainForm goBack={goBack} {...STEPS[currentStepIndex]} />
+          <MultiPageForm
+            goBack={goBack}
+            currentStepIndex={currentStepIndex}
+            {...STEPS[currentStepIndex]}
+          />
         </div>
         <DesktopIllustration />
       </Grid>
-      <Steps
-        stepName="Seus dados"
-        stepNumber={1}
+      <StepsController
+        stepName={STEPS[currentStepIndex].title}
+        stepNumber={currentStepIndex + 1}
         onClick={goNextStep}
         isValid
         progress={progress}

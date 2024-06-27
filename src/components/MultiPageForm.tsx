@@ -5,23 +5,29 @@ type MainFormProps = {
   goBack: () => void;
   title: string;
   subtitle?: string;
-  Fields: React.ReactNode;
+  StepFields: React.ReactNode;
+  currentStepIndex: number;
 };
 
-export default function MainForm({
+export default function MultiPageForm({
   goBack,
   title,
   subtitle,
-  Fields,
+  currentStepIndex,
+  StepFields,
 }: MainFormProps) {
   return (
     <Box>
-      <IconButton onClick={goBack}>
+      <IconButton
+        onClick={goBack}
+        variant="ghost"
+        disabled={currentStepIndex === 0}
+      >
         <ChevronLeftIcon width="24" height="24" />
       </IconButton>
       <Heading as={"h1"}>{title}</Heading>
       {subtitle ? <Text>{subtitle}</Text> : null}
-      {Fields}
+      {StepFields}
     </Box>
   );
 }
