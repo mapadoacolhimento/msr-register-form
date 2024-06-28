@@ -2,6 +2,10 @@ body {
   margin: 0;
 }
 
+fieldset {
+  border: none;
+}
+
 .rt-BaseButton {
   font-family:
     "Idealista",

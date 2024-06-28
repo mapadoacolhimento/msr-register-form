@@ -1,12 +1,13 @@
-import { ErrorMessage, Field } from "formik";
+import { Field } from "formik";
 import * as Yup from "yup";
 
 import WizardStep from ".";
+import ErrorMessage from "../../ErrorMessage";
 import { sleep } from "../../../utils";
 
 const acceptsOnlineSupportSchema = Yup.object({
   acceptsOnlineSupport: Yup.string()
-    .oneOf(["yes", "no"])
+    .oneOf(["sim", "nao"])
     .required("Esse campo é obrigatório."),
 });
 
@@ -18,16 +19,28 @@ export default function AcceptsOnlineSupport() {
       title={"Sobre o acolhimento"}
       subtitle={"Você aceitaria ser atendida online?"}
     >
-      <div role="group" aria-labelledby="my-radio-group">
-        <label>
-          <Field type="radio" name="acceptsOnlineSupport" value="yes" />
+      <fieldset role="radiogroup">
+        <label htmlFor="sim">
+          <Field
+            type="radio"
+            name="acceptsOnlineSupport"
+            value="sim"
+            tabindex="0"
+            id="sim"
+          />
           Sim, aceito ser atendida online
         </label>
-        <label>
-          <Field type="radio" name="acceptsOnlineSupport" value="no" />
+        <label htmlFor="nao">
+          <Field
+            type="radio"
+            name="acceptsOnlineSupport"
+            value="nao"
+            tabindex="1"
+            id="nao"
+          />
           Não, só posso receber atendimento presencial
         </label>
-      </div>
+      </fieldset>
       <ErrorMessage name="acceptsOnlineSupport" />
     </WizardStep>
   );

@@ -69,7 +69,11 @@ export default function MultiStepFormWrapper({
           </IconButton>
 
           <Heading as={"h1"}>{step.props.title}</Heading>
-          {step.props.subtitle ? <Text>{step.props.subtitle}</Text> : null}
+          {step.props.subtitle ? (
+            <Text asChild>
+              <legend>{step.props.subtitle}</legend>
+            </Text>
+          ) : null}
 
           {step}
 
