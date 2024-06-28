@@ -1,13 +1,13 @@
-import "./styles/steps.css";
+import "../styles/steps.css";
 import { Box, Button, Flex, Heading, Progress } from "@radix-ui/themes";
 
-type StepsProps = {
+interface StepsProps {
   stepName: string;
   stepNumber: number;
   isButtonDisabled: boolean;
   progress: number;
   isLastStep: boolean;
-};
+}
 
 export default function Steps({
   stepName,

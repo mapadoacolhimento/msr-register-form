@@ -2,7 +2,7 @@ import { ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 
 import WizardStep from ".";
-import { sleep } from "../../utils";
+import { sleep } from "../../../utils";
 
 const acceptsOnlineSupportSchema = Yup.object({
   acceptsOnlineSupport: Yup.string()

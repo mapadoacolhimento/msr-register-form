@@ -1,14 +1,15 @@
 import { PropsWithChildren } from "react";
 import { type FormikHelpers } from "formik";
 import { AnyObjectSchema } from "yup";
-import { type Values } from "../MultiStepForm";
 
-export type WizardStepChildrenProps = {
+import { type Values } from "../";
+
+export interface WizardStepChildrenProps {
   onSubmit: (values: Values, bag: FormikHelpers<Values>) => Promise<void>;
   validationSchema: AnyObjectSchema;
   title: string;
   subtitle?: string;
-};
+}
 
 export default function WizardStep({
   children,

@@ -4,30 +4,19 @@ import { ChevronLeftIcon } from "@radix-ui/react-icons";
 import { type FormikHelpers, Form, Formik } from "formik";
 
 import StepsController from "./StepsController";
-import {
-  type WizardStepChildrenProps,
-  BasicRegisterInformation,
-  AcceptsOnlineSupport,
-  SupportType,
-} from "./Steps";
-import { sleep } from "../utils";
+import { type WizardStepChildrenProps } from "./Steps";
+import { type Values } from "./";
 
-export interface Values {
-  email: string;
-  acceptsOnlineSupport: string;
-  supportType: string[];
-}
-
-interface WizardProps {
+interface MultiStepFormWrapperProps {
   initialValues: Values;
   onSubmit: (values: Values, bag: FormikHelpers<Values>) => Promise<void>;
 }
 
-const Wizard = ({
+export default function MultiStepFormWrapper({
   children,
   initialValues,
   onSubmit,
-}: PropsWithChildren<WizardProps>) => {
+}: PropsWithChildren<MultiStepFormWrapperProps>) {
   const [stepIndex, setStepIndex] = useState(0);
   const [snapshot, setSnapshot] = useState(initialValues);
   const childrenSteps = Children.toArray(children);
@@ -54,6 +43,7 @@ const Wizard = ({
     if (step.props.onSubmit) {
       await step.props.onSubmit(values, bag);
     }
+
     if (isLastStep) {
       return onSubmit(values, bag);
     }
@@ -93,24 +83,5 @@ const Wizard = ({
         </Form>
       )}
     </Formik>
-  );
-};
-
-export default function MultiStepForm() {
-  return (
-    <Wizard
-      initialValues={{
-        email: "",
-        acceptsOnlineSupport: "",
-        supportType: [],
-      }}
-      onSubmit={async (values: Values) =>
-        sleep(300).then(() => console.log("Wizard submit", values))
-      }
-    >
-      {BasicRegisterInformation()}
-      {AcceptsOnlineSupport()}
-      {SupportType()}
-    </Wizard>
   );
 }
