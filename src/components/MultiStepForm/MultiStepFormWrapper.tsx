@@ -4,7 +4,7 @@ import { ChevronLeftIcon } from "@radix-ui/react-icons";
 import { type FormikHelpers, Form, Formik } from "formik";
 
 import StepsController from "./StepsController";
-import { type WizardStepChildrenProps } from "./Steps";
+import { type StepChildrenProps } from "./Steps";
 import { type Values } from "./";
 
 interface MultiStepFormWrapperProps {
@@ -21,9 +21,7 @@ export default function MultiStepFormWrapper({
   const [snapshot, setSnapshot] = useState(initialValues);
   const childrenSteps = Children.toArray(children);
 
-  const step = childrenSteps[
-    stepIndex
-  ] as ReactElement<WizardStepChildrenProps>;
+  const step = childrenSteps[stepIndex] as ReactElement<StepChildrenProps>;
   const totalSteps = childrenSteps.length;
   const isLastStep = stepIndex === totalSteps - 1;
   const stepNumber = Math.min(stepIndex + 1, totalSteps);

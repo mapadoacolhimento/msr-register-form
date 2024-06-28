@@ -4,16 +4,16 @@ import { AnyObjectSchema } from "yup";
 
 import { type Values } from "../";
 
-export interface WizardStepChildrenProps {
+export interface StepChildrenProps {
   onSubmit: (values: Values, bag: FormikHelpers<Values>) => Promise<void>;
   validationSchema: AnyObjectSchema;
   title: string;
   subtitle?: string;
 }
 
-export default function WizardStep({
+export default function Step({
   children,
-}: PropsWithChildren<WizardStepChildrenProps>) {
+}: PropsWithChildren<StepChildrenProps>) {
   return children;
 }
 

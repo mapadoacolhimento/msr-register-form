@@ -1,7 +1,7 @@
 import "../styles/steps.css";
 import { Box, Button, Flex, Heading, Progress } from "@radix-ui/themes";
 
-interface StepsProps {
+export interface StepsControllerProps {
   stepName: string;
   stepNumber: number;
   isButtonDisabled: boolean;
@@ -9,13 +9,13 @@ interface StepsProps {
   isLastStep: boolean;
 }
 
-export default function Steps({
+export default function StepsController({
   stepName,
   stepNumber,
   isButtonDisabled,
   progress,
   isLastStep,
-}: StepsProps) {
+}: StepsControllerProps) {
   return (
     <Box
       position={"fixed"}
@@ -29,6 +29,7 @@ export default function Steps({
         radius="none"
         value={progress}
         variant={"soft"}
+        max={100}
       />
       <Flex p={"6"} width={"100%"} justify={"between"} align={"center"}>
         <Heading color="purple" highContrast size={"4"} as="h2">
