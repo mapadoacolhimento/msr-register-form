@@ -25,7 +25,7 @@ export default function AcceptsOnlineSupport() {
             type="radio"
             name="acceptsOnlineSupport"
             value="sim"
-            tabindex="0"
+            tabIndex="0"
             id="sim"
           />
           Sim, aceito ser atendida online
@@ -35,7 +35,7 @@ export default function AcceptsOnlineSupport() {
             type="radio"
             name="acceptsOnlineSupport"
             value="nao"
-            tabindex="1"
+            tabIndex="1"
             id="nao"
           />
           Não, só posso receber atendimento presencial

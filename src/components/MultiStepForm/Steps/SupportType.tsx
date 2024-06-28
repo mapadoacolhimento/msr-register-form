@@ -1,13 +1,14 @@
-import { ErrorMessage, Field } from "formik";
+import { Field } from "formik";
 import * as Yup from "yup";
 
 import WizardStep from ".";
 import { sleep } from "../../../utils";
+import ErrorMessage from "../../ErrorMessage";
 
 const supportTypeSchema = Yup.object({
   supportType: Yup.array()
     .of(Yup.string().oneOf(["psychological", "legal"]))
-    .required("Esse campo é obrigatório."),
+    .min(1, "Esse campo é obrigatório."),
 });
 
 export default function SupportType() {
@@ -18,17 +19,27 @@ export default function SupportType() {
       title={"Sobre o acolhimento"}
       subtitle={"Que tipo de acolhimento você precisa?"}
     >
-      <div role="group" aria-labelledby="checkbox-group">
-        <label>
-          <Field type="checkbox" name="supportType" value="psychological" />
+      <fieldset>
+        <label htmlFor="psicologico">
+          <Field
+            type="checkbox"
+            name="supportType"
+            value="psychological"
+            id="psicologico"
+          />
           Acolhimento psicológico
         </label>
-        <label>
-          <Field type="checkbox" name="supportType" value="legal" />
+        <label htmlFor="juridico">
+          <Field
+            type="checkbox"
+            name="supportType"
+            value="legal"
+            id="juridico"
+          />
           Acolhimento jurídico
         </label>
         <ErrorMessage name="supportType" />
-      </div>
+      </fieldset>
     </WizardStep>
   );
 }
