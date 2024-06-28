@@ -15,13 +15,13 @@ import { sleep } from "../utils";
 export interface Values {
   email: string;
   acceptsOnlineSupport: string;
-  supportType: string;
+  supportType: string[];
 }
 
-type WizardProps = {
+interface WizardProps {
   initialValues: Values;
   onSubmit: (values: Values, bag: FormikHelpers<Values>) => Promise<void>;
-};
+}
 
 const Wizard = ({
   children,
@@ -102,7 +102,7 @@ export default function MultiStepForm() {
       initialValues={{
         email: "",
         acceptsOnlineSupport: "",
-        supportType: "",
+        supportType: [],
       }}
       onSubmit={async (values: Values) =>
         sleep(300).then(() => console.log("Wizard submit", values))

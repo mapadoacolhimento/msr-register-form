@@ -5,9 +5,9 @@ import WizardStep from ".";
 import { sleep } from "../../utils";
 
 const acceptsOnlineSupportSchema = Yup.object({
-  acceptsOnlineSupport: Yup.boolean()
-    .required("Esse campo é obrigatório.")
-    .transform((value) => value === "yes"),
+  acceptsOnlineSupport: Yup.string()
+    .oneOf(["yes", "no"])
+    .required("Esse campo é obrigatório."),
 });
 
 export default function AcceptsOnlineSupport() {
