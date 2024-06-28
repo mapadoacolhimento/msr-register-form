@@ -1,18 +1,21 @@
 import { ReactElement, useState, PropsWithChildren, Children } from "react";
 import { Heading, IconButton, Text } from "@radix-ui/themes";
 import { ChevronLeftIcon } from "@radix-ui/react-icons";
-import { type FormikHelpers, ErrorMessage, Field, Form, Formik } from "formik";
-import * as Yup from "yup";
-import StepsController from "./StepsController";
+import { type FormikHelpers, Form, Formik } from "formik";
 
-const firstStepValidation = Yup.object({
-  email: Yup.string()
-    .email("Insira um e-mail válido.")
-    .required("Esse campo é obrigatório."),
-});
+import StepsController from "./StepsController";
+import {
+  type WizardStepChildrenProps,
+  BasicRegisterInformation,
+  AcceptsOnlineSupport,
+  SupportType,
+} from "./Steps";
+import { sleep } from "../utils";
 
 export interface Values {
   email: string;
+  acceptsOnlineSupport: string;
+  supportType: string;
 }
 
 type WizardProps = {
@@ -20,27 +23,19 @@ type WizardProps = {
   onSubmit: (values: Values, bag: FormikHelpers<Values>) => Promise<void>;
 };
 
-type WizardStepChildrenProps = {
-  onSubmit: (values: Values, bag: FormikHelpers<Values>) => Promise<void>;
-  validationSchema: Yup.AnyObjectSchema;
-  title: string;
-  subtitle?: string;
-};
-
-const WizardStep = ({ children }: PropsWithChildren<WizardStepChildrenProps>) =>
-  children;
-
 const Wizard = ({
   children,
   initialValues,
   onSubmit,
 }: PropsWithChildren<WizardProps>) => {
   const [stepIndex, setStepIndex] = useState(0);
-  const steps = Children.toArray(children);
   const [snapshot, setSnapshot] = useState(initialValues);
+  const childrenSteps = Children.toArray(children);
 
-  const step = steps[stepIndex] as ReactElement<WizardStepChildrenProps>;
-  const totalSteps = steps.length;
+  const step = childrenSteps[
+    stepIndex
+  ] as ReactElement<WizardStepChildrenProps>;
+  const totalSteps = childrenSteps.length;
   const isLastStep = stepIndex === totalSteps - 1;
   const stepNumber = Math.min(stepIndex + 1, totalSteps);
   const progress = (100 * stepNumber) / totalSteps;
@@ -101,59 +96,21 @@ const Wizard = ({
   );
 };
 
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
 export default function MultiStepForm() {
   return (
     <Wizard
       initialValues={{
         email: "",
+        acceptsOnlineSupport: "",
+        supportType: "",
       }}
       onSubmit={async (values: Values) =>
         sleep(300).then(() => console.log("Wizard submit", values))
       }
     >
-      <WizardStep
-        onSubmit={() => sleep(300).then(() => console.log("Step1 onSubmit"))}
-        validationSchema={firstStepValidation}
-        title={"Seus dados"}
-      >
-        <label htmlFor="email">E-mail</label>
-        <Field
-          name="email"
-          placeholder="Qual o seu melhor e-mail?"
-          type="email"
-        />
-        <ErrorMessage name="email" />
-      </WizardStep>
-      <WizardStep
-        onSubmit={() => sleep(300).then(() => console.log("Step2 onSubmit"))}
-        validationSchema={firstStepValidation}
-        title={"Sobre o acolhimento"}
-        subtitle={"Você aceitaria ser atendida online?"}
-      >
-        <label htmlFor="email">E-mail</label>
-        <Field
-          name="email"
-          placeholder="Qual o seu melhor e-mail?"
-          type="email"
-        />
-        <ErrorMessage name="email" />
-      </WizardStep>
-      <WizardStep
-        onSubmit={() => sleep(300).then(() => console.log("Step3 onSubmit"))}
-        validationSchema={firstStepValidation}
-        title={"Sobre o acolhimento"}
-        subtitle={"Que tipo de acolhimento você precisa?"}
-      >
-        <label htmlFor="email">E-mail</label>
-        <Field
-          name="email"
-          placeholder="Qual o seu melhor e-mail?"
-          type="email"
-        />
-        <ErrorMessage name="email" />
-      </WizardStep>
+      {BasicRegisterInformation()}
+      {AcceptsOnlineSupport()}
+      {SupportType()}
     </Wizard>
   );
 }
