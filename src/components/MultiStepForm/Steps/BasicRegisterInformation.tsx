@@ -1,7 +1,8 @@
-import { ErrorMessage, Field } from "formik";
+import { Field } from "formik";
 import * as Yup from "yup";
 
 import WizardStep from "./";
+import ErrorMessage from "../../ErrorMessage";
 import { sleep } from "../../../utils";
 
 const basicRegisterInformationSchema = Yup.object({
@@ -22,6 +23,7 @@ export default function BasicRegisterInformation() {
         name="email"
         placeholder="Qual o seu melhor e-mail?"
         type="email"
+        id={"email"}
       />
       <ErrorMessage name="email" />
     </WizardStep>
