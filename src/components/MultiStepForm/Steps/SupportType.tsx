@@ -1,7 +1,7 @@
 import { Field } from "formik";
 import * as Yup from "yup";
 
-import WizardStep from ".";
+import Step from "../Step";
 import { sleep } from "../../../utils";
 import ErrorMessage from "../../ErrorMessage";
 
@@ -13,7 +13,7 @@ const supportTypeSchema = Yup.object({
 
 export default function SupportType() {
   return (
-    <WizardStep
+    <Step
       onSubmit={() => sleep(300).then(() => console.log("Step3 onSubmit"))}
       validationSchema={supportTypeSchema}
       title={"Sobre o acolhimento"}
@@ -40,6 +40,6 @@ export default function SupportType() {
         </label>
         <ErrorMessage name="supportType" />
       </fieldset>
-    </WizardStep>
+    </Step>
   );
 }

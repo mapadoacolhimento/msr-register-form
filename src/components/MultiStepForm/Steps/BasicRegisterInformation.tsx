@@ -1,7 +1,7 @@
 import { Field } from "formik";
 import * as Yup from "yup";
 
-import WizardStep from "./";
+import Step from "../Step";
 import ErrorMessage from "../../ErrorMessage";
 import { sleep } from "../../../utils";
 
@@ -13,7 +13,7 @@ const basicRegisterInformationSchema = Yup.object({
 
 export default function BasicRegisterInformation() {
   return (
-    <WizardStep
+    <Step
       onSubmit={() => sleep(300).then(() => console.log("Step1 onSubmit"))}
       validationSchema={basicRegisterInformationSchema}
       title={"Seus dados"}
@@ -26,6 +26,6 @@ export default function BasicRegisterInformation() {
         id={"email"}
       />
       <ErrorMessage name="email" />
-    </WizardStep>
+    </Step>
   );
 }

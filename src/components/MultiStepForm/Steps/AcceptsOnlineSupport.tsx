@@ -1,7 +1,7 @@
 import { Field } from "formik";
 import * as Yup from "yup";
 
-import WizardStep from ".";
+import Step from "../Step";
 import ErrorMessage from "../../ErrorMessage";
 import { sleep } from "../../../utils";
 
@@ -13,7 +13,7 @@ const acceptsOnlineSupportSchema = Yup.object({
 
 export default function AcceptsOnlineSupport() {
   return (
-    <WizardStep
+    <Step
       onSubmit={() => sleep(300).then(() => console.log("Step2 onSubmit"))}
       validationSchema={acceptsOnlineSupportSchema}
       title={"Sobre o acolhimento"}
@@ -42,6 +42,6 @@ export default function AcceptsOnlineSupport() {
         </label>
       </fieldset>
       <ErrorMessage name="acceptsOnlineSupport" />
-    </WizardStep>
+    </Step>
   );
 }

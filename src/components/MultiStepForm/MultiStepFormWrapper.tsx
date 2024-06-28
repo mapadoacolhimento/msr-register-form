@@ -4,7 +4,7 @@ import { ChevronLeftIcon } from "@radix-ui/react-icons";
 import { type FormikHelpers, Form, Formik } from "formik";
 
 import StepsController from "./StepsController";
-import { type StepChildrenProps } from "./Steps";
+import { type StepChildrenProps } from "./Step";
 import { type Values } from "./";
 
 interface MultiStepFormWrapperProps {

@@ -1,0 +1,17 @@
+import { PropsWithChildren } from "react";
+import { type FormikHelpers } from "formik";
+import { AnyObjectSchema } from "yup";
+import { type Values } from "./";
+
+export interface StepChildrenProps {
+  onSubmit: (values: Values, bag: FormikHelpers<Values>) => Promise<void>;
+  validationSchema: AnyObjectSchema;
+  title: string;
+  subtitle?: string;
+}
+
+export default function Step({
+  children,
+}: PropsWithChildren<StepChildrenProps>) {
+  return children;
+}
