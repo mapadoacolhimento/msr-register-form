@@ -1,6 +1,7 @@
 import { ReactElement, useState, PropsWithChildren, Children } from "react";
 import { Heading, IconButton, Text } from "@radix-ui/themes";
 import { ChevronLeftIcon } from "@radix-ui/react-icons";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { type FormikHelpers, Form, Formik } from "formik";
 
 import StepsController from "./StepsController";
@@ -62,8 +63,12 @@ export default function MultiStepFormWrapper({
             onClick={() => previousStep(values)}
             variant="ghost"
             disabled={stepIndex === 0}
+            type={"button"}
           >
             <ChevronLeftIcon width="24" height="24" />
+            <VisuallyHidden.Root>
+              Voltar para o passo anterior
+            </VisuallyHidden.Root>
           </IconButton>
 
           <Heading as={"h1"}>{step.props.title}</Heading>
