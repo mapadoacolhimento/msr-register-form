@@ -1,6 +1,6 @@
-import { Text } from "@radix-ui/themes";
+import { type PropsWithChildren } from "react";
 import { ErrorMessage as FormikErrorMessage } from "formik";
-import { PropsWithChildren } from "react";
+import { Text } from "@radix-ui/themes";
 
 function CustomErrorMessage({ children }: PropsWithChildren) {
   return (

@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import { type PropsWithChildren } from "react";
 import { type FormikHelpers } from "formik";
 import { AnyObjectSchema } from "yup";
 import { type Values } from "./";

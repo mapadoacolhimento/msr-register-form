@@ -1,8 +1,13 @@
-import { ReactElement, useState, PropsWithChildren, Children } from "react";
+import {
+  type PropsWithChildren,
+  ReactElement,
+  useState,
+  Children,
+} from "react";
+import { type FormikHelpers, Form, Formik } from "formik";
 import { Heading, IconButton, Text } from "@radix-ui/themes";
 import { ChevronLeftIcon } from "@radix-ui/react-icons";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
-import { type FormikHelpers, Form, Formik } from "formik";
 
 import StepsController from "./StepsController";
 import { type StepChildrenProps } from "./Step";
