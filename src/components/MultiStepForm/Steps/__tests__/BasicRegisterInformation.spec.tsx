@@ -3,11 +3,11 @@ import userEvent from "@testing-library/user-event";
 
 import BasicRegisterInformation from "../BasicRegisterInformation";
 import MultiStepFormWrapper from "../../MultiStepFormWrapper";
-import { Values } from "../..";
 import { sleep } from "../../../../utils";
+import { type Values } from "../..";
 
 const setup = () => {
-  return (
+  return render(
     <MultiStepFormWrapper
       onSubmit={async (values) =>
         await sleep(300).then(() => console.log(values))
@@ -19,13 +19,13 @@ const setup = () => {
       }
     >
       {BasicRegisterInformation()}
-    </MultiStepFormWrapper>
+    </MultiStepFormWrapper>,
   );
 };
 
 describe("<BasicRegisterInformation />", () => {
   it("should render email field", () => {
-    render(setup());
+    setup();
 
     expect(
       screen.getByRole("textbox", { name: /E-mail/i }),
@@ -33,7 +33,7 @@ describe("<BasicRegisterInformation />", () => {
   });
 
   it("should render empty field error if no info provided", async () => {
-    render(setup());
+    setup();
 
     const btn = screen.getByRole("button", { name: /enviar/i });
     await userEvent.click(btn);
@@ -46,7 +46,7 @@ describe("<BasicRegisterInformation />", () => {
   });
 
   it("should render empty field error if no info provided", async () => {
-    render(setup());
+    setup();
 
     const emailInput = screen.getByRole("textbox", {
       name: /E-mail/i,

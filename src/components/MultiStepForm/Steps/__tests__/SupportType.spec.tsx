@@ -3,11 +3,11 @@ import userEvent from "@testing-library/user-event";
 
 import SupportType from "../SupportType";
 import MultiStepFormWrapper from "../../MultiStepFormWrapper";
-import { Values } from "../..";
 import { sleep } from "../../../../utils";
+import { type Values } from "../..";
 
 const setup = () => {
-  return (
+  return render(
     <MultiStepFormWrapper
       onSubmit={async (values) =>
         await sleep(300).then(() => console.log(values))
@@ -19,13 +19,13 @@ const setup = () => {
       }
     >
       {SupportType()}
-    </MultiStepFormWrapper>
+    </MultiStepFormWrapper>,
   );
 };
 
 describe("<SupportType />", () => {
   it("should render two options", () => {
-    render(setup());
+    setup();
 
     expect(
       screen.getByRole("checkbox", {
@@ -40,7 +40,7 @@ describe("<SupportType />", () => {
   });
 
   it("should render an error if no option is selected", async () => {
-    render(setup());
+    setup();
 
     const btn = screen.getByRole("button", { name: /enviar/i });
     await userEvent.click(btn);
