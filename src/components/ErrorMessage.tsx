@@ -10,6 +10,6 @@ function CustomErrorMessage({ children }: PropsWithChildren) {
   );
 }
 
-export default function ErrorMessage({ name }: { name: string }) {
+export default function ErrorMessage({ name }: Readonly<{ name: string }>) {
   return <FormikErrorMessage name={name} component={CustomErrorMessage} />;
 }

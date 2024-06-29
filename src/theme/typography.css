@@ -31,16 +31,6 @@
   font-style: normal;
 }
 
-/* @font-face {
-  font-family: "Idealista";
-  src: local("Idealista-LightItalic"),
-    url("../assets/fonts/Idealista/Idealista-LightItalic.ttf") format("truetype"),
-    url("../assets/fonts/Idealista/Idealista-LightItalic.woff") format("woff"),
-    url("../assets/fonts/Idealista/Idealista-LightItalic.woff2") format("woff2");
-  font-weight: 400;
-  font-style: italic;
-} */
-
 @font-face {
   font-family: "Idealista";
   src:
@@ -51,16 +41,6 @@
   font-weight: 500;
   font-style: normal;
 }
-
-/* @font-face {
-  font-family: "Idealista";
-  src: local("Idealista-MediumItalic"),
-    url("../assets/fonts/Idealista/Idealista-MediumItalic.ttf") format("truetype"),
-    url("../assets/fonts/Idealista/Idealista-MediumItalic.woff") format("woff"),
-    url("../assets/fonts/Idealista/Idealista-MediumItalic.woff2") format("woff2");
-  font-weight: 500;
-  font-style: italic;
-} */
 
 @font-face {
   font-family: "Idealista";
@@ -73,16 +53,6 @@
   font-style: normal;
 }
 
-/* @font-face {
-  font-family: "Idealista";
-  src: local("Idealista-SemiBoldItalic"),
-    url("../assets/fonts/Idealista/Idealista-SemiBoldItalic.ttf") format("truetype"),
-    url("../assets/fonts/Idealista/Idealista-SemiBoldItalic.woff") format("woff"),
-    url("../assets/fonts/Idealista/Idealista-SemiBoldItalic.woff2") format("woff2");
-  font-weight: 600;
-  font-style: italic;
-} */
-
 @font-face {
   font-family: "Idealista";
   src:
@@ -93,16 +63,6 @@
   font-weight: 300;
   font-style: normal;
 }
-
-/* @font-face {
-  font-family: "Idealista";
-  src: local("Idealista-ThinItalic"),
-    url("../assets/fonts/Idealista/Idealista-ThinItalic.ttf") format("truetype"),
-    url("../assets/fonts/Idealista/Idealista-ThinItalic.woff") format("woff"),
-    url("../assets/fonts/Idealista/Idealista-ThinItalic.woff2") format("woff2");
-  font-weight: 300;
-  font-style: italic;
-} */
 
 .radix-themes {
   --default-font-family: "Nunito Sans Variable", -apple-system,

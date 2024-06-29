@@ -19,13 +19,12 @@ export default function AcceptsOnlineSupport() {
       title={"Sobre o acolhimento"}
       subtitle={"Você aceitaria ser atendida online?"}
     >
-      <fieldset role="radiogroup">
+      <fieldset>
         <label htmlFor="sim">
           <Field
             type="radio"
             name="acceptsOnlineSupport"
             value="sim"
-            tabIndex="0"
             id="sim"
           />
           Sim, aceito ser atendida online
@@ -35,7 +34,6 @@ export default function AcceptsOnlineSupport() {
             type="radio"
             name="acceptsOnlineSupport"
             value="nao"
-            tabIndex="1"
             id="nao"
           />
           Não, só posso receber atendimento presencial

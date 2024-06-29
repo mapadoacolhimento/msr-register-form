@@ -15,7 +15,7 @@ export default function StepsController({
   isButtonDisabled,
   progress,
   isLastStep,
-}: StepsControllerProps) {
+}: Readonly<StepsControllerProps>) {
   return (
     <Box
       position={"fixed"}
