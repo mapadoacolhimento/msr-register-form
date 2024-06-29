@@ -2,8 +2,8 @@ import { Field } from "formik";
 import * as Yup from "yup";
 
 import Step from "../Step";
-import { sleep } from "../../../utils";
 import ErrorMessage from "../../ErrorMessage";
+import { sleep } from "../../../utils";
 
 const supportTypeSchema = Yup.object({
   supportType: Yup.array()

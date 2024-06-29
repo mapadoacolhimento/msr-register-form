@@ -7,18 +7,7 @@ fieldset {
 }
 
 .rt-BaseButton {
-  font-family:
-    "Idealista",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI (Custom)",
-    Roboto,
-    "Helvetica Neue",
-    "Open Sans (Custom)",
-    system-ui,
-    sans-serif,
-    "Apple Color Emoji",
-    "Segoe UI Emoji";
+  font-family: var(--heading-font-family);
   font-weight: bold;
   font-size: var(--font-size-3);
   text-transform: uppercase;
