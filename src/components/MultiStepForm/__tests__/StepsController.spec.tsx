@@ -7,6 +7,10 @@ const defaultProps = {
   isButtonDisabled: false,
   isLastStep: false,
   progress: 0,
+  img: {
+    src: "https://picsum.photos/seed/picsum/200/300",
+    alt: "test",
+  },
 };
 
 const setup = (props: StepsControllerProps) => {

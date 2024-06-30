@@ -9,6 +9,11 @@ import ErrorMessage from "../../ErrorMessage";
 import { sleep } from "../../../utils";
 import { type Values } from "..";
 
+const img = {
+  src: "https://picsum.photos/seed/picsum/200/300",
+  alt: "test img",
+};
+
 const setup = () => {
   return render(
     <MultiStepFormWrapper
@@ -28,6 +33,7 @@ const setup = () => {
           email: Yup.string().email().required(),
         })}
         title={"Seus dados"}
+        img={img}
       >
         <label htmlFor="email">
           E-mail
@@ -44,6 +50,7 @@ const setup = () => {
         })}
         title={"Sobre o acolhimento"}
         subtitle={"Que tipo de acolhimento você precisa?"}
+        img={img}
       >
         <fieldset>
           <label htmlFor="psicologico">
