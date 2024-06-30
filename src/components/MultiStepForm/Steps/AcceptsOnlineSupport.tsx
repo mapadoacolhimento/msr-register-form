@@ -24,13 +24,15 @@ export default function AcceptsOnlineSupport() {
         alt: "Ilustração com duas mulheres sentadas conversando",
       }}
     >
-      <fieldset>
+      <fieldset name="acceptsOnlineSupport">
         <label htmlFor="sim">
           <Field
             type="radio"
             name="acceptsOnlineSupport"
             value="sim"
             id="sim"
+            innerRef={(el: HTMLElement) => el?.focus()}
+            tabIndex={0}
           />
           Sim, aceito ser atendida online
         </label>
@@ -40,6 +42,7 @@ export default function AcceptsOnlineSupport() {
             name="acceptsOnlineSupport"
             value="nao"
             id="nao"
+            tabIndex={0}
           />
           Não, só posso receber atendimento presencial
         </label>

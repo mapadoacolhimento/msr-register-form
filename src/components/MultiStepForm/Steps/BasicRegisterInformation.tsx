@@ -29,6 +29,7 @@ export default function BasicRegisterInformation() {
         placeholder="Qual o seu melhor e-mail?"
         type="email"
         id={"email"}
+        innerRef={(el: HTMLElement) => el?.focus()}
       />
       <ErrorMessage name="email" />
     </Step>

@@ -24,13 +24,15 @@ export default function SupportType() {
         alt: "Ilustração com duas mulheres sentadas conversando",
       }}
     >
-      <fieldset>
+      <fieldset name="supporType">
         <label htmlFor="psicologico">
           <Field
             type="checkbox"
             name="supportType"
             value="psychological"
             id="psicologico"
+            innerRef={(el: HTMLElement) => el?.focus()}
+            tabIndex={0}
           />
           Acolhimento psicológico
         </label>
@@ -40,6 +42,7 @@ export default function SupportType() {
             name="supportType"
             value="legal"
             id="juridico"
+            tabIndex={0}
           />
           Acolhimento jurídico
         </label>
