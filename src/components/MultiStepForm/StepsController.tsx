@@ -43,6 +43,7 @@ export default function StepsController({
         value={progress}
         variant={"soft"}
         max={100}
+        aria-label="Barra de progresso de preenchimento do formulário."
       />
       <Flex p={"6"} width={"100%"} justify={"between"} align={"center"}>
         <Heading color="purple" highContrast size={"4"} as="h2">

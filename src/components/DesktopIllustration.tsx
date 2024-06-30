@@ -17,6 +17,8 @@ export default function DesktopIllustration({
           src={img.src}
           alt={img.alt}
           style={{ maxWidth: "100%", maxHeight: "100%" }}
+          width={"auto"}
+          height={"auto"}
         />
       </aside>
     </Flex>

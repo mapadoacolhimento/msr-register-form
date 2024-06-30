@@ -6,7 +6,12 @@ export default function Header() {
     <Section size="1" px="5" asChild>
       <header>
         <Box style={{ borderBottom: "1px solid var(--gray-4)" }} pb={"4"}>
-          <img src={logo} alt="Logo Mapa do Acolhimento" height={"30px"} />
+          <img
+            src={logo}
+            alt="Logo Mapa do Acolhimento"
+            height={"30px"}
+            width={"auto"}
+          />
         </Box>
       </header>
     </Section>
