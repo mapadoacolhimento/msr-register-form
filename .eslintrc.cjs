@@ -34,6 +34,7 @@ module.exports = {
       "./cypress/tsconfig.json",
     ],
     tsconfigRootDir: __dirname,
+    extraFileExtensions: ["html"],
   },
   overrides: [
     {
