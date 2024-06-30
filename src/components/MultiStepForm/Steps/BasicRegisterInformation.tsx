@@ -2,7 +2,7 @@ import { Field } from "formik";
 import * as Yup from "yup";
 
 import Step from "../Step";
-import img from "../../../assets/illustrations/woman-floating.png";
+import img from "../../../assets/illustrations/woman-floating.webp";
 import ErrorMessage from "../../ErrorMessage";
 import { sleep } from "../../../utils";
 
