@@ -2,7 +2,6 @@
   font-family: "Idealista";
   src:
     local("Idealista-Bold"),
-    url(".../assets/fonts/Idealista/Idealista-Bold.ttf") format("truetype"),
     url("../assets/fonts/Idealista/Idealista-Bold.woff") format("woff"),
     url("../assets/fonts/Idealista/Idealista-Bold.woff2") format("woff2");
   font-weight: 700;
@@ -13,7 +12,6 @@
   font-family: "Idealista";
   src:
     local("Idealista-BoldItalic"),
-    url("../assets/fonts/Idealista/Idealista-BoldItalic.ttf") format("truetype"),
     url("../assets/fonts/Idealista/Idealista-BoldItalic.woff") format("woff"),
     url("../assets/fonts/Idealista/Idealista-BoldItalic.woff2") format("woff2");
   font-weight: 700;
@@ -24,7 +22,6 @@
   font-family: "Idealista";
   src:
     local("Idealista-Light"),
-    url("../assets/fonts/Idealista/Idealista-Light.ttf") format("truetype"),
     url("../assets/fonts/Idealista/Idealista-Light.woff") format("woff"),
     url("../assets/fonts/Idealista/Idealista-Light.woff2") format("woff2");
   font-weight: 400;
@@ -35,7 +32,6 @@
   font-family: "Idealista";
   src:
     local("Idealista-Medium"),
-    url("../assets/fonts/Idealista/Idealista-Medium.ttf") format("truetype"),
     url("../assets/fonts/Idealista/Idealista-Medium.woff") format("woff"),
     url("../assets/fonts/Idealista/Idealista-Medium.woff2") format("woff2");
   font-weight: 500;
@@ -46,7 +42,6 @@
   font-family: "Idealista";
   src:
     local("Idealista-SemiBold"),
-    url("../assets/fonts/Idealista/Idealista-SemiBold.ttf") format("truetype"),
     url("../assets/fonts/Idealista/Idealista-SemiBold.woff") format("woff"),
     url("../assets/fonts/Idealista/Idealista-SemiBold.woff2") format("woff2");
   font-weight: 600;
@@ -57,7 +52,6 @@
   font-family: "Idealista";
   src:
     local("Idealista-Thin"),
-    url("../assets/fonts/Idealista/Idealista-Thin.ttf") format("truetype"),
     url("../assets/fonts/Idealista/Idealista-Thin.woff") format("woff"),
     url("../assets/fonts/Idealista/Idealista-Thin.woff2") format("woff2");
   font-weight: 300;
