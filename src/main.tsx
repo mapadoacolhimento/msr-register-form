@@ -20,5 +20,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <MultiStepForm />
       {import.meta.env.DEV ? <ThemePanel /> : null}
     </Theme>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
