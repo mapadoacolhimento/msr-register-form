@@ -8,6 +8,7 @@ export interface StepChildrenProps {
   validationSchema: AnyObjectSchema;
   title: string;
   subtitle?: string;
+  img: string;
 }
 
 export default function Step({

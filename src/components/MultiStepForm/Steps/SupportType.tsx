@@ -2,6 +2,7 @@ import { Field } from "formik";
 import * as Yup from "yup";
 
 import Step from "../Step";
+import img from "../../../assets/illustrations/woman-getting-support.png";
 import ErrorMessage from "../../ErrorMessage";
 import { sleep } from "../../../utils";
 
@@ -18,6 +19,7 @@ export default function SupportType() {
       validationSchema={supportTypeSchema}
       title={"Sobre o acolhimento"}
       subtitle={"Que tipo de acolhimento você precisa?"}
+      img={img}
     >
       <fieldset>
         <label htmlFor="psicologico">

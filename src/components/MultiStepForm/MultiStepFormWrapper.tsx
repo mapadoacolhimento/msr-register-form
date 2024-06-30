@@ -96,13 +96,14 @@ export default function MultiStepFormWrapper({
                   isButtonDisabled={isSubmitting}
                   progress={progress}
                   isLastStep={isLastStep}
+                  img={step.props.img}
                 />
               </Form>
             )}
           </Formik>
         </main>
       </div>
-      <DesktopIllustration />
+      <DesktopIllustration img={step.props.img} />
     </Grid>
   );
 }
