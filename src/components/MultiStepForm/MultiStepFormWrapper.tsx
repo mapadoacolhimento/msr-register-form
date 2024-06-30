@@ -5,11 +5,12 @@ import {
   Children,
 } from "react";
 import { type FormikHelpers, Form, Formik } from "formik";
-import { Heading, IconButton, Text } from "@radix-ui/themes";
+import { Grid, Heading, IconButton, Text } from "@radix-ui/themes";
 import { ChevronLeftIcon } from "@radix-ui/react-icons";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 
 import StepsController from "./StepsController";
+import { DesktopIllustration, Header } from "../";
 import { type StepChildrenProps } from "./Step";
 import { type Values } from "./";
 
@@ -57,43 +58,51 @@ export default function MultiStepFormWrapper({
   };
 
   return (
-    <Formik
-      initialValues={snapshot}
-      onSubmit={handleSubmit}
-      validationSchema={step.props.validationSchema}
-    >
-      {({ isSubmitting, values }) => (
-        <Form>
-          <IconButton
-            onClick={() => previousStep(values)}
-            variant="ghost"
-            disabled={stepIndex === 0}
-            type={"button"}
+    <Grid columns={{ initial: "1", md: "1fr 55%" }} width="auto">
+      <div>
+        <Header />
+        <main>
+          <Formik
+            initialValues={snapshot}
+            onSubmit={handleSubmit}
+            validationSchema={step.props.validationSchema}
           >
-            <ChevronLeftIcon width="24" height="24" />
-            <VisuallyHidden.Root>
-              Voltar para o passo anterior
-            </VisuallyHidden.Root>
-          </IconButton>
+            {({ isSubmitting, values }) => (
+              <Form>
+                <IconButton
+                  onClick={() => previousStep(values)}
+                  variant="ghost"
+                  disabled={stepIndex === 0}
+                  type={"button"}
+                >
+                  <ChevronLeftIcon width="24" height="24" />
+                  <VisuallyHidden.Root>
+                    Voltar para o passo anterior
+                  </VisuallyHidden.Root>
+                </IconButton>
 
-          <Heading as={"h1"}>{step.props.title}</Heading>
-          {step.props.subtitle ? (
-            <Text asChild>
-              <legend>{step.props.subtitle}</legend>
-            </Text>
-          ) : null}
+                <Heading as={"h1"}>{step.props.title}</Heading>
+                {step.props.subtitle ? (
+                  <Text asChild>
+                    <legend>{step.props.subtitle}</legend>
+                  </Text>
+                ) : null}
 
-          {step}
+                {step}
 
-          <StepsController
-            stepName={step.props.title}
-            stepNumber={stepNumber}
-            isButtonDisabled={isSubmitting}
-            progress={progress}
-            isLastStep={isLastStep}
-          />
-        </Form>
-      )}
-    </Formik>
+                <StepsController
+                  stepName={step.props.title}
+                  stepNumber={stepNumber}
+                  isButtonDisabled={isSubmitting}
+                  progress={progress}
+                  isLastStep={isLastStep}
+                />
+              </Form>
+            )}
+          </Formik>
+        </main>
+      </div>
+      <DesktopIllustration />
+    </Grid>
   );
 }

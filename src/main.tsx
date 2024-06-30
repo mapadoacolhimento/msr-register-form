@@ -12,12 +12,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Theme, ThemePanel } from "@radix-ui/themes";
 
-import App from "./App.tsx";
+import { MultiStepForm } from "./components";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Theme accentColor="purple" grayColor="gray" panelBackground="solid">
-      <App />
+      <MultiStepForm />
       <ThemePanel />
     </Theme>
   </React.StrictMode>,
