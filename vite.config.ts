@@ -9,6 +9,7 @@ export default defineConfig({
   test: {
     coverage: {
       include: ["src/**"],
+      reporter: ["lcovonly", "text"],
     },
     environment: "jsdom",
     globals: true,
