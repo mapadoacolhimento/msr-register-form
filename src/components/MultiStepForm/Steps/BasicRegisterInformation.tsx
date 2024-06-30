@@ -18,7 +18,10 @@ export default function BasicRegisterInformation() {
       onSubmit={() => sleep(300).then(() => console.log("Step1 onSubmit"))}
       validationSchema={basicRegisterInformationSchema}
       title={"Seus dados"}
-      img={img}
+      img={{
+        src: img,
+        alt: "Ilustração com uma mulher flutuando.",
+      }}
     >
       <label htmlFor="email">E-mail</label>
       <Field

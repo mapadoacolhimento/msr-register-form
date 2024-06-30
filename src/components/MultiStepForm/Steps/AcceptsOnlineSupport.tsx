@@ -19,7 +19,10 @@ export default function AcceptsOnlineSupport() {
       validationSchema={acceptsOnlineSupportSchema}
       title={"Sobre o acolhimento"}
       subtitle={"Você aceitaria ser atendida online?"}
-      img={img}
+      img={{
+        src: img,
+        alt: "Ilustração com duas mulheres sentadas conversando",
+      }}
     >
       <fieldset>
         <label htmlFor="sim">

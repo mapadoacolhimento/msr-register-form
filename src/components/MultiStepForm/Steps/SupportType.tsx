@@ -19,7 +19,10 @@ export default function SupportType() {
       validationSchema={supportTypeSchema}
       title={"Sobre o acolhimento"}
       subtitle={"Que tipo de acolhimento você precisa?"}
-      img={img}
+      img={{
+        src: img,
+        alt: "Ilustração com duas mulheres sentadas conversando",
+      }}
     >
       <fieldset>
         <label htmlFor="psicologico">

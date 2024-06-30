@@ -2,7 +2,7 @@ import { Flex } from "@radix-ui/themes";
 
 export default function DesktopIllustration({
   img,
-}: Readonly<{ img: string }>) {
+}: Readonly<{ img: { src: string; alt: string } }>) {
   return (
     <Flex
       display={{ initial: "none", md: "flex" }}
@@ -14,8 +14,8 @@ export default function DesktopIllustration({
     >
       <aside>
         <img
-          src={img}
-          alt={"Ilustração"}
+          src={img.src}
+          alt={img.alt}
           style={{ maxWidth: "100%", maxHeight: "100%" }}
         />
       </aside>

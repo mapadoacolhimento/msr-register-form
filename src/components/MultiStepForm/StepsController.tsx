@@ -7,7 +7,10 @@ export interface StepsControllerProps {
   isButtonDisabled: boolean;
   progress: number;
   isLastStep: boolean;
-  img: string;
+  img: {
+    src: string;
+    alt: string;
+  };
 }
 
 export default function StepsController({
@@ -31,7 +34,7 @@ export default function StepsController({
         bottom={"100px"}
         display={{ initial: "block", md: "none" }}
       >
-        <img src={img} height={"150px"} alt={"Ilustração"} />
+        <img src={img.src} height={"150px"} alt={img.alt} />
       </Box>
       <Progress
         color={"yellow"}
