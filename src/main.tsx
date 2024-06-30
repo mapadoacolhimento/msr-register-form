@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Theme accentColor="purple" grayColor="gray" panelBackground="solid">
       <MultiStepForm />
-      <ThemePanel />
+      {import.meta.env.DEV ? <ThemePanel /> : null}
     </Theme>
   </React.StrictMode>,
 );
