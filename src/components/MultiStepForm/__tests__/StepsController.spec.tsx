@@ -24,13 +24,13 @@ describe("<StepsController />", () => {
       screen.getByRole("heading", {
         name: /1. seus dados/i,
         level: 2,
-      }),
-    );
+      })
+    ).toBeInTheDocument();
   });
   it("should render a continue btn", () => {
     setup(defaultProps);
     expect(
-      screen.getByRole("button", { name: /continuar/i }),
+      screen.getByRole("button", { name: /continuar/i })
     ).toBeInTheDocument();
   });
   it("should render a disabled btn", () => {
@@ -50,7 +50,7 @@ describe("<StepsController />", () => {
   it("should render progressbar with 0% progress", () => {
     setup(defaultProps);
     expect(
-      screen.getByRole("progressbar", { value: { now: 0, max: 100 } }),
+      screen.getByRole("progressbar", { value: { now: 0, max: 100 } })
     ).toBeInTheDocument();
   });
   it("should render progressbar with 75% progress", () => {
@@ -61,7 +61,7 @@ describe("<StepsController />", () => {
     expect(
       screen.getByRole("progressbar", {
         value: { now: 75, max: 100 },
-      }),
+      })
     ).toBeInTheDocument();
   });
 });
