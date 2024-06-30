@@ -64,6 +64,12 @@
       "eslint --fix"
     ]
   },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": false
+  },
   "author": {
     "name": "Desenvolvedoras Mapa",
     "email": "dev@mapa.org.br",
