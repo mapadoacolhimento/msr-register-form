@@ -1,0 +1,88 @@
+{
+	"name": "msr-register-form",
+	"private": false,
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc -b && vite build",
+		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+		"preview": "vite preview",
+		"format": "prettier --check .",
+		"format:fix": "prettier --write .",
+		"prepare": "husky",
+		"test": "vitest",
+		"test:ui": "vitest --ui",
+		"test:ci": "vitest run --coverage",
+		"e2e": "cypress open",
+		"e2e:ci": "pnpm cypress run --browser chrome"
+	},
+	"dependencies": {
+		"@fontsource-variable/nunito-sans": "^5.0.14",
+		"@radix-ui/react-icons": "^1.3.0",
+		"@radix-ui/react-visually-hidden": "^1.1.0",
+		"@radix-ui/themes": "^3.1.1",
+		"formik": "^2.4.6",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"yup": "^1.4.0"
+	},
+	"devDependencies": {
+		"@testing-library/cypress": "^10.0.2",
+		"@testing-library/dom": "^10.2.0",
+		"@testing-library/jest-dom": "^6.4.6",
+		"@testing-library/react": "^16.0.0",
+		"@testing-library/user-event": "^14.5.2",
+		"@types/react": "^18.3.3",
+		"@types/react-dom": "^18.3.0",
+		"@typescript-eslint/eslint-plugin": "^7.13.1",
+		"@typescript-eslint/parser": "^7.13.1",
+		"@vitejs/plugin-react": "^4.3.1",
+		"@vitest/coverage-v8": "^1.6.0",
+		"cypress": "^13.12.0",
+		"eslint": "^8.57.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-jest-dom": "^5.4.0",
+		"eslint-plugin-react": "^7.34.3",
+		"eslint-plugin-react-hooks": "^4.6.2",
+		"eslint-plugin-react-refresh": "^0.4.7",
+		"eslint-plugin-testing-library": "^6.2.2",
+		"husky": "^9.0.11",
+		"jsdom": "^24.1.0",
+		"lint-staged": "^15.2.7",
+		"prettier": "^3.3.2",
+		"typescript": "^5.2.2",
+		"vite": "^5.3.1",
+		"vitest": "^1.6.0"
+	},
+	"engines": {
+		"node": ">=20.12.2",
+		"pnpm": ">=9.2.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mapadoacolhimento/msr-register-form.git"
+	},
+	"homepage": "https://github.com/mapadoacolhimento/msr-register-form/#readme",
+	"license": "CC-BY-SA-4.0",
+	"lint-staged": {
+		"*.{js,jsx,ts,tsx}": [
+			"eslint --fix",
+			"prettier --write --ignore-unknown"
+		],
+		"*.{md,html,css,cjs,json}": "prettier --write --ignore-unknown"
+	},
+	"prettier": {
+		"trailingComma": "es5",
+		"tabWidth": 2,
+		"semi": true,
+		"singleQuote": false,
+		"printWidth": 80,
+		"useTabs": true
+	},
+	"author": {
+		"name": "Desenvolvedoras Mapa",
+		"email": "dev@mapa.org.br",
+		"url": "https://mapadoacolhimento.org"
+	},
+	"description": "Formulário de cadastro das acolhidas do Mapa do Acolhimento."
+}
