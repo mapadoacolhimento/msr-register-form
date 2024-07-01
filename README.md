@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">Bem-vinda ao msr-register-form 👋</h1>
+<p>
+  <img src="https://img.shields.io/badge/node-%3E%3D20.12.2-blue.svg" />
+  <img src="https://img.shields.io/badge/pnpm-%3E%3D9.2.0-blue.svg" />
+  <a href="https://github.com/mapadoacolhimento/msr-register-form#readme" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="https://github.com/mapadoacolhimento/msr-register-form/graphs/commit-activity" target="_blank">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+  </a>
+  <a href="https://github.com/mapadoacolhimento/msr-register-form/blob/master/LICENSE" target="_blank">
+    <img alt="License: CC--BY--SA--4.0" src="https://img.shields.io/github/license/mapadoacolhimento/msr-register-form" />
+  </a>
+</p>
 
-## Getting Started
+<img alt="Cover image - O acolhimento é a nossa forma de mudar o mundo." src="https://github.com/mapadoacolhimento/msr-register-form/assets/9057801/18041218-3f33-40ee-9083-6822d936bb9e" />
 
-First, run the development server:
+> Formulário de cadastro das acolhidas do Mapa do Acolhimento.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### 🏠 [Página inicial](https://github.com/mapadoacolhimento/msr-register-form/#readme)
+
+### ✨ [Demo](https://novo.queroseracolhida.mapadoacolhimento.org/)
+
+## Pré-requisitos
+
+- node >=20.12.2
+- pnpm >=9.2.0
+
+## Install
+
+```sh
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+pnpm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Testes
 
-## Learn More
+```sh
+pnpm run test
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Autoras
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+👤 **Desenvolvedoras Mapa**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Website: https://mapadoacolhimento.org/
+- Github: [@mapadoacolhimento](https://github.com/mapadoacolhimento)
+- LinkedIn: [@https:\/\/www.linkedin.com\/company\/mapadoacolhimento\/](https://linkedin.com/in/https://www.linkedin.com/company/mapadoacolhimento/)
 
-## Deploy on Vercel
+## 📝 Licensa
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Copyright © 2024 [Desenvolvedoras Mapa](https://github.com/mapadoacolhimento).<br />
+This project is [CC--BY--SA--4.0](https://github.com/mapadoacolhimento/msr-register-form/blob/master/LICENSE) licensed.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
+
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
