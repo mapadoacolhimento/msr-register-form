@@ -1,0 +1,69 @@
+@font-face {
+	font-family: "Idealista";
+	src:
+		local("Idealista-Bold"),
+		url("../assets/fonts/Idealista/Idealista-Bold.woff") format("woff"),
+		url("../assets/fonts/Idealista/Idealista-Bold.woff2") format("woff2");
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Idealista";
+	src:
+		local("Idealista-BoldItalic"),
+		url("../assets/fonts/Idealista/Idealista-BoldItalic.woff") format("woff"),
+		url("../assets/fonts/Idealista/Idealista-BoldItalic.woff2") format("woff2");
+	font-weight: 700;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: "Idealista";
+	src:
+		local("Idealista-Light"),
+		url("../assets/fonts/Idealista/Idealista-Light.woff") format("woff"),
+		url("../assets/fonts/Idealista/Idealista-Light.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Idealista";
+	src:
+		local("Idealista-Medium"),
+		url("../assets/fonts/Idealista/Idealista-Medium.woff") format("woff"),
+		url("../assets/fonts/Idealista/Idealista-Medium.woff2") format("woff2");
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Idealista";
+	src:
+		local("Idealista-SemiBold"),
+		url("../assets/fonts/Idealista/Idealista-SemiBold.woff") format("woff"),
+		url("../assets/fonts/Idealista/Idealista-SemiBold.woff2") format("woff2");
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Idealista";
+	src:
+		local("Idealista-Thin"),
+		url("../assets/fonts/Idealista/Idealista-Thin.woff") format("woff"),
+		url("../assets/fonts/Idealista/Idealista-Thin.woff2") format("woff2");
+	font-weight: 300;
+	font-style: normal;
+}
+
+.radix-themes {
+	--default-font-family: "Nunito Sans Variable", -apple-system,
+		BlinkMacSystemFont, "Segoe UI (Custom)", Roboto, "Helvetica Neue",
+		"Open Sans (Custom)", system-ui, sans-serif, "Apple Color Emoji",
+		"Segoe UI Emoji";
+	--heading-font-family: "Idealista", -apple-system, BlinkMacSystemFont,
+		"Segoe UI (Custom)", Roboto, "Helvetica Neue", "Open Sans (Custom)",
+		system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}

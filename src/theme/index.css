@@ -1,0 +1,19 @@
+body {
+	margin: 0;
+}
+
+fieldset {
+	border: none;
+}
+
+.rt-BaseButton {
+	font-family: var(--heading-font-family);
+	font-weight: bold;
+	font-size: var(--font-size-3);
+	text-transform: uppercase;
+}
+
+.radix-themes,
+.rt-BaseButton:where(.rt-r-size-4) {
+	--base-button-height: var(--space-7);
+}
