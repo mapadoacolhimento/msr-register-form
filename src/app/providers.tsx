@@ -2,7 +2,9 @@
 
 import { Theme, ThemePanel } from "@radix-ui/themes";
 
-export default function Providers({ children }: { children: React.ReactNode }) {
+export default function Providers({
+	children,
+}: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<Theme accentColor="purple" grayColor="gray" panelBackground="solid">
 			{children}
