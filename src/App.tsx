@@ -2,6 +2,6 @@
 
 import { MultiStepForm } from "@/components";
 
-export default function ClientOnly() {
+export default function App() {
 	return <MultiStepForm />;
 }
