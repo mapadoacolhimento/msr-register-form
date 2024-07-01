@@ -14,17 +14,16 @@
 		"test:ui": "vitest --ui",
 		"test:ci": "vitest run --coverage",
 		"e2e": "cypress open",
-		"e2e:ci": "pnpm cypress run --browser chrome"
+		"e2e:ci": "cypress run --browser chrome"
 	},
 	"dependencies": {
-		"@fontsource-variable/nunito-sans": "^5.0.14",
 		"@radix-ui/react-icons": "^1.3.0",
 		"@radix-ui/react-visually-hidden": "^1.1.0",
 		"@radix-ui/themes": "^3.1.1",
 		"formik": "^2.4.6",
+		"next": "14.2.4",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
-		"next": "14.2.4",
 		"yup": "^1.4.0"
 	},
 	"devDependencies": {
@@ -36,8 +35,6 @@
 		"@types/node": "^20",
 		"@types/react": "^18.3.3",
 		"@types/react-dom": "^18.3.0",
-		"@typescript-eslint/eslint-plugin": "^7.13.1",
-		"@typescript-eslint/parser": "^7.13.1",
 		"@vitejs/plugin-react": "^4.3.1",
 		"@vitest/coverage-v8": "^1.6.0",
 		"cypress": "^13.12.0",
@@ -45,19 +42,15 @@
 		"eslint-config-next": "14.2.4",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-jest-dom": "^5.4.0",
-		"eslint-plugin-react": "^7.34.3",
-		"eslint-plugin-react-hooks": "^4.6.2",
-		"eslint-plugin-react-refresh": "^0.4.7",
 		"eslint-plugin-testing-library": "^6.2.2",
 		"husky": "^9.0.11",
 		"jsdom": "^24.1.0",
 		"lint-staged": "^15.2.7",
 		"prettier": "^3.3.2",
 		"typescript": "^5.2.2",
-		"vite": "^5.3.1",
 		"vitest": "^1.6.0"
 	},
-  "engines": {
+	"engines": {
 		"node": ">=20.12.2",
 		"pnpm": ">=9.2.0"
 	},
