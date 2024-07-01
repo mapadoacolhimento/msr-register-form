@@ -4,7 +4,7 @@ import "../theme/colors/pink.css";
 import "../theme/colors/gray.css";
 import "../theme/index.css";
 
-import { ClientOnly } from "./client";
+import ClientOnly from "./client";
 
 export default function Page() {
 	return <ClientOnly />;

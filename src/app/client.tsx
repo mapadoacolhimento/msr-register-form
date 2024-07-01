@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
-import App from "@/App";
+import { MultiStepForm } from "@/components";
 
-export function ClientOnly() {
-	return <App />;
+export default function ClientOnly() {
+	return <MultiStepForm />;
 }

@@ -2,6 +2,7 @@ import "@radix-ui/themes/styles.css";
 
 import type { Metadata } from "next";
 import { nunitoSans, idealista } from "@/fonts";
+import Providers from "./providers";
 
 export const metadata: Metadata = {
 	title: "Quero ser acolhida - Mapa do Acolhimento",
@@ -19,7 +20,9 @@ export default function RootLayout({
 			lang="pt-BR"
 			className={`${nunitoSans.className} ${idealista.variable}`}
 		>
-			<body>{children}</body>
+			<body>
+				<Providers>{children}</Providers>
+			</body>
 		</html>
 	);
 }
