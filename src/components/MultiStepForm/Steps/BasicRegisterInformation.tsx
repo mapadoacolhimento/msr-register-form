@@ -2,7 +2,6 @@ import { Field } from "formik";
 import * as Yup from "yup";
 
 import Step from "../Step";
-import img from "../../../assets/illustrations/woman-floating.webp";
 import ErrorMessage from "../../ErrorMessage";
 import { sleep } from "../../../utils";
 
@@ -19,7 +18,7 @@ export default function BasicRegisterInformation() {
 			validationSchema={basicRegisterInformationSchema}
 			title={"Seus dados"}
 			img={{
-				src: img,
+				src: "/illustrations/woman-floating.webp",
 				alt: "Ilustração com uma mulher flutuando.",
 			}}
 		>

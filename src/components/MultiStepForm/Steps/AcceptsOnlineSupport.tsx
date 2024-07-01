@@ -2,7 +2,6 @@ import { Field } from "formik";
 import * as Yup from "yup";
 
 import Step from "../Step";
-import img from "../../../assets/illustrations/woman-getting-support.webp";
 import ErrorMessage from "../../ErrorMessage";
 import { sleep } from "../../../utils";
 
@@ -20,7 +19,7 @@ export default function AcceptsOnlineSupport() {
 			title={"Sobre o acolhimento"}
 			subtitle={"Você aceitaria ser atendida online?"}
 			img={{
-				src: img,
+				src: "/illustrations/woman-getting-support.webp",
 				alt: "Ilustração com duas mulheres sentadas conversando",
 			}}
 		>
