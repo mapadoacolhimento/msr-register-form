@@ -17,3 +17,12 @@ fieldset {
 .rt-BaseButton:where(.rt-r-size-4) {
 	--base-button-height: var(--space-7);
 }
+
+.radix-themes {
+	--default-font-family: var(--font-nunito-sans);
+	--heading-font-family: var(--font-idealista);
+}
+
+.rt-ProgressRoot:where(.rt-variant-soft) {
+	background-color: #ebe5ef;
+}

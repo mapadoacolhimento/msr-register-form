@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import "@radix-ui/themes/styles.css";
 
-const inter = Inter({ subsets: ["latin"] });
+import type { Metadata } from "next";
+import { nunitoSans, idealista } from "@/fonts";
 
 export const metadata: Metadata = {
 	title: "Quero ser acolhida - Mapa do Acolhimento",
@@ -15,8 +15,11 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="pt-BR">
-			<body className={inter.className}>{children}</body>
+		<html
+			lang="pt-BR"
+			className={`${nunitoSans.className} ${idealista.variable}`}
+		>
+			<body>{children}</body>
 		</html>
 	);
 }

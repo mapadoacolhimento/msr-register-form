@@ -1,4 +1,3 @@
-import "../styles/steps.css";
 import { Box, Button, Flex, Heading, Progress } from "@radix-ui/themes";
 
 export interface StepsControllerProps {
