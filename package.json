@@ -14,7 +14,8 @@
 		"test:ui": "vitest --ui",
 		"test:ci": "vitest run --coverage",
 		"e2e": "cypress open",
-		"e2e:ci": "cypress run --browser chrome"
+		"e2e:ci": "cypress run --browser chrome",
+		"generate": "prisma generate"
 	},
 	"dependencies": {
 		"@prisma/client": "^5.16.1",
