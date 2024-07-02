@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import Step from "../Step";
 import ErrorMessage from "../../ErrorMessage";
 import { sleep } from "../../../utils";
+import { Values } from "..";
 
 const basicRegisterInformationSchema = Yup.object({
 	email: Yup.string()
@@ -12,9 +13,29 @@ const basicRegisterInformationSchema = Yup.object({
 });
 
 export default function BasicRegisterInformation() {
+	async function handleSubmit(values: Pick<Values, "email">) {
+		const response = await fetch("/validate", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				email: values.email,
+			}),
+		});
+
+		if (!response.ok) {
+			throw new Error(response.statusText);
+		}
+
+		const data = await response.json();
+		const isValidSupportRequest = data.res === "test@gmail.com";
+		console.log({ isValidSupportRequest, data });
+	}
+
 	return (
 		<Step
-			onSubmit={() => sleep(300).then(() => console.log("Step1 onSubmit"))}
+			onSubmit={handleSubmit}
 			validationSchema={basicRegisterInformationSchema}
 			title={"Seus dados"}
 			img={{
