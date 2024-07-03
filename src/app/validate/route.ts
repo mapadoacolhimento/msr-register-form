@@ -1,8 +1,6 @@
 import { db, getErrorMessage } from "../../lib";
 import * as Yup from "yup";
 
-export const runtime = "edge";
-
 const payloadSchema = Yup.object({
 	email: Yup.string().email().required(),
 	phone: Yup.string().required(),
@@ -28,10 +26,8 @@ export async function POST(request: Request) {
 		if (error["name"] === "ValidationError") {
 			const errorMsg = `Validation error: ${getErrorMessage(error)}`;
 
-			console.error(`[compose] - [400]: ${errorMsg}`);
-
 			return new Response(errorMsg, {
-				status: 500,
+				status: 400,
 			});
 		}
 
