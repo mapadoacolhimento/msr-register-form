@@ -24,12 +24,14 @@ const setup = () => {
 };
 
 describe("<BasicRegisterInformation />", () => {
-	it("should render email field", () => {
-		setup();
+	it("should render email fields", () => {
+		render(<BasicRegisterInformation />);
 
-		expect(
-			screen.getByRole("textbox", { name: /E-mail/i })
-		).toBeInTheDocument();
+		const emailInput = screen.getAllByLabelText("E-mail");
+		const confirmEmailInput = screen.getByLabelText("Confirme seu E-mail");
+
+		expect(emailInput).toBeInTheDocument();
+		expect(confirmEmailInput).toBeInTheDocument();
 	});
 
 	it("should render empty field error if no info provided", async () => {
@@ -48,9 +50,7 @@ describe("<BasicRegisterInformation />", () => {
 	it("should render empty field error if no info provided", async () => {
 		setup();
 
-		const emailInput = screen.getByRole("textbox", {
-			name: /E-mail/i,
-		});
+		const emailInput = screen.getByLabelText("E-mail");
 		await userEvent.type(emailInput, "test");
 
 		const btn = screen.getByRole("button", { name: /enviar/i });
