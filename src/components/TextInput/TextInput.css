@@ -1,0 +1,39 @@
+.input-container {
+	position: relative;
+	margin-bottom: 1rem;
+	margin-top: 1rem;
+	padding-inline: 8rem;
+}
+
+.floating-label {
+	position: absolute;
+	background-color: white;
+	padding: 0 5px;
+	font-size: 1em;
+	color: black;
+	transition:
+		top 0.1s,
+		font-size 0.1s;
+	pointer-events: none;
+	visibility: hidden;
+}
+
+.input-field {
+	width: 100%;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	outline: none;
+	transition: border-color 0.3s;
+
+	&:focus {
+		border-color: dodgerblue;
+	}
+}
+
+.floating-label.active {
+	top: -10px;
+	font-size: 0.75em;
+	visibility: visible;
+}

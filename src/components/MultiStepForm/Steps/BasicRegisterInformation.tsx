@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import Step from "../Step";
 import ErrorMessage from "../../ErrorMessage";
 import { sleep } from "../../../utils";
+import { useState } from "react";
+import TextInput from "@/components/TextInput/TextInput";
 
 const basicRegisterInformationSchema = Yup.object({
 	email: Yup.string()
@@ -22,15 +24,12 @@ export default function BasicRegisterInformation() {
 				alt: "Ilustração com uma mulher flutuando.",
 			}}
 		>
-			<label htmlFor="email">E-mail</label>
-			<Field
+			<TextInput
 				name="email"
-				placeholder="Qual o seu melhor e-mail?"
 				type="email"
-				id={"email"}
-				innerRef={(el: HTMLElement) => el?.focus()}
+				label="E-mail"
+				placeholder="Qual o seu melhor e-mail?"
 			/>
-			<ErrorMessage name="email" />
 		</Step>
 	);
 }
