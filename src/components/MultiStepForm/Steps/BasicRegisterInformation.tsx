@@ -5,7 +5,7 @@ import Step from "../Step";
 import ErrorMessage from "../../ErrorMessage";
 import { sleep } from "../../../utils";
 import { useState } from "react";
-import TextInput from "@/components/TextInput/TextInput";
+import TextInput from "../../TextInput/TextInput";
 
 const basicRegisterInformationSchema = Yup.object({
 	name: Yup.string().required("Esse campo é obrigatório."),
