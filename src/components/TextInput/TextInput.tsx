@@ -39,6 +39,10 @@ const TextInput: React.FC<TextInputProps> = ({
 							placeholder={placeholder}
 							mask={mask}
 							className="input-field"
+							onFocus={() => setIsFocused(true)}
+							onBlur={(e) => {
+								if (!e.target.value) setIsFocused(false);
+							}}
 						/>
 					) : (
 						<input
@@ -47,6 +51,10 @@ const TextInput: React.FC<TextInputProps> = ({
 							type={type}
 							placeholder={placeholder}
 							className="input-field"
+							onFocus={() => setIsFocused(true)}
+							onBlur={(e) => {
+								if (!e.target.value) setIsFocused(false);
+							}}
 						/>
 					)
 				}
