@@ -68,7 +68,7 @@ export default function MultiStepFormWrapper({
 						validationSchema={step.props.validationSchema}
 					>
 						{({ isSubmitting, values }) => (
-							<Form>
+							<>
 								<IconButton
 									onClick={() => previousStep(values)}
 									variant="ghost"
@@ -81,24 +81,25 @@ export default function MultiStepFormWrapper({
 									</VisuallyHidden.Root>
 								</IconButton>
 
-								<Heading as={"h1"}>{step.props.title}</Heading>
-								{step.props.subtitle ? (
-									<Text asChild>
-										<legend>{step.props.subtitle}</legend>
-									</Text>
-								) : null}
+								<Form>
+									<Heading as={"h1"}>{step.props.title}</Heading>
+									{step.props.subtitle ? (
+										<Text asChild>
+											<legend>{step.props.subtitle}</legend>
+										</Text>
+									) : null}
 
-								{step}
-
-								<StepsController
-									stepName={step.props.title}
-									stepNumber={stepNumber}
-									isButtonDisabled={isSubmitting}
-									progress={progress}
-									isLastStep={isLastStep}
-									img={step.props.img}
-								/>
-							</Form>
+									{step}
+									<StepsController
+										stepName={step.props.title}
+										stepNumber={stepNumber}
+										isButtonDisabled={isSubmitting}
+										progress={progress}
+										isLastStep={isLastStep}
+										img={step.props.img}
+									/>
+								</Form>
+							</>
 						)}
 					</Formik>
 				</main>
