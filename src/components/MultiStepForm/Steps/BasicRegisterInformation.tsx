@@ -1,11 +1,8 @@
-import { Field } from "formik";
 import * as Yup from "yup";
 
 import Step from "../Step";
-import ErrorMessage from "../../ErrorMessage";
+import TextInput from "../../TextInput";
 import { sleep } from "../../../utils";
-import { useState } from "react";
-import TextInput from "../../TextInput/TextInput";
 
 const basicRegisterInformationSchema = Yup.object({
 	name: Yup.string().required("Esse campo é obrigatório."),

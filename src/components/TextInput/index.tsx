@@ -41,6 +41,7 @@ const TextInput: React.FC<TextInputProps> = ({
 							className="input-field"
 							onFocus={() => setIsFocused(true)}
 							onBlur={(e) => {
+								field.onBlur(e);
 								if (!e.target.value) setIsFocused(false);
 							}}
 						/>
@@ -51,8 +52,9 @@ const TextInput: React.FC<TextInputProps> = ({
 							type={type}
 							placeholder={placeholder}
 							className="input-field"
-							onFocus={() => setIsFocused(true)}
+							onFocus={(e) => setIsFocused(true)}
 							onBlur={(e) => {
+								field.onBlur(e);
 								if (!e.target.value) setIsFocused(false);
 							}}
 						/>

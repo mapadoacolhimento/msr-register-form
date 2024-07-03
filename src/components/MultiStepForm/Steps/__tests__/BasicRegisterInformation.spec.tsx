@@ -15,6 +15,9 @@ const setup = () => {
 			initialValues={
 				{
 					email: "",
+					name: "",
+					confirmEmail: "",
+					phone: "",
 				} as Values
 			}
 		>
@@ -25,10 +28,12 @@ const setup = () => {
 
 describe("<BasicRegisterInformation />", () => {
 	it("should render email fields", () => {
-		render(<BasicRegisterInformation />);
+		setup();
 
-		const emailInput = screen.getAllByLabelText("E-mail");
-		const confirmEmailInput = screen.getByLabelText("Confirme seu E-mail");
+		const emailInput = screen.getByRole("textbox", { name: "E-mail" });
+		const confirmEmailInput = screen.getByRole("textbox", {
+			name: "Confirme seu E-mail",
+		});
 
 		expect(emailInput).toBeInTheDocument();
 		expect(confirmEmailInput).toBeInTheDocument();
@@ -40,26 +45,23 @@ describe("<BasicRegisterInformation />", () => {
 		const btn = screen.getByRole("button", { name: /enviar/i });
 		await userEvent.click(btn);
 
-		await screen.findByRole("alert");
+		await screen.findAllByRole("alert");
 
-		expect(screen.getByRole("alert")).toHaveTextContent(
-			"Esse campo é obrigatório."
-		);
+		expect(screen.getAllByRole("alert")).toHaveLength(4);
 	});
 
-	it("should render empty field error if no info provided", async () => {
+	it("should render invalid email field error if no valid email is provided", async () => {
 		setup();
 
-		const emailInput = screen.getByLabelText("E-mail");
+		const emailInput = screen.getByRole("textbox", { name: "E-mail" });
 		await userEvent.type(emailInput, "test");
+		expect(emailInput).toHaveValue("test");
 
 		const btn = screen.getByRole("button", { name: /enviar/i });
 		await userEvent.click(btn);
 
-		await screen.findByRole("alert");
-
-		expect(screen.getByRole("alert")).toHaveTextContent(
-			"Insira um e-mail válido."
-		);
+		expect(
+			await screen.findByText(/Insira um e-mail válido./i)
+		).toBeInTheDocument();
 	});
 });
