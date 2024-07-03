@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Field, FieldProps } from "formik";
+import InputMask from "react-input-mask";
 import ErrorMessage from "../ErrorMessage";
 import "./TextInput.css";
 
@@ -8,6 +9,7 @@ interface TextInputProps {
 	type?: string;
 	label: string;
 	placeholder?: string;
+	mask?: string;
 }
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -15,6 +17,7 @@ const TextInput: React.FC<TextInputProps> = ({
 	type = "text",
 	label,
 	placeholder,
+	mask,
 }) => {
 	const [isFocused, setIsFocused] = useState(false);
 
@@ -27,19 +30,26 @@ const TextInput: React.FC<TextInputProps> = ({
 				{label}
 			</label>
 			<Field name={name}>
-				{({ field }: FieldProps) => (
-					<input
-						{...field}
-						type={type}
-						id={name}
-						className="input-field"
-						placeholder={placeholder}
-						onFocus={() => setIsFocused(true)}
-						onBlur={(e) => {
-							if (!e.target.value) setIsFocused(false);
-						}}
-					/>
-				)}
+				{({ field }: FieldProps) =>
+					mask ? (
+						<InputMask
+							{...field}
+							id={name}
+							type={type}
+							placeholder={placeholder}
+							mask={mask}
+							className="input-field"
+						/>
+					) : (
+						<input
+							{...field}
+							id={name}
+							type={type}
+							placeholder={placeholder}
+							className="input-field"
+						/>
+					)
+				}
 			</Field>
 			<ErrorMessage name={name} />
 		</div>
