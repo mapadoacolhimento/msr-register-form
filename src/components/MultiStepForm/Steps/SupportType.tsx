@@ -3,7 +3,7 @@ import * as Yup from "yup";
 
 import Step from "../Step";
 import ErrorMessage from "../../ErrorMessage";
-import { sleep } from "../../../utils";
+import { sleep } from "../../../lib";
 
 const supportTypeSchema = Yup.object({
 	supportType: Yup.array()

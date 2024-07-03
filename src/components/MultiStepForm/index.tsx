@@ -4,7 +4,7 @@ import {
 	AcceptsOnlineSupport,
 	SupportType,
 } from "./Steps";
-import { sleep } from "../../utils";
+import { sleep } from "../../lib";
 
 export interface Values {
 	email: string;
