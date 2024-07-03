@@ -15,7 +15,8 @@
 		"test:ci": "vitest run --coverage",
 		"e2e": "cypress open",
 		"e2e:ci": "cypress run --browser chrome",
-		"generate": "prisma generate"
+		"generate": "prisma generate",
+		"postinstall": "prisma generate"
 	},
 	"dependencies": {
 		"@prisma/client": "^5.16.1",
