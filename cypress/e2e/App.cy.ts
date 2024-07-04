@@ -5,7 +5,7 @@ describe("App", () => {
 		cy.get("#name").type("MSR teste");
 		cy.get("#email").type("msr@test.com");
 		cy.get("#confirmEmail").type("msr@test.com");
-		cy.get("#whatsapp").type("(81) 99999-9999");
+		cy.get("#phone").type("(81) 99999-9999");
 
 		cy.findByRole("button", { name: "Continuar" }).should("exist");
 	});
@@ -15,7 +15,7 @@ describe("App", () => {
 
 		cy.get("#email").type("msr@test.com");
 		cy.get("#confirmEmail").type("test@test.com");
-		cy.get("#whatsapp").type("(81) 99999-9999");
+		cy.get("#phone").type("(81) 99999-9999");
 
 		cy.findByRole("button", { name: "Continuar" }).should("exist").click();
 		cy.contains("Esse campo é obrigatório.").should("exist");
@@ -26,7 +26,7 @@ describe("App", () => {
 
 		cy.get("#name").type("MSR teste");
 		cy.get("#confirmEmail").type("test@test.com");
-		cy.get("#whatsapp").type("(81) 99999-9999");
+		cy.get("#phone").type("(81) 99999-9999");
 
 		cy.findByRole("button", { name: "Continuar" }).click();
 		cy.contains("Esse campo é obrigatório.").should("exist");
@@ -36,7 +36,7 @@ describe("App", () => {
 		cy.visit("/");
 		cy.get("#name").type("MSR teste");
 		cy.get("#email").type("test@test.com");
-		cy.get("#whatsapp").type("(81) 99999-9999");
+		cy.get("#phone").type("(81) 99999-9999");
 
 		cy.findByRole("button", { name: "Continuar" }).click();
 		cy.contains("Esse campo é obrigatório.").should("exist");
@@ -70,7 +70,7 @@ describe("App", () => {
 		cy.get("#name").type("MSR teste");
 		cy.get("#email").type("msr@test.com");
 		cy.get("#confirmEmail").type("msr@test.com");
-		cy.get("#whatsapp").type("9999");
+		cy.get("#phone").type("9999");
 
 		cy.findByRole("button", { name: "Continuar" }).click();
 		cy.contains("Insira um número de telefone válido com DDD.").should("exist");
@@ -82,7 +82,7 @@ describe("App", () => {
 		cy.get("#name").type("MSR teste");
 		cy.get("#email").type("msr@test.com");
 		cy.get("#confirmEmail").type("msr@test.com");
-		cy.get("#whatsapp").type("81999999999");
+		cy.get("#phone").type("81999999999");
 
 		cy.findByRole("button", { name: "Continuar" }).click();
 

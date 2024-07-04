@@ -12,7 +12,7 @@ const basicRegisterInformationSchema = Yup.object({
 	confirmEmail: Yup.string()
 		.oneOf([Yup.ref("email")], "Os e-mails precisam ser iguais.")
 		.required("Esse campo é obrigatório."),
-	whatsapp: Yup.string()
+	phone: Yup.string()
 		.matches(
 			/^\(\d{2}\)\s\d{4,5}-\d{4}$/,
 			"Insira um número de telefone válido com DDD."
@@ -49,8 +49,8 @@ export default function BasicRegisterInformation() {
 				placeholder="Confirme seu e-mail"
 			/>
 			<TextInput
-				name="whatsapp"
-				type="whatsapp"
+				name="phone"
+				type="phone"
 				label="Whatsapp"
 				placeholder="Qual o seu whatsapp (com DDD)?"
 				mask="(99) 99999-9999"
