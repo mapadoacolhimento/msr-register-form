@@ -5,7 +5,7 @@ import {
 	Children,
 } from "react";
 import { type FormikHelpers, Form, Formik } from "formik";
-import { Grid, Heading, IconButton, Text } from "@radix-ui/themes";
+import { Box, Grid, Heading, IconButton, Text } from "@radix-ui/themes";
 import { ChevronLeftIcon } from "@radix-ui/react-icons";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 
@@ -69,27 +69,38 @@ export default function MultiStepFormWrapper({
 					>
 						{({ isSubmitting, values }) => (
 							<>
-								<IconButton
-									onClick={() => previousStep(values)}
-									variant="ghost"
-									disabled={stepIndex === 0}
-									type={"button"}
-								>
-									<ChevronLeftIcon width="24" height="24" />
-									<VisuallyHidden.Root>
-										Voltar para o passo anterior
-									</VisuallyHidden.Root>
-								</IconButton>
-
 								<Form>
-									<Heading as={"h1"}>{step.props.title}</Heading>
-									{step.props.subtitle ? (
-										<Text asChild>
-											<legend>{step.props.subtitle}</legend>
-										</Text>
-									) : null}
+									<Box px={"5"}>
+										<IconButton
+											onClick={() => previousStep(values)}
+											variant="ghost"
+											disabled={stepIndex === 0}
+											type={"button"}
+										>
+											<ChevronLeftIcon width="24" height="24" />
+											<VisuallyHidden.Root>
+												Voltar para o passo anterior
+											</VisuallyHidden.Root>
+										</IconButton>
 
-									{step}
+										<Box pb={{ initial: "7", md: "8" }}>
+											<Heading
+												as={"h1"}
+												color={"purple"}
+												highContrast
+												align={"center"}
+											>
+												{step.props.title}
+											</Heading>
+											{step.props.subtitle ? (
+												<Text asChild align={"center"}>
+													<legend>{step.props.subtitle}</legend>
+												</Text>
+											) : null}
+										</Box>
+
+										{step}
+									</Box>
 									<StepsController
 										stepName={step.props.title}
 										stepNumber={stepNumber}
