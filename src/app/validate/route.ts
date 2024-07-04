@@ -15,7 +15,6 @@ export async function POST(request: Request) {
 		const msrExistsOnDb = await db.mSRPiiSec.findUnique({
 			where: {
 				email: payload.email,
-				phone: payload.phone,
 			},
 		});
 
