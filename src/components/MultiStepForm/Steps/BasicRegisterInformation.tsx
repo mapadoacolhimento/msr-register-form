@@ -1,13 +1,22 @@
-import { Field } from "formik";
 import * as Yup from "yup";
 
 import Step from "../Step";
-import ErrorMessage from "../../ErrorMessage";
+import TextInput from "../../TextInput";
 import { sleep } from "../../../utils";
 
 const basicRegisterInformationSchema = Yup.object({
+	name: Yup.string().required("Esse campo é obrigatório."),
 	email: Yup.string()
 		.email("Insira um e-mail válido.")
+		.required("Esse campo é obrigatório."),
+	confirmEmail: Yup.string()
+		.oneOf([Yup.ref("email")], "Os e-mails precisam ser iguais.")
+		.required("Esse campo é obrigatório."),
+	phone: Yup.string()
+		.matches(
+			/^\(\d{2}\)\s\d{4,5}-\d{4}$/,
+			"Insira um número de telefone válido com DDD."
+		)
 		.required("Esse campo é obrigatório."),
 });
 
@@ -22,15 +31,30 @@ export default function BasicRegisterInformation() {
 				alt: "Ilustração com uma mulher flutuando.",
 			}}
 		>
-			<label htmlFor="email">E-mail</label>
-			<Field
-				name="email"
-				placeholder="Qual o seu melhor e-mail?"
-				type="email"
-				id={"email"}
-				innerRef={(el: HTMLElement) => el?.focus()}
+			<TextInput
+				name="name"
+				label="Nome"
+				placeholder="Qual o seu primeiro nome?"
 			/>
-			<ErrorMessage name="email" />
+			<TextInput
+				name="email"
+				type="email"
+				label="E-mail"
+				placeholder="Qual o seu melhor e-mail?"
+			/>
+			<TextInput
+				name="confirmEmail"
+				type="email"
+				label="Confirme seu E-mail"
+				placeholder="Confirme seu e-mail"
+			/>
+			<TextInput
+				name="phone"
+				type="phone"
+				label="Whatsapp"
+				placeholder="Qual o seu whatsapp (com DDD)?"
+				mask="(99) 99999-9999"
+			/>
 		</Step>
 	);
 }
