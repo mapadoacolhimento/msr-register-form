@@ -17,7 +17,7 @@ const setup = () => {
 					email: "",
 					name: "",
 					confirmEmail: "",
-					whatsapp: "",
+					phone: "",
 				} as Values
 			}
 		>
@@ -69,10 +69,10 @@ describe("<BasicRegisterInformation />", () => {
 		const btn = screen.getByRole("button", { name: /enviar/i });
 		await userEvent.click(btn);
 
-		expect(screen.getAllByRole("alert")).toHaveLength(1);
-
-		const alerts: HTMLElement[] = await screen.findAllByRole("alert");
-		expect(alerts[0]).toHaveTextContent("Esse campo é obrigatório.");
+		expect(await screen.findByRole("alert")).toBeInTheDocument();
+		expect(screen.getByRole("alert")).toHaveTextContent(
+			"Esse campo é obrigatório."
+		);
 	});
 
 	it("should render error if email field is empty", async () => {
@@ -91,9 +91,8 @@ describe("<BasicRegisterInformation />", () => {
 		const btn = screen.getByRole("button", { name: /enviar/i });
 		await userEvent.click(btn);
 
-		expect(screen.getAllByRole("alert")).toHaveLength(2);
-
 		const alerts: HTMLElement[] = await screen.findAllByRole("alert");
+		expect(screen.getAllByRole("alert")).toHaveLength(2);
 		expect(alerts[0]).toHaveTextContent("Esse campo é obrigatório.");
 		expect(alerts[1]).toHaveTextContent("Os e-mails precisam ser iguais.");
 	});
@@ -115,28 +114,42 @@ describe("<BasicRegisterInformation />", () => {
 
 	it("should render error if email confirmation does not match email", async () => {
 		setup();
+		const nameInput = screen.getByRole("textbox", { name: /Nome/i });
+		await userEvent.type(nameInput, "MSR");
 		const emailInput = screen.getByRole("textbox", { name: "E-mail" });
 		await userEvent.type(emailInput, "msr@test.com");
 		const confirmEmailInput =
 			screen.getByPlaceholderText(/Confirme seu e-mail/i);
 		await userEvent.type(confirmEmailInput, "test@test.com");
+		const phoneInput = screen.getByRole("textbox", { name: /whatsapp/i });
+		await userEvent.type(phoneInput, "91123430219");
+
 		const btn = screen.getByRole("button", { name: /enviar/i });
 		await userEvent.click(btn);
 
-		const alerts: HTMLElement[] = await screen.findAllByRole("alert");
-		expect(alerts[1]).toHaveTextContent("Os e-mails precisam ser iguais.");
+		expect(await screen.findByRole("alert")).toBeInTheDocument();
+		expect(screen.getByRole("alert")).toHaveTextContent(
+			"Os e-mails precisam ser iguais."
+		);
 	});
 
 	it("should render error if whatsapp number is invalid", async () => {
 		setup();
+		const nameInput = screen.getByRole("textbox", { name: /Nome/i });
+		await userEvent.type(nameInput, "MSR");
+		const emailInput = screen.getByRole("textbox", { name: "E-mail" });
+		await userEvent.type(emailInput, "msr@test.com");
+		const confirmEmailInput =
+			screen.getByPlaceholderText(/Confirme seu e-mail/i);
+		await userEvent.type(confirmEmailInput, "msr@test.com");
 		const phoneInput = screen.getByRole("textbox", { name: /whatsapp/i });
 		await userEvent.type(phoneInput, "123430219");
 
 		const btn = screen.getByRole("button", { name: /enviar/i });
 		await userEvent.click(btn);
 
-		const alerts: HTMLElement[] = await screen.findAllByRole("alert");
-		expect(alerts[3]).toHaveTextContent(
+		expect(await screen.findByRole("alert")).toBeInTheDocument();
+		expect(screen.getByRole("alert")).toHaveTextContent(
 			"Insira um número de telefone válido com DDD."
 		);
 	});
