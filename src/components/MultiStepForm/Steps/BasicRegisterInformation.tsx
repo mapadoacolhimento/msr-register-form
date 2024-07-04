@@ -33,7 +33,6 @@ export default function BasicRegisterInformation() {
 		>
 			<TextInput
 				name="name"
-				type="name"
 				label="Nome"
 				placeholder="Qual o seu primeiro nome?"
 			/>
