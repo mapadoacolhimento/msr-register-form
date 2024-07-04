@@ -10,7 +10,7 @@ export interface Values {
 	email: string;
 	name: string;
 	confirmEmail: string;
-	phone: string;
+	whatsapp: string;
 	acceptsOnlineSupport: string;
 	supportType: string[];
 }
@@ -22,7 +22,7 @@ export default function MultiStepForm() {
 				email: "",
 				name: "",
 				confirmEmail: "",
-				phone: "",
+				whatsapp: "",
 				acceptsOnlineSupport: "",
 				supportType: [],
 			}}
