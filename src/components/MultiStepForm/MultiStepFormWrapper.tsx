@@ -83,21 +83,14 @@ export default function MultiStepFormWrapper({
 											</VisuallyHidden.Root>
 										</IconButton>
 
-										<Box pb={{ initial: "7", md: "8" }}>
-											<Heading
-												as={"h1"}
-												color={"purple"}
-												highContrast
-												align={"center"}
-											>
-												{step.props.title}
-											</Heading>
-											{step.props.subtitle ? (
-												<Text asChild align={"center"}>
-													<legend>{step.props.subtitle}</legend>
-												</Text>
-											) : null}
-										</Box>
+										<Heading
+											as={"h1"}
+											color={"purple"}
+											highContrast
+											align={"center"}
+										>
+											{step.props.title}
+										</Heading>
 
 										<Flex
 											direction={"column"}

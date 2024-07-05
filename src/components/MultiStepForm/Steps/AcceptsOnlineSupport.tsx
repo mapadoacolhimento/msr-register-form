@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import Step from "../Step";
 import RadioInput from "../../RadioInput";
 import { sleep } from "../../../utils";
+import TextInput from "@/components/TextInput";
 
 const acceptsOnlineSupportSchema = Yup.object({
 	acceptsOnlineSupport: Yup.string()
@@ -16,7 +17,6 @@ export default function AcceptsOnlineSupport() {
 			onSubmit={() => sleep(300).then(() => console.log("Step2 onSubmit"))}
 			validationSchema={acceptsOnlineSupportSchema}
 			title={"Sobre o acolhimento"}
-			subtitle={"Você aceitaria ser atendida online?"}
 			img={{
 				src: "/illustrations/woman-getting-support.webp",
 				alt: "Ilustração com duas mulheres sentadas conversando",
@@ -31,6 +31,7 @@ export default function AcceptsOnlineSupport() {
 						name: "Não, só posso receber atendimento presencial",
 					},
 				]}
+				question={"Você aceitaria ser atendida online?"}
 			/>
 		</Step>
 	);
