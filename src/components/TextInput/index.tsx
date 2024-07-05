@@ -14,8 +14,9 @@ interface TextInputProps {
 }
 
 const TextInput: React.FC<TextInputProps> = (props) => {
-	const [field, _meta, helpers] = useField(props.name);
+	const [field, meta, helpers] = useField(props.name);
 	const [isActive, setIsActive] = useState(false);
+	const hasError = meta.touched && meta.error;
 
 	function handleTextChange(text: string) {
 		helpers.setValue(text);
@@ -31,7 +32,8 @@ const TextInput: React.FC<TextInputProps> = (props) => {
 		<div className={"input-container"}>
 			<label
 				htmlFor={props.name}
-				className={`floating-label ${isActive ? "active" : ""}`}
+				className={isActive ? "active" : ""}
+				style={{ color: hasError ? "var(--red-9)" : "var(--purple-9)" }}
 			>
 				{props.label}
 			</label>
@@ -43,6 +45,8 @@ const TextInput: React.FC<TextInputProps> = (props) => {
 					id={props.name}
 					mask={props.mask}
 					onChange={(e) => handleTextChange(e.target.value)}
+					aria-invalid={hasError ? "true" : "false"}
+					color={hasError ? "red" : "purple"}
 				>
 					<TextField.Root size={"3"} />
 				</InputMask>
@@ -54,6 +58,8 @@ const TextInput: React.FC<TextInputProps> = (props) => {
 					type={(props.type as any) || "text"}
 					id={props.name}
 					size={"3"}
+					aria-invalid={hasError ? "true" : "false"}
+					color={hasError ? "red" : "purple"}
 				/>
 			)}
 			<ErrorMessage name={props.name} />

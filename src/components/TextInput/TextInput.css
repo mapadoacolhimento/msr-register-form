@@ -4,11 +4,10 @@
 	width: 100%;
 }
 
-.floating-label {
+.input-container label {
 	position: absolute;
 	background-color: white;
 	padding: 0 5px;
-	color: var(--purple-9);
 	transition:
 		top 0.1s,
 		font-size 0.1s;
@@ -16,7 +15,7 @@
 	visibility: hidden;
 }
 
-.floating-label.active {
+.input-container label.active {
 	top: -10px;
 	left: -2px;
 	font-size: var(--font-size-1);

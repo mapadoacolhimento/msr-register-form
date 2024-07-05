@@ -103,7 +103,7 @@ export default function MultiStepFormWrapper({
 											direction={"column"}
 											align={"center"}
 											justify={"center"}
-											gapY={"3"}
+											gapY={"4"}
 										>
 											{step}
 										</Flex>
