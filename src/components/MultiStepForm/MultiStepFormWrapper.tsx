@@ -5,7 +5,7 @@ import {
 	Children,
 } from "react";
 import { type FormikHelpers, Form, Formik } from "formik";
-import { Box, Grid, Heading, IconButton, Text } from "@radix-ui/themes";
+import { Box, Flex, Grid, Heading, IconButton, Text } from "@radix-ui/themes";
 import { ChevronLeftIcon } from "@radix-ui/react-icons";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 
@@ -99,7 +99,14 @@ export default function MultiStepFormWrapper({
 											) : null}
 										</Box>
 
-										{step}
+										<Flex
+											direction={"column"}
+											align={"center"}
+											justify={"center"}
+											gapY={"3"}
+										>
+											{step}
+										</Flex>
 									</Box>
 									<StepsController
 										stepName={step.props.title}
