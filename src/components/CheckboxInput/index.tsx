@@ -39,7 +39,7 @@ export default function CheckboxInput({
 
 	return (
 		<CheckboxCards.Root
-			defaultValue={[]}
+			defaultValue={field.value}
 			columns={"1"}
 			aria-labelledby={"question"}
 			id={`radio-group-${name}`}
