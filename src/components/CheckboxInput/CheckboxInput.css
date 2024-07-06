@@ -1,0 +1,9 @@
+.is-checked::after {
+	box-shadow: none;
+	border: 1px solid var(--accent-8);
+}
+
+.is-checked {
+	--checkbox-cards-item-background-color: var(--accent-a3);
+	/* color: var(--accent-12); */
+}
