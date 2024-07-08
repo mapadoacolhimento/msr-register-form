@@ -2,7 +2,7 @@ import * as Yup from "yup";
 
 import Step from "../Step";
 import CheckboxInput from "../../CheckboxInput";
-import { sleep } from "../../../utils";
+import { sleep } from "../../../lib";
 
 const supportTypeSchema = Yup.object({
 	supportType: Yup.array()

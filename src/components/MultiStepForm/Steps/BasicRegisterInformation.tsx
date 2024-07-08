@@ -2,7 +2,6 @@ import * as Yup from "yup";
 
 import Step from "../Step";
 import TextInput from "../../TextInput";
-import { sleep } from "../../../utils";
 
 const basicRegisterInformationSchema = Yup.object({
 	name: Yup.string().required("Esse campo é obrigatório."),
@@ -21,9 +20,31 @@ const basicRegisterInformationSchema = Yup.object({
 });
 
 export default function BasicRegisterInformation() {
+	async function handleSubmit(
+		values: Yup.InferType<typeof basicRegisterInformationSchema>
+	) {
+		const response = await fetch("/validate", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				phone: values.phone,
+				email: values.email,
+			}),
+		});
+
+		if (!response.ok) {
+			throw new Error(response.statusText);
+		}
+
+		const data = await response.json();
+		return data;
+	}
+
 	return (
 		<Step
-			onSubmit={() => sleep(300).then(() => console.log("Step1 onSubmit"))}
+			onSubmit={handleSubmit}
 			validationSchema={basicRegisterInformationSchema}
 			title={"Seus dados"}
 			img={{
