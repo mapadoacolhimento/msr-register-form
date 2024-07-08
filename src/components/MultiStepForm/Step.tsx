@@ -7,7 +7,6 @@ export interface StepChildrenProps {
 	onSubmit: (values: Values, bag: FormikHelpers<Values>) => Promise<void>;
 	validationSchema: AnyObjectSchema;
 	title: string;
-	subtitle?: string;
 	img: {
 		src: string;
 		alt: string;

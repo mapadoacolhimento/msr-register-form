@@ -4,7 +4,13 @@ import { Text } from "@radix-ui/themes";
 
 function CustomErrorMessage({ children }: Readonly<PropsWithChildren>) {
 	return (
-		<Text role={"alert"} color={"red"} size={"2"} as={"p"}>
+		<Text
+			role={"alert"}
+			color={"red"}
+			size={"2"}
+			as={"p"}
+			style={{ paddingTop: "var(--space-1)" }}
+		>
 			{children}
 		</Text>
 	);
