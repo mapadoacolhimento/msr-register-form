@@ -86,6 +86,11 @@ describe("App", () => {
 
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.get('[for="sim"]').should("exist");
+		cy.findByRole("radio", {
+			name: "Sim, aceito ser atendida online",
+		}).should("exist");
+		cy.findByRole("radio", {
+			name: "Não, só posso receber atendimento presencial",
+		}).should("exist");
 	});
 });
