@@ -2,7 +2,6 @@ import * as Yup from "yup";
 
 import Step from "../Step";
 import TextInput from "../../TextInput";
-import { Values } from "..";
 
 const basicRegisterInformationSchema = Yup.object({
 	name: Yup.string().required("Esse campo é obrigatório."),
@@ -21,13 +20,16 @@ const basicRegisterInformationSchema = Yup.object({
 });
 
 export default function BasicRegisterInformation() {
-	async function handleSubmit(values: Pick<Values, "email">) {
+	async function handleSubmit(
+		values: Yup.InferType<typeof basicRegisterInformationSchema>
+	) {
 		const response = await fetch("/validate", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
+				phone: values.phone,
 				email: values.email,
 			}),
 		});
@@ -37,8 +39,7 @@ export default function BasicRegisterInformation() {
 		}
 
 		const data = await response.json();
-		const isValidSupportRequest = data.res === "test@gmail.com";
-		console.log({ isValidSupportRequest, data });
+		return data;
 	}
 
 	return (
