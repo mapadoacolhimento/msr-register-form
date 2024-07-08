@@ -51,4 +51,12 @@ describe("<SupportType />", () => {
 			"Esse campo é obrigatório."
 		);
 	});
+
+	it("should render step question", () => {
+		setup();
+
+		expect(
+			screen.getByText("Que tipo de acolhimento você precisa?")
+		).toBeInTheDocument();
+	});
 });

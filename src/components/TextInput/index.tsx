@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Field, FieldProps } from "formik";
+import { useField } from "formik";
+import { TextField } from "@radix-ui/themes";
 import InputMask from "react-input-mask";
 import ErrorMessage from "../ErrorMessage";
 import "./TextInput.css";
@@ -12,56 +13,56 @@ interface TextInputProps {
 	mask?: string;
 }
 
-const TextInput: React.FC<TextInputProps> = ({
-	name,
-	type = "text",
-	label,
-	placeholder,
-	mask,
-}) => {
-	const [isFocused, setIsFocused] = useState(false);
+const TextInput: React.FC<TextInputProps> = (props) => {
+	const [field, meta, helpers] = useField(props.name);
+	const [isActive, setIsActive] = useState(false);
+	const hasError = meta.touched && meta.error;
+
+	function handleTextChange(text: string) {
+		helpers.setValue(text);
+
+		if (text !== "") {
+			setIsActive(true);
+		} else {
+			setIsActive(false);
+		}
+	}
 
 	return (
-		<div className="input-container">
+		<div className={"input-container"}>
 			<label
-				htmlFor={name}
-				className={isFocused ? "floating-label active" : "floating-label"}
+				htmlFor={props.name}
+				className={isActive ? "active" : ""}
+				style={{ color: hasError ? "var(--red-9)" : "var(--purple-9)" }}
 			>
-				{label}
+				{props.label}
 			</label>
-			<Field name={name}>
-				{({ field }: FieldProps) =>
-					mask ? (
-						<InputMask
-							{...field}
-							id={name}
-							type={type}
-							placeholder={placeholder}
-							mask={mask}
-							className="input-field"
-							onFocus={() => setIsFocused(true)}
-							onBlur={(e) => {
-								field.onBlur(e);
-								if (!e.target.value) setIsFocused(false);
-							}}
-						/>
-					) : (
-						<input
-							{...field}
-							id={name}
-							type={type}
-							placeholder={placeholder}
-							className="input-field"
-							onFocus={(e) => setIsFocused(true)}
-							onBlur={(e) => {
-								field.onBlur(e);
-								if (!e.target.value) setIsFocused(false);
-							}}
-						/>
-					)
-				}
-			</Field>
-			<ErrorMessage name={name} />
+			{props.mask ? (
+				<InputMask
+					{...field}
+					{...props}
+					type={(props.type as any) || "text"}
+					id={props.name}
+					mask={props.mask}
+					onChange={(e) => handleTextChange(e.target.value)}
+					aria-invalid={hasError ? "true" : "false"}
+					color={hasError ? "red" : "purple"}
+				>
+					<TextField.Root size={"3"} />
+				</InputMask>
+			) : (
+				<TextField.Root
+					{...field}
+					{...props}
+					onChange={(e) => handleTextChange(e.target.value)}
+					type={(props.type as any) || "text"}
+					id={props.name}
+					size={"3"}
+					aria-invalid={hasError ? "true" : "false"}
+					color={hasError ? "red" : "purple"}
+				/>
+			)}
+			<ErrorMessage name={props.name} />
 		</div>
 	);
 };

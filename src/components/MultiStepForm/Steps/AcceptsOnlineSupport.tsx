@@ -1,8 +1,7 @@
-import { Field } from "formik";
 import * as Yup from "yup";
 
 import Step from "../Step";
-import ErrorMessage from "../../ErrorMessage";
+import RadioInput from "../../RadioInput";
 import { sleep } from "../../../utils";
 
 const acceptsOnlineSupportSchema = Yup.object({
@@ -17,36 +16,22 @@ export default function AcceptsOnlineSupport() {
 			onSubmit={() => sleep(300).then(() => console.log("Step2 onSubmit"))}
 			validationSchema={acceptsOnlineSupportSchema}
 			title={"Sobre o acolhimento"}
-			subtitle={"Você aceitaria ser atendida online?"}
 			img={{
 				src: "/illustrations/woman-getting-support.webp",
 				alt: "Ilustração com duas mulheres sentadas conversando",
 			}}
 		>
-			<fieldset name="acceptsOnlineSupport">
-				<label htmlFor="sim">
-					<Field
-						type="radio"
-						name="acceptsOnlineSupport"
-						value="sim"
-						id="sim"
-						innerRef={(el: HTMLElement) => el?.focus()}
-						tabIndex={0}
-					/>
-					Sim, aceito ser atendida online
-				</label>
-				<label htmlFor="nao">
-					<Field
-						type="radio"
-						name="acceptsOnlineSupport"
-						value="nao"
-						id="nao"
-						tabIndex={0}
-					/>
-					Não, só posso receber atendimento presencial
-				</label>
-			</fieldset>
-			<ErrorMessage name="acceptsOnlineSupport" />
+			<RadioInput
+				name="acceptsOnlineSupport"
+				options={[
+					{ value: "sim", name: "Sim, aceito ser atendida online" },
+					{
+						value: "nao",
+						name: "Não, só posso receber atendimento presencial",
+					},
+				]}
+				question={"Você aceitaria ser atendida online?"}
+			/>
 		</Step>
 	);
 }

@@ -49,7 +49,6 @@ const setup = () => {
 						.min(1, "Esse campo é obrigatório."),
 				})}
 				title={"Sobre o acolhimento"}
-				subtitle={"Que tipo de acolhimento você precisa?"}
 				img={img}
 			>
 				<fieldset>
@@ -86,30 +85,6 @@ describe("<MultiStepFormWrapper />", () => {
 				name: /Voltar para o passo anterior/i,
 			})
 		).toBeDisabled();
-	});
-
-	it("should NOT render subtitle on first step", () => {
-		setup();
-
-		expect(
-			screen.queryByText("Que tipo de acolhimento você precisa?")
-		).not.toBeInTheDocument();
-	});
-
-	it("should render subtitle on second step", async () => {
-		setup();
-
-		const emailInput = screen.getByRole("textbox", {
-			name: /E-mail/i,
-		});
-		await userEvent.type(emailInput, "test@email.com");
-
-		const btn = screen.getByRole("button", { name: /continuar/i });
-		await userEvent.click(btn);
-
-		expect(
-			await screen.findByText("Que tipo de acolhimento você precisa?")
-		).toBeInTheDocument();
 	});
 
 	it("should not go to next step if field is invalid", async () => {
