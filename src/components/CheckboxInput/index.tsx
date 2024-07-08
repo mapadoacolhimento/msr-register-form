@@ -42,7 +42,7 @@ export default function CheckboxInput({
 			defaultValue={field.value}
 			columns={"1"}
 			aria-labelledby={"question"}
-			id={`radio-group-${name}`}
+			id={`checkbox-group-${name}`}
 			color={"purple"}
 		>
 			<Box asChild pb={{ initial: "7", sm: "5" }}>
