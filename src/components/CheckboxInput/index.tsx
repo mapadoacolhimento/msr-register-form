@@ -1,5 +1,5 @@
 import { useField } from "formik";
-import { Box, Card, CheckboxCards, Flex, Text } from "@radix-ui/themes";
+import { Box, CheckboxCards, Text } from "@radix-ui/themes";
 
 import ErrorMessage from "../ErrorMessage";
 import "./CheckboxInput.css";
@@ -19,7 +19,7 @@ export default function CheckboxInput({
 	options,
 	question,
 	name,
-}: CheckboxInputProps) {
+}: Readonly<CheckboxInputProps>) {
 	const [field, _meta, helpers] = useField({
 		name,
 		type: "checkbox",

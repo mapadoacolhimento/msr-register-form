@@ -5,7 +5,6 @@
 
 .radio[aria-checked="true"] {
 	--card-background-color: var(--accent-a3);
-	/* color: var(--accent-12); */
 }
 
 .radio,

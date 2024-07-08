@@ -3,7 +3,6 @@ import * as Yup from "yup";
 import Step from "../Step";
 import RadioInput from "../../RadioInput";
 import { sleep } from "../../../utils";
-import TextInput from "@/components/TextInput";
 
 const acceptsOnlineSupportSchema = Yup.object({
 	acceptsOnlineSupport: Yup.string()

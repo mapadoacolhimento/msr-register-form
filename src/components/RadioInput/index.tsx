@@ -19,7 +19,7 @@ export default function RadioInput({
 	options,
 	question,
 	name,
-}: RadioInputProps) {
+}: Readonly<RadioInputProps>) {
 	const [field, _meta, helpers] = useField(name);
 
 	function handleClick(value: string) {
