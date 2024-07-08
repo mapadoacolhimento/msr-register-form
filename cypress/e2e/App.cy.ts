@@ -76,7 +76,7 @@ describe("App", () => {
 		cy.contains("Insira um número de telefone válido com DDD.").should("exist");
 	});
 
-	it("should continue to the next step if all fields are filled correctly", () => {
+	it.only("should continue to the next step if all fields are filled correctly", () => {
 		cy.visit("/");
 
 		cy.get("#name").type("MSR teste");
@@ -92,5 +92,18 @@ describe("App", () => {
 		cy.findByRole("radio", {
 			name: "Não, só posso receber atendimento presencial",
 		}).should("exist");
+
+		cy.findByRole("radio", {
+			name: "Sim, aceito ser atendida online",
+		}).click();
+
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.findByRole("checkbox", {
+			name: "Acolhimento psicológico",
+		}).click({ force: true });
+		cy.findByRole("checkbox", {
+			name: "Acolhimento jurídico",
+		}).click({ force: true });
 	});
 });
