@@ -13,6 +13,7 @@
 		"test": "vitest",
 		"test:ui": "vitest --ui",
 		"test:ci": "vitest run --coverage",
+		"db:push": "prisma db push",
 		"e2e": "cypress open",
 		"e2e:ci": "cypress run --browser chrome",
 		"generate": "prisma generate",
