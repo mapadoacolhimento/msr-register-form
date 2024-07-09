@@ -1,8 +1,9 @@
 import * as Yup from "yup";
 
 import Step from "../Step";
-import TextInput from "../../TextInput";
+import TextInput from "../../TextInput/TextInput";
 import { sleep } from "../../../utils";
+import SelectInput from "@/components/SelectInput/SelectInput";
 
 const basicRegisterInformationSchema = Yup.object({
 	name: Yup.string().required("Esse campo é obrigatório."),
@@ -18,6 +19,7 @@ const basicRegisterInformationSchema = Yup.object({
 			"Insira um número de telefone válido com DDD."
 		)
 		.required("Esse campo é obrigatório."),
+	color: Yup.string().required("Esse campo é obrigatório."),
 });
 
 export default function BasicRegisterInformation() {
@@ -54,6 +56,18 @@ export default function BasicRegisterInformation() {
 				label="Whatsapp"
 				placeholder="Qual o seu whatsapp (com DDD)?"
 				mask="(99) 99999-9999"
+			/>
+			<SelectInput
+				name="color"
+				label="Cor"
+				options={[
+					{ value: "black", label: "Preta" },
+					{ value: "mixed", label: "Parda" },
+					{ value: "indigenous", label: "Indígena" },
+					{ value: "asian", label: "Amarela" },
+					{ value: "white", label: "Branca" },
+				]}
+				placeholder="Selecione uma opção"
 			/>
 		</Step>
 	);

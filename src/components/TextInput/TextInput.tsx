@@ -20,16 +20,20 @@ const TextInput: React.FC<TextInputProps> = (props) => {
 
 	function handleTextChange(text: string) {
 		helpers.setValue(text);
+	}
 
-		if (text !== "") {
-			setIsActive(true);
-		} else {
+	function handleFocus() {
+		setIsActive(true);
+	}
+
+	function handleBlur(e: React.FocusEvent<HTMLInputElement>) {
+		if (e.target.value === "") {
 			setIsActive(false);
 		}
 	}
 
 	return (
-		<div className={"input-container"}>
+		<div className={"input-text-container"}>
 			<label
 				htmlFor={props.name}
 				className={isActive ? "active" : ""}
@@ -45,6 +49,8 @@ const TextInput: React.FC<TextInputProps> = (props) => {
 					id={props.name}
 					mask={props.mask}
 					onChange={(e) => handleTextChange(e.target.value)}
+					onFocus={handleFocus}
+					onBlur={handleBlur}
 					aria-invalid={hasError ? "true" : "false"}
 					color={hasError ? "red" : "purple"}
 				>
@@ -55,6 +61,8 @@ const TextInput: React.FC<TextInputProps> = (props) => {
 					{...field}
 					{...props}
 					onChange={(e) => handleTextChange(e.target.value)}
+					onFocus={handleFocus}
+					onBlur={handleBlur}
 					type={(props.type as any) || "text"}
 					id={props.name}
 					size={"3"}
