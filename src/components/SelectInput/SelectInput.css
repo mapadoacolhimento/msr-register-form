@@ -1,0 +1,39 @@
+.input-container {
+	position: relative;
+	width: 100%;
+	max-width: 332px;
+}
+
+label {
+	position: absolute;
+	top: 50%;
+	left: 1rem;
+	transform: translateY(-50%);
+	transition: all 0.2s ease;
+	pointer-events: none;
+	visibility: hidden;
+}
+
+label.active {
+	top: -1rem;
+	left: 1rem;
+	font-size: var(--font-size-1);
+	color: var(--purple-9);
+	margin-top: 1rem;
+	visibility: visible;
+	background-color: white;
+	font-weight: 700;
+}
+
+select {
+	width: 100%;
+	padding: 0.5rem;
+	font-size: 1rem;
+	border: 1px solid lightgray !important;
+	border-radius: 6px;
+	outline-color: var(--purple-7);
+}
+
+select option.placeholder {
+	color: lightgray;
+}
