@@ -1,8 +1,9 @@
 .input-text-container {
 	position: relative;
-	max-width: 332px;
+	max-width: 22rem;
 	width: 100%;
-	border-color: lightgray;
+	border-radius: 6px;
+	background-color: var(--gray-6);
 }
 
 .input-text-container label {
