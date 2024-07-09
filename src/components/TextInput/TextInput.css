@@ -1,13 +1,12 @@
-.input-container {
+.input-text-container {
 	position: relative;
 	max-width: 332px;
 	width: 100%;
+	border-color: lightgray;
 }
 
-.input-container label {
+.input-text-container label {
 	position: absolute;
-	background-color: white;
-	padding: 0 5px;
 	transition:
 		top 0.1s,
 		font-size 0.1s;
@@ -15,9 +14,9 @@
 	visibility: hidden;
 }
 
-.input-container label.active {
-	top: -10px;
-	left: -2px;
+.input-text-container label.active {
+	top: -1rem;
+	left: 1rem;
 	font-size: var(--font-size-1);
 	visibility: visible;
 	font-weight: 700;

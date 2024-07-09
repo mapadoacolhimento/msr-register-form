@@ -17,6 +17,7 @@ const basicRegisterInformationSchema = Yup.object({
 			"Insira um número de telefone válido com DDD."
 		)
 		.required("Esse campo é obrigatório."),
+	color: Yup.string().required("Esse campo é obrigatório."),
 });
 
 export default function BasicRegisterInformation() {
