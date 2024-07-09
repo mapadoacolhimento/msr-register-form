@@ -17,7 +17,7 @@ const basicRegisterInformationSchema = Yup.object({
 			"Insira um número de telefone válido com DDD."
 		)
 		.required("Esse campo é obrigatório."),
-	color: Yup.string().required("Esse campo é obrigatório."),
+	dateOfBirth: Yup.string().required("Esse campo é obrigatório."),
 });
 
 export default function BasicRegisterInformation() {
@@ -76,6 +76,13 @@ export default function BasicRegisterInformation() {
 				label="Whatsapp"
 				placeholder="Qual o seu whatsapp (com DDD)?"
 				mask="(99) 99999-9999"
+			/>
+			<TextInput
+				name="dateOfBirth"
+				type="text"
+				label="Data de Nascimento"
+				placeholder="DD/MM/AAAA"
+				mask="99/99/9999"
 			/>
 		</Step>
 	);

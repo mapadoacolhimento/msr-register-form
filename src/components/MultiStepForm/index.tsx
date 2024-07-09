@@ -1,6 +1,7 @@
 import MultiStepFormWrapper from "./MultiStepFormWrapper";
 import {
 	BasicRegisterInformation,
+	DiversityInformation,
 	AcceptsOnlineSupport,
 	SupportType,
 } from "./Steps";
@@ -11,6 +12,9 @@ export interface Values {
 	name: string;
 	confirmEmail: string;
 	phone: string;
+	dateOfBirth: string;
+	color: string;
+	disabilityStatus: string;
 	acceptsOnlineSupport: string;
 	supportType: string[];
 }
@@ -23,6 +27,9 @@ export default function MultiStepForm() {
 				name: "",
 				confirmEmail: "",
 				phone: "",
+				dateOfBirth: "",
+				color: "",
+				disabilityStatus: "",
 				acceptsOnlineSupport: "",
 				supportType: [],
 			}}
@@ -31,6 +38,7 @@ export default function MultiStepForm() {
 			}
 		>
 			{BasicRegisterInformation()}
+			{DiversityInformation()}
 			{AcceptsOnlineSupport()}
 			{SupportType()}
 		</MultiStepFormWrapper>
