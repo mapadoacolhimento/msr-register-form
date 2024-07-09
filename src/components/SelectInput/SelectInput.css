@@ -1,7 +1,7 @@
 .input-container {
 	position: relative;
 	width: 100%;
-	max-width: 332px;
+	max-width: 22rem;
 }
 
 label {
@@ -30,10 +30,7 @@ select {
 	padding: 0.5rem;
 	font-size: 1rem;
 	border: 1px solid lightgray !important;
+	background-color: var(--gray-2);
 	border-radius: 6px;
 	outline-color: var(--purple-7);
-}
-
-select option.placeholder {
-	color: lightgray;
 }
