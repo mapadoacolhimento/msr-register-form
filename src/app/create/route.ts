@@ -1,7 +1,8 @@
 import * as Yup from "yup";
 import { db, getErrorMessage } from "../../lib";
 import { Msr, MsrPiiSec } from "../../types";
-
+import { Gender, MSRStatus, Race } from "@prisma/client";
+//to do if undefined put not_found
 const payloadSchema = Yup.object({
 	zendesk_user_id: Yup.number().required(),
 	email: Yup.string().email().required(),
@@ -11,11 +12,11 @@ const payloadSchema = Yup.object({
 	city: Yup.string().required(),
 	state: Yup.string().required(),
 	neighborhood: Yup.string().required(),
-	zipcode: Yup.string().required().nullable(),
-	date_of_birth: Yup.date().required().nullable(),
-	color: Yup.string().required(),
-	gender: Yup.string(),
-	status: Yup.string().required(),
+	zipcode: Yup.string(),
+	date_of_birth: Yup.date().nullable(),
+	color: Yup.string().oneOf(Object.values(Race)).required(),
+	gender: Yup.string().oneOf(Object.values(Gender)),
+	status: Yup.string().oneOf(Object.values(MSRStatus)).required(),
 	had_disability: Yup.boolean(),
 	accepts_online_support: Yup.boolean(),
 });
@@ -34,12 +35,14 @@ export async function POST(request: Request) {
 				msrId: payload.zendesk_user_id,
 				gender: payload.gender,
 				raceColor: payload.color,
-				hasDisability: payload.has_disability,
-				acceptsOnlineSupport: payload.accepts_online_support,
+				hasDisability: payload.has_disability ? payload.has_disability : null,
+				acceptsOnlineSupport: payload.accepts_online_support
+					? payload.accepts_online_suppor
+					: true,
 				neighborhood: payload.neighborhood,
 				city: payload.city,
 				state: payload.atate,
-				zipcode: payload.zipcode,
+				zipcode: payload.zipcodez ? payload.zipcodez : "not_found",
 				status: payload.status,
 			},
 		});
@@ -47,10 +50,10 @@ export async function POST(request: Request) {
 			data: {
 				msrId: payload.zendesk_user_id,
 				firstName: payload.first_name,
-				lastName: payload.last_name,
+				lastName: payload.last_name ? payload.last_name : null,
 				email: payload.email,
 				phone: payload.phone,
-				dateOfBirth: payload.date_of_birth,
+				dateOfBirth: payload.date_of_birth ? payload.date_of_birth : null,
 			},
 		});
 		return Response.json({
