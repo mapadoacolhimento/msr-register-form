@@ -2,7 +2,7 @@ import * as Yup from "yup";
 
 import Step from "../Step";
 import { sleep } from "../../../utils";
-import SelectInput from "@/components/SelectInput/SelectInput";
+import SelectInput from "../../SelectInput/SelectInput";
 
 const diversityInformationSchema = Yup.object({
 	color: Yup.string().required("Esse campo é obrigatório."),
