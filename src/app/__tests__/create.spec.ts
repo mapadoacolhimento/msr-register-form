@@ -1,17 +1,9 @@
 import { expect } from "vitest";
-import { Gender, MSRStatus, PrismaClient, Race } from "@prisma/client";
-import { mockDeep, mockReset, DeepMockProxy } from "vitest-mock-extended";
-import { Prisma } from "@prisma/client";
-import { POST } from "../create/route";
 import { NextRequest } from "next/server";
-import { db } from "../../lib";
-
-vi.mock("../../lib/db", () => ({
-	__esModule: true,
-	default: mockDeep<PrismaClient>(),
-}));
-
-const mockedDb = db as unknown as DeepMockProxy<PrismaClient>;
+import { mockReset } from "vitest-mock-extended";
+import { Gender, MSRStatus, Prisma, Race } from "@prisma/client";
+import { mockedDb } from "../__mocks__/db";
+import { POST } from "../create/route";
 
 const mockPayload = {
 	zendesk_user_id: 12345 as unknown as bigint,
@@ -22,7 +14,6 @@ const mockPayload = {
 	city: "SALVADOR",
 	state: "BA",
 	neighborhood: "Bairro",
-	zipcode: null,
 	date_of_birth: null,
 	color: "black",
 	status: "registered",
@@ -38,7 +29,6 @@ const mockIncompletePayload = {
 	city: "SALVADOR",
 	state: "BA",
 	neighborhood: "Bairro",
-	zipcode: null,
 	date_of_birth: null,
 	color: "black",
 	status: "registered",
