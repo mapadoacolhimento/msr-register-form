@@ -2,7 +2,7 @@ import * as Yup from "yup";
 import { db, getErrorMessage } from "../../lib";
 import { Msr, MsrPiiSec } from "../../types";
 import { Gender, MSRStatus, Race } from "@prisma/client";
-//to do if undefined put not_found
+
 const payloadSchema = Yup.object({
 	zendesk_user_id: Yup.number().required(),
 	email: Yup.string().email().required(),
@@ -24,7 +24,7 @@ const payloadSchema = Yup.object({
 export async function POST(request: Request) {
 	try {
 		if (!request.body) {
-			throw new Error("Empty body!");
+			throw new Error("Error: Empty body!");
 		}
 		const payload = await request.json();
 
@@ -50,7 +50,7 @@ export async function POST(request: Request) {
 			data: {
 				msrId: payload.zendesk_user_id,
 				firstName: payload.first_name,
-				lastName: payload.last_name ? payload.last_name : null,
+				lastName: payload.last_name ? payload.last_name : "not_found",
 				email: payload.email,
 				phone: payload.phone,
 				dateOfBirth: payload.date_of_birth ? payload.date_of_birth : null,
@@ -74,8 +74,8 @@ export async function POST(request: Request) {
 			"code" in error &&
 			(error as any).code === "P2002"
 		) {
-			return new Response("Erro: MSR Already exisits!", {
-				status: 400,
+			return new Response("Error: MSR Already exisits!", {
+				status: 500,
 			});
 		}
 		return new Response(getErrorMessage(error), {
