@@ -157,7 +157,7 @@ describe("App", () => {
 		cy.contains("Esse campo é obrigatório.").should("exist");
 	});
 
-	it("should continue to step3 if all fields are filled correctly", () => {
+	it("should continue to step2 if all fields are filled correctly", () => {
 		cy.visit("/");
 
 		cy.get("#name").type("MSR teste");
