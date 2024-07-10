@@ -33,7 +33,7 @@ export async function POST(request: Request) {
 		const msr: Msr = await db.mSRs.create({
 			data: {
 				msrId: payload.zendesk_user_id,
-				gender: payload.gender,
+				gender: payload.gender ? payload.gender : "not_found",
 				raceColor: payload.color,
 				hasDisability: payload.has_disability ? payload.has_disability : null,
 				acceptsOnlineSupport: payload.accepts_online_support
@@ -41,7 +41,7 @@ export async function POST(request: Request) {
 					: true,
 				neighborhood: payload.neighborhood,
 				city: payload.city,
-				state: payload.atate,
+				state: payload.state,
 				zipcode: payload.zipcodez ? payload.zipcodez : "not_found",
 				status: payload.status,
 			},
@@ -50,14 +50,16 @@ export async function POST(request: Request) {
 			data: {
 				msrId: payload.zendesk_user_id,
 				firstName: payload.first_name,
-				lastName: payload.last_name ? payload.last_name : "not_found",
+				lastName: payload.last_name ? payload.last_name : "",
 				email: payload.email,
 				phone: payload.phone,
-				dateOfBirth: payload.date_of_birth ? payload.date_of_birth : null,
+				dateOfBirth: payload.date_of_birth
+					? new Date(payload.date_of_birth)
+					: null,
 			},
 		});
 		return Response.json({
-			id: msr.msrId,
+			msr_id: msr.msrId.toString(),
 			email: msrPii.email,
 		});
 	} catch (e) {
@@ -74,8 +76,8 @@ export async function POST(request: Request) {
 			"code" in error &&
 			(error as any).code === "P2002"
 		) {
-			return new Response("Error: MSR Already exisits!", {
-				status: 500,
+			return new Response(error.message, {
+				status: 400,
 			});
 		}
 		return new Response(getErrorMessage(error), {

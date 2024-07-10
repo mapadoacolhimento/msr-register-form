@@ -100,7 +100,7 @@ const mockMsr2 = {
 const mockMsrPii2 = {
 	msrId: mockPayload2.zendesk_user_id,
 	firstName: mockPayload2.first_name,
-	lastName: "not_found",
+	lastName: "",
 	email: mockPayload2.email,
 	phone: mockPayload2.phone,
 	dateOfBirth: new Date(mockPayload2.date_of_birth),
@@ -126,7 +126,7 @@ describe("POST /create", () => {
 		expect(mockedDb.mSRs.create).toHaveBeenCalledTimes(1);
 		expect(mockedDb.mSRPiiSec.create).toHaveBeenCalledTimes(1);
 		expect(await response.json()).toStrictEqual({
-			id: mockPayload.zendesk_user_id,
+			msr_id: mockPayload.zendesk_user_id.toString(),
 			email: mockPayload.email,
 		});
 	});
@@ -144,7 +144,7 @@ describe("POST /create", () => {
 		expect(mockedDb.mSRs.create).toHaveBeenCalledTimes(1);
 		expect(mockedDb.mSRPiiSec.create).toHaveBeenCalledTimes(1);
 		expect(await response.json()).toStrictEqual({
-			id: mockPayload2.zendesk_user_id,
+			msr_id: mockPayload2.zendesk_user_id.toString(),
 			email: mockPayload2.email,
 		});
 	});
@@ -161,7 +161,7 @@ describe("POST /create", () => {
 	it("returns error when msr already exists", async () => {
 		mockedDb.mSRs.create.mockRejectedValueOnce(
 			new Prisma.PrismaClientKnownRequestError(
-				"Unique constraint failed on the fields: (`msrId`)",
+				"Unique constraint failed on the fields: (`msr_id`)",
 				{ code: "P2002", clientVersion: "some-version" }
 			)
 		);
@@ -174,7 +174,9 @@ describe("POST /create", () => {
 		);
 		const response = await POST(request);
 		expect(mockedDb.mSRs.create).toHaveBeenCalledTimes(1);
-		expect(await response.text()).toEqual("Error: MSR Already exisits!");
+		expect(await response.text()).toEqual(
+			"Unique constraint failed on the fields: (`msr_id`)"
+		);
 	});
 
 	it("returns error when dont have a valid payload", async () => {
