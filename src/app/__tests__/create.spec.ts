@@ -52,8 +52,6 @@ const mockIncompletePayload = {
 
 const mockMsr = {
 	msrId: mockPayload.zendesk_user_id,
-	phone: mockPayload.phone,
-	firstName: mockPayload.first_name,
 	city: mockPayload.city,
 	state: mockPayload.state,
 	neighborhood: mockPayload.neighborhood,
@@ -81,9 +79,6 @@ const mockMsrPii = {
 
 const mockMsr2 = {
 	msrId: mockPayload2.zendesk_user_id,
-	phone: mockPayload2.phone,
-	firstName: mockPayload2.first_name,
-	lastName: mockPayload2.last_name,
 	city: mockPayload2.city,
 	state: mockPayload2.state,
 	neighborhood: mockPayload2.neighborhood,
