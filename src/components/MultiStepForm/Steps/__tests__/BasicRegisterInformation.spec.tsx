@@ -15,7 +15,8 @@ const setup = () => {
 			initialValues={
 				{
 					email: "",
-					name: "",
+					firstName: "",
+					dateOfBirth: "",
 					confirmEmail: "",
 					phone: "",
 				} as Values
@@ -50,7 +51,7 @@ describe("<BasicRegisterInformation />", () => {
 
 		await screen.findAllByRole("alert");
 
-		expect(screen.getAllByRole("alert")).toHaveLength(4);
+		expect(screen.getAllByRole("alert")).toHaveLength(5);
 	});
 
 	it("should render error if name field is empty", async () => {
@@ -65,6 +66,11 @@ describe("<BasicRegisterInformation />", () => {
 
 		const phoneInput = screen.getByRole("textbox", { name: /whatsapp/i });
 		await userEvent.type(phoneInput, "81123430219");
+
+		const dateOfBirth = screen.getByRole("textbox", {
+			name: /Data de Nascimento/i,
+		});
+		await userEvent.type(dateOfBirth, "18111996");
 
 		const btn = screen.getByRole("button", { name: /enviar/i });
 		await userEvent.click(btn);
@@ -87,6 +93,11 @@ describe("<BasicRegisterInformation />", () => {
 
 		const phoneInput = screen.getByRole("textbox", { name: /whatsapp/i });
 		await userEvent.type(phoneInput, "81123430219");
+
+		const dateOfBirth = screen.getByRole("textbox", {
+			name: /Data de nascimento/i,
+		});
+		await userEvent.type(dateOfBirth, "18111996");
 
 		const btn = screen.getByRole("button", { name: /enviar/i });
 		await userEvent.click(btn);
@@ -123,6 +134,10 @@ describe("<BasicRegisterInformation />", () => {
 		await userEvent.type(confirmEmailInput, "test@test.com");
 		const phoneInput = screen.getByRole("textbox", { name: /whatsapp/i });
 		await userEvent.type(phoneInput, "91123430219");
+		const dateOfBirth = screen.getByRole("textbox", {
+			name: /Data de Nascimento/i,
+		});
+		await userEvent.type(dateOfBirth, "18111996");
 
 		const btn = screen.getByRole("button", { name: /enviar/i });
 		await userEvent.click(btn);
@@ -144,6 +159,10 @@ describe("<BasicRegisterInformation />", () => {
 		await userEvent.type(confirmEmailInput, "msr@test.com");
 		const phoneInput = screen.getByRole("textbox", { name: /whatsapp/i });
 		await userEvent.type(phoneInput, "123430219");
+		const dateOfBirth = screen.getByRole("textbox", {
+			name: /Data de nascimento/i,
+		});
+		await userEvent.type(dateOfBirth, "18111996");
 
 		const btn = screen.getByRole("button", { name: /enviar/i });
 		await userEvent.click(btn);
