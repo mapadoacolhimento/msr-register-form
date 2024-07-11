@@ -41,7 +41,7 @@ export async function POST(request: Request) {
 				status: payload.status,
 			},
 		});
-		const msrPii = await db.mSRPiiSec.create({
+		await db.mSRPiiSec.create({
 			data: {
 				msrId: payload.zendesUserId,
 				firstName: payload.firstName,
