@@ -14,7 +14,7 @@ export interface Values {
 	phone: string;
 	dateOfBirth: string;
 	color: string;
-	disabilityStatus: string;
+	hasDisability: string;
 	acceptsOnlineSupport: string;
 	supportType: string[];
 }
@@ -29,7 +29,7 @@ export default function MultiStepForm() {
 				phone: "",
 				dateOfBirth: "",
 				color: "",
-				disabilityStatus: "",
+				hasDisability: "",
 				acceptsOnlineSupport: "",
 				supportType: [],
 			}}

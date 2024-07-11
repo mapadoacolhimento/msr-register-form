@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-
 import DiversityInformation from "../DiversityInformation";
 import MultiStepFormWrapper from "../../MultiStepFormWrapper";
-import { sleep } from "../../../../utils";
+import { sleep } from "../../../../lib";
+
 import { type Values } from "../..";
 
 const setup = () => {
@@ -14,12 +14,8 @@ const setup = () => {
 			}
 			initialValues={
 				{
-					email: "",
-					name: "",
-					confirmEmail: "",
-					phone: "",
 					color: "",
-					disabilityStatus: "",
+					hasDisability: "",
 				} as Values
 			}
 		>
@@ -33,26 +29,19 @@ describe("<DiversityInformation />", () => {
 		setup();
 
 		const colorInput = screen.getByLabelText("Cor");
-		const disabilityStatusInput = screen.getByLabelText(
-			"Pessoa com deficiência"
-		);
+		const hasDisabilityInput = screen.getByLabelText("Pessoa com deficiência");
 
 		expect(colorInput).toBeInTheDocument();
-		expect(disabilityStatusInput).toBeInTheDocument();
+		expect(hasDisabilityInput).toBeInTheDocument();
 	});
 
 	it("should display error if colorInput is empty", async () => {
 		setup();
 
 		const colorInput = screen.getByLabelText("Cor");
-		const disabilityStatusInput = screen.getByLabelText(
-			"Pessoa com deficiência"
-		);
+		const hasDisabilityInput = screen.getByLabelText("Pessoa com deficiência");
 
-		expect(colorInput).toBeInTheDocument();
-		expect(disabilityStatusInput).toBeInTheDocument();
-
-		await userEvent.selectOptions(disabilityStatusInput, ["Sim"]);
+		await userEvent.selectOptions(hasDisabilityInput, ["Sim"]);
 
 		const btn = screen.getByRole("button", { name: /enviar/i });
 		await userEvent.click(btn);
@@ -64,18 +53,15 @@ describe("<DiversityInformation />", () => {
 		setup();
 
 		const colorInput = screen.getByLabelText("Cor");
-		const disabilityStatusInput = screen.getByLabelText(
-			"Pessoa com deficiência"
-		);
-
-		expect(colorInput).toBeInTheDocument();
-		expect(disabilityStatusInput).toBeInTheDocument();
 
 		await userEvent.selectOptions(colorInput, ["Preta"]);
 
 		const btn = screen.getByRole("button", { name: /enviar/i });
 		await userEvent.click(btn);
 
-		expect(screen.getAllByText("Esse campo é obrigatório."));
+		expect(await screen.findByRole("alert")).toBeInTheDocument();
+		expect(screen.getByRole("alert")).toHaveTextContent(
+			"Esse campo é obrigatório."
+		);
 	});
 });

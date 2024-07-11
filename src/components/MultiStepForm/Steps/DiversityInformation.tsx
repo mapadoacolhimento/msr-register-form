@@ -1,13 +1,13 @@
 import * as Yup from "yup";
 
 import Step from "../Step";
-import { sleep } from "../../../utils";
+import { sleep } from "../../../lib";
 import SelectInput from "../../SelectInput";
 import { colorOptions, disabilityOptions } from "../../../lib/constants";
 
 const diversityInformationSchema = Yup.object({
 	color: Yup.string().required("Esse campo é obrigatório."),
-	disabilityStatus: Yup.string().required("Esse campo é obrigatório."),
+	hasDisability: Yup.string().required("Esse campo é obrigatório."),
 });
 
 export default function DiversityInformation() {
@@ -28,7 +28,7 @@ export default function DiversityInformation() {
 				placeholder="Cor"
 			/>
 			<SelectInput
-				name="disabilityStatus"
+				name="hasDisability"
 				label="Pessoa com deficiência"
 				options={disabilityOptions}
 				placeholder="Você é uma pessoa com deficiência (PcD)?"
