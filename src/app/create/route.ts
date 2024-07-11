@@ -28,7 +28,7 @@ export async function POST(request: Request) {
 		const msr = await db.mSRs.create({
 			data: {
 				msrId: payload.zendesUserId,
-				gender: payload.gender ? payload.gender : "not_found",
+				gender: payload.gender,
 				raceColor: payload.color,
 				hasDisability: payload.hasDisability ? payload.hasDisability : null,
 				acceptsOnlineSupport: payload.acceptsOnlineSupport
@@ -37,7 +37,7 @@ export async function POST(request: Request) {
 				neighborhood: payload.neighborhood,
 				city: payload.city,
 				state: payload.state,
-				zipcode: payload.zipcode ? payload.zipcode : "not_found",
+				zipcode: payload.zipcode,
 				status: payload.status,
 			},
 		});
