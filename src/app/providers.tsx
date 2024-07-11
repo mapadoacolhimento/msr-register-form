@@ -1,6 +1,6 @@
 "use client";
 
-import { Theme, ThemePanel } from "@radix-ui/themes";
+import { Theme } from "@radix-ui/themes";
 
 export default function Providers({
 	children,
@@ -8,7 +8,6 @@ export default function Providers({
 	return (
 		<Theme accentColor="purple" grayColor="gray" panelBackground="solid">
 			{children}
-			{process.env.NODE_ENV !== "production" ? <ThemePanel /> : null}
 		</Theme>
 	);
 }
