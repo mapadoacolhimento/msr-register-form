@@ -1,11 +1,7 @@
 it("should display error if color field is empty", () => {
 	cy.visit("/");
 
-	cy.get("#name").type("MSR teste");
-	cy.get("#email").type("msr@test.com");
-	cy.get("#confirmEmail").type("msr@test.com");
-	cy.get("#phone").type("81999999999");
-	cy.get("#dateOfBirth").type("11111111");
+	cy.fillFirstStep();
 
 	cy.findByRole("button", { name: "Continuar" }).click();
 
@@ -18,11 +14,7 @@ it("should display error if color field is empty", () => {
 it("should display error if disability status field is empty", () => {
 	cy.visit("/");
 
-	cy.get("#name").type("MSR teste");
-	cy.get("#email").type("msr@test.com");
-	cy.get("#confirmEmail").type("msr@test.com");
-	cy.get("#phone").type("81999999999");
-	cy.get("#dateOfBirth").type("11111111");
+	cy.fillFirstStep();
 
 	cy.findByRole("button", { name: "Continuar" }).click();
 

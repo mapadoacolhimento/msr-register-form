@@ -2,13 +2,47 @@ describe("App", () => {
 	it("should render all fields", () => {
 		cy.visit("/");
 
-		cy.get("#name").type("MSR teste");
-		cy.get("#email").type("msr@test.com");
-		cy.get("#confirmEmail").type("msr@test.com");
-		cy.get("#phone").type("81999999999");
-		cy.get("#dateOfBirth").type("11111111");
+		cy.fillFirstStep();
 
 		cy.findByRole("button", { name: "Continuar" }).should("exist");
+	});
+
+	it("should continue to step2 if all fields are filled correctly", () => {
+		cy.visit("/");
+
+		cy.fillFirstStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		// Step 2
+		cy.fillSecondStep();
+	});
+
+	it("should continue to step3 if all fields are filled correctly", () => {
+		cy.visit("/");
+
+		cy.fillFirstStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		// Step 2
+		cy.fillSecondStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+	});
+
+	it("should continue to step4 if all fields are filled correctly", () => {
+		// Step 3
+		cy.visit("/");
+
+		cy.fillFirstStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillSecondStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillThirdStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		// Step 4
+		cy.fillFourthStep();
 	});
 
 	it("should display error if name field is empty", () => {
@@ -94,58 +128,4 @@ describe("App", () => {
 		cy.findByRole("button", { name: "Continuar" }).click();
 		cy.contains("Esse campo é obrigatório.").should("exist");
 	});
-
-	it("should continue to the next step if all fields are filled correctly", () => {
-		cy.visit("/");
-
-		cy.get("#name").type("MSR teste");
-		cy.get("#email").type("msr@test.com");
-		cy.get("#confirmEmail").type("msr@test.com");
-		cy.get("#phone").type("81999999999");
-		cy.get("#dateOfBirth").type("11111111");
-
-		cy.findByRole("button", { name: "Continuar" }).click();
-
-		// Step 2
-		cy.get("#color").select("Preta");
-		cy.get("#disabilityStatus").select("Não");
-	});
-
-	it("should continue to step2 if all fields are filled correctly", () => {
-		cy.visit("/");
-
-		cy.get("#name").type("MSR teste");
-		cy.get("#email").type("msr@test.com");
-		cy.get("#confirmEmail").type("msr@test.com");
-		cy.get("#phone").type("81999999999");
-		cy.get("#dateOfBirth").type("11111111");
-
-		cy.findByRole("button", { name: "Continuar" }).click();
-
-		// Step 2
-		cy.get("#color").select("Preta");
-		cy.get("#disabilityStatus").select("Não");
-		cy.findByRole("button", { name: "Continuar" }).click();
-	});
-
-	// Step 3
-	// cy.findByRole("radio", {
-	// 	name: "Sim, aceito ser atendida online",
-	// }).should("exist");
-	// cy.findByRole("radio", {
-	// 	name: "Não, só posso receber atendimento presencial",
-	// }).should("exist");
-
-	// cy.findByRole("radio", {
-	// 	name: "Sim, aceito ser atendida online",
-	// }).click();
-
-	// cy.findByRole("button", { name: "Continuar" }).click();
-
-	// cy.findByRole("checkbox", {
-	// 	name: "Acolhimento psicológico",
-	// }).click({ force: true });
-	// cy.findByRole("checkbox", {
-	// 	name: "Acolhimento jurídico",
-	// }).click({ force: true });
 });
