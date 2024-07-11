@@ -2,7 +2,7 @@
 	position: relative;
 	max-width: 22rem;
 	width: 100%;
-	border-radius: 6px;
+	border-radius: var(--radius-4);
 	background-color: var(--gray-6);
 }
 
