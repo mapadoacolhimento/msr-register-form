@@ -1,10 +1,10 @@
-.input-container {
+.select-input-container {
 	position: relative;
 	width: 100%;
 	max-width: 22rem;
 }
 
-label {
+.select-input-container label {
 	position: absolute;
 	top: 50%;
 	left: 1rem;
@@ -14,7 +14,7 @@ label {
 	visibility: hidden;
 }
 
-label.active {
+.select-input-container label.active {
 	top: -1rem;
 	left: 1rem;
 	font-size: var(--font-size-1);
@@ -25,7 +25,7 @@ label.active {
 	font-weight: 700;
 }
 
-select {
+.select-input-container select {
 	width: 100%;
 	padding: 0.5rem;
 	font-size: 1rem;

@@ -29,7 +29,7 @@ const SelectInput: React.FC<SelectInputProps> = (props) => {
 	}
 
 	return (
-		<div className="input-container">
+		<div className="select-input-container">
 			<label
 				htmlFor={props.name}
 				className={isActive ? "active" : ""}

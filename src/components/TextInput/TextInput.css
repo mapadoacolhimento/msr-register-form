@@ -8,9 +8,10 @@
 
 .input-text-container label {
 	position: absolute;
-	transition:
-		top 0.1s,
-		font-size 0.1s;
+	top: 50%;
+	left: 1rem;
+	transform: translateY(-50%);
+	transition: all 0.2s ease;
 	pointer-events: none;
 	visibility: hidden;
 }
@@ -19,6 +20,9 @@
 	top: -1rem;
 	left: 1rem;
 	font-size: var(--font-size-1);
+	color: var(--purple-9);
+	margin-top: 1rem;
 	visibility: visible;
+	background-color: white;
 	font-weight: 700;
 }
