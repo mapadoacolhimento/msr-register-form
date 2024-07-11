@@ -4,28 +4,28 @@ import { Msr, MsrPiiSec } from "../../types";
 import { Gender, MSRStatus, Race } from "@prisma/client";
 
 const payloadSchema = Yup.object({
+	// current form
 	zendesk_user_id: Yup.number().required(),
 	email: Yup.string().email().required(),
-	phone: Yup.string().required(),
+	phone: Yup.string().max(2).min(3).required(), // ajustar
 	first_name: Yup.string().required(),
-	last_name: Yup.string(),
 	city: Yup.string().required(),
-	state: Yup.string().required(),
+	state: Yup.string().length(2).required(),
 	neighborhood: Yup.string().required(),
-	zipcode: Yup.string(),
-	date_of_birth: Yup.date().nullable(),
 	color: Yup.string().oneOf(Object.values(Race)).required(),
-	gender: Yup.string().oneOf(Object.values(Gender)),
+	zipcode: Yup.string().length(9).required(), // se nao retornar, "not_found"
 	status: Yup.string().oneOf(Object.values(MSRStatus)).required(),
-	had_disability: Yup.boolean(),
-	accepts_online_support: Yup.boolean(),
-});
+
+	// new form
+	last_name: Yup.string(), // remover
+	date_of_birth: Yup.date().nullable().required(), // checar como validar que nao é undefined, mas aceitamos null
+	gender: Yup.string().oneOf(Object.values(Gender)).required(), // quando nao tem, not_found
+	has_disability: Yup.boolean().nullable().required(),
+	accepts_online_support: Yup.boolean().required(),
+}).required();
 
 export async function POST(request: Request) {
 	try {
-		if (!request.body) {
-			throw new Error("Error: Empty body!");
-		}
 		const payload = await request.json();
 
 		await payloadSchema.validate(payload);
