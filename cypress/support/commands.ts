@@ -9,7 +9,7 @@ Cypress.Commands.add("fillFirstStep", () => {
 	const phone = "81999999999";
 	const dateOfBirth = "18111996";
 
-	cy.get("#name").type(firstName);
+	cy.get("#firstName").type(firstName);
 	cy.get("#email").type(email);
 	cy.get("#confirmEmail").type(confirmEmail);
 	cy.get("#phone").type(phone);
