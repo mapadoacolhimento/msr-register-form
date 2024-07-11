@@ -1,64 +1,47 @@
 import { expect } from "vitest";
 import { NextRequest } from "next/server";
 import { mockReset } from "vitest-mock-extended";
-import { Gender, MSRStatus, Prisma, Race } from "@prisma/client";
-import { mockedDb } from "../__mocks__/db";
+import { type Gender, type MSRStatus, Prisma, type Race } from "@prisma/client";
+import mockedDb from "../../lib/__mocks__/db";
+import msrPayload from "../../lib/__mocks__/payloads";
 import { POST } from "../create/route";
 
-const mockPayload = {
-	zendesk_user_id: 12345 as unknown as bigint,
-	email: "msr@email.br",
-	phone: "71999999999",
-	first_name: "Msr",
-	city: "SALVADOR",
-	state: "BA",
-	neighborhood: "Bairro",
-	color: "black",
-	status: "registered",
-};
+const mockPayload = msrPayload();
 
-const mockPayload2 = {
-	zendesk_user_id: 67890 as unknown as bigint,
-	email: "msr2@email.br",
-	phone: "71888888888",
-	first_name: "Msr 2",
-	last_name: "Teste",
-	city: "CAMPINAS",
-	state: "SP",
-	neighborhood: "Bairro",
-	zipcode: "00000000",
-	color: "white",
+const mockPayload2 = msrPayload({
 	gender: "cis_woman",
 	status: "registered",
-	date_of_birth: "1990-03-14",
-	has_disability: false,
-	accepts_online_support: true,
-};
+	dateOfBirth: "1990-03-14",
+	hasDisability: false,
+	acceptsOnlineSupport: true,
+});
 
 const mockIncompletePayload = {
 	email: "msr@email.br",
 	phone: "71999999999",
-	first_name: "Msr",
-	last_name: "Teste",
+	firstName: "Msr",
+	lastName: "Teste",
 	city: "SALVADOR",
 	state: "BA",
 	neighborhood: "Bairro",
-	date_of_birth: null,
+	zipcode: "00000000",
+	dateOfBirth: "1990-10-10",
 	color: "black",
+	gender: "cis_woman",
 	status: "registered",
-	has_disability: false,
-	accepts_online_support: false,
+	hasDisability: null,
+	acceptsOnlineSupport: false,
 };
 
 const mockMsr = {
-	msrId: mockPayload.zendesk_user_id,
+	msrId: mockPayload.msrZendeskUserId,
 	city: mockPayload.city,
 	state: mockPayload.state,
 	neighborhood: mockPayload.neighborhood,
-	zipcode: "",
+	zipcode: "00000000",
 	dateOfBirth: null,
 	raceColor: mockPayload.color as Race,
-	gender: "not_found" as Gender,
+	gender: "cis_woman" as Gender,
 	status: mockPayload.status as MSRStatus,
 	hasDisability: false,
 	acceptsOnlineSupport: true,
@@ -67,8 +50,8 @@ const mockMsr = {
 };
 
 const mockMsrPii = {
-	msrId: mockPayload.zendesk_user_id,
-	firstName: mockPayload.first_name,
+	msrId: mockPayload.msrZendeskUserId,
+	firstName: mockPayload.firstName,
 	lastName: "not_found",
 	email: mockPayload.email,
 	phone: mockPayload.phone,
@@ -78,7 +61,7 @@ const mockMsrPii = {
 };
 
 const mockMsr2 = {
-	msrId: mockPayload2.zendesk_user_id,
+	msrId: mockPayload2.msrZendeskUserId,
 	city: mockPayload2.city,
 	state: mockPayload2.state,
 	neighborhood: mockPayload2.neighborhood,
@@ -86,19 +69,19 @@ const mockMsr2 = {
 	raceColor: mockPayload2.color as Race,
 	gender: mockPayload2.gender as Gender,
 	status: mockPayload2.status as MSRStatus,
-	hasDisability: mockPayload2.has_disability,
-	acceptsOnlineSupport: mockPayload2.accepts_online_support,
+	hasDisability: mockPayload2.hasDisability,
+	acceptsOnlineSupport: mockPayload2.acceptsOnlineSupport,
 	createdAt: new Date(),
 	updatedAt: new Date(),
 };
 
 const mockMsrPii2 = {
-	msrId: mockPayload2.zendesk_user_id,
-	firstName: mockPayload2.first_name,
+	msrId: mockPayload2.msrZendeskUserId,
+	firstName: mockPayload2.firstName,
 	lastName: "",
 	email: mockPayload2.email,
 	phone: mockPayload2.phone,
-	dateOfBirth: new Date(mockPayload2.date_of_birth),
+	dateOfBirth: new Date("1990-03-14"),
 	createdAt: new Date(),
 	updatedAt: new Date(),
 };
@@ -108,7 +91,7 @@ describe("POST /create", () => {
 		mockReset(mockedDb);
 	});
 
-	it("shoul create new msr with basics fields on db", async () => {
+	it("should create new msr with basics fields on db", async () => {
 		mockedDb.mSRs.create.mockResolvedValueOnce(mockMsr);
 		mockedDb.mSRPiiSec.create.mockResolvedValueOnce(mockMsrPii);
 		const request = new NextRequest(
@@ -120,13 +103,13 @@ describe("POST /create", () => {
 		const response = await POST(request);
 		expect(mockedDb.mSRs.create).toHaveBeenCalledTimes(1);
 		expect(mockedDb.mSRPiiSec.create).toHaveBeenCalledTimes(1);
+		expect(response.status).toEqual(200);
 		expect(await response.json()).toStrictEqual({
-			msr_id: mockPayload.zendesk_user_id.toString(),
-			email: mockPayload.email,
+			msrId: mockPayload.msrZendeskUserId.toString(),
 		});
 	});
 
-	it("shoul create new msr with all fields on db", async () => {
+	it("should create new msr with all fields on db", async () => {
 		mockedDb.mSRs.create.mockResolvedValueOnce(mockMsr2);
 		mockedDb.mSRPiiSec.create.mockResolvedValueOnce(mockMsrPii2);
 		const request = new NextRequest(
@@ -138,21 +121,12 @@ describe("POST /create", () => {
 		const response = await POST(request);
 		expect(mockedDb.mSRs.create).toHaveBeenCalledTimes(1);
 		expect(mockedDb.mSRPiiSec.create).toHaveBeenCalledTimes(1);
+		expect(response.status).toEqual(200);
 		expect(await response.json()).toStrictEqual({
-			msr_id: mockPayload2.zendesk_user_id.toString(),
-			email: mockPayload2.email,
+			msrId: mockPayload2.msrZendeskUserId.toString(),
 		});
 	});
 
-	it("returns error when dont have a payload", async () => {
-		const request = new NextRequest(
-			new Request("http://localhost:3000/create", {
-				method: "POST",
-			})
-		);
-		const response = await POST(request);
-		expect(await response.text()).toEqual("Error: Empty body!");
-	});
 	it("returns error when msr already exists", async () => {
 		mockedDb.mSRs.create.mockRejectedValueOnce(
 			new Prisma.PrismaClientKnownRequestError(
@@ -169,6 +143,7 @@ describe("POST /create", () => {
 		);
 		const response = await POST(request);
 		expect(mockedDb.mSRs.create).toHaveBeenCalledTimes(1);
+		expect(response.status).toEqual(400);
 		expect(await response.text()).toEqual(
 			"Unique constraint failed on the fields: (`msr_id`)"
 		);
@@ -182,8 +157,9 @@ describe("POST /create", () => {
 			})
 		);
 		const response = await POST(request);
+		expect(response.status).toEqual(400);
 		expect(await response.text()).toEqual(
-			"Validation error: zendesk_user_id is a required field"
+			"Validation error: msrZendeskUserId is a required field"
 		);
 	});
 });

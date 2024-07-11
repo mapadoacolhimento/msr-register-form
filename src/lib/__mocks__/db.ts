@@ -8,4 +8,5 @@ vi.mock("../../lib/db", () => ({
 	default: mockDeep<PrismaClient>(),
 }));
 
-export const mockedDb = db as unknown as DeepMockProxy<PrismaClient>;
+const mockedDb = db as unknown as DeepMockProxy<PrismaClient>;
+export default mockedDb;

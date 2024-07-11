@@ -1,27 +1,22 @@
 import * as Yup from "yup";
 import { db, getErrorMessage } from "../../lib";
-import { Msr, MsrPiiSec } from "../../types";
 import { Gender, MSRStatus, Race } from "@prisma/client";
 
 const payloadSchema = Yup.object({
-	// current form
-	zendesk_user_id: Yup.number().required(),
+	msrZendeskUserId: Yup.number().required(),
 	email: Yup.string().email().required(),
-	phone: Yup.string().max(2).min(3).required(), // ajustar
-	first_name: Yup.string().required(),
+	phone: Yup.string().min(10).max(12).required(),
+	firstName: Yup.string().required(),
 	city: Yup.string().required(),
 	state: Yup.string().length(2).required(),
 	neighborhood: Yup.string().required(),
 	color: Yup.string().oneOf(Object.values(Race)).required(),
-	zipcode: Yup.string().length(9).required(), // se nao retornar, "not_found"
+	zipcode: Yup.string().min(8).max(9).required(),
 	status: Yup.string().oneOf(Object.values(MSRStatus)).required(),
-
-	// new form
-	last_name: Yup.string(), // remover
-	date_of_birth: Yup.date().nullable().required(), // checar como validar que nao é undefined, mas aceitamos null
-	gender: Yup.string().oneOf(Object.values(Gender)).required(), // quando nao tem, not_found
-	has_disability: Yup.boolean().nullable().required(),
-	accepts_online_support: Yup.boolean().required(),
+	dateOfBirth: Yup.date().required().nullable(),
+	gender: Yup.string().oneOf(Object.values(Gender)).required(),
+	hasDisability: Yup.boolean().required().nullable(),
+	acceptsOnlineSupport: Yup.boolean().required(),
 }).required();
 
 export async function POST(request: Request) {
@@ -30,37 +25,36 @@ export async function POST(request: Request) {
 
 		await payloadSchema.validate(payload);
 
-		const msr: Msr = await db.mSRs.create({
+		const msr = await db.mSRs.create({
 			data: {
-				msrId: payload.zendesk_user_id,
+				msrId: payload.zendesUserId,
 				gender: payload.gender ? payload.gender : "not_found",
 				raceColor: payload.color,
-				hasDisability: payload.has_disability ? payload.has_disability : null,
-				acceptsOnlineSupport: payload.accepts_online_support
-					? payload.accepts_online_suppor
+				hasDisability: payload.hasDisability ? payload.hasDisability : null,
+				acceptsOnlineSupport: payload.acceptsOnlineSupport
+					? payload.acceptsOnlineSupport
 					: true,
 				neighborhood: payload.neighborhood,
 				city: payload.city,
 				state: payload.state,
-				zipcode: payload.zipcodez ? payload.zipcodez : "not_found",
+				zipcode: payload.zipcode ? payload.zipcode : "not_found",
 				status: payload.status,
 			},
 		});
-		const msrPii: MsrPiiSec = await db.mSRPiiSec.create({
+		const msrPii = await db.mSRPiiSec.create({
 			data: {
-				msrId: payload.zendesk_user_id,
-				firstName: payload.first_name,
-				lastName: payload.last_name ? payload.last_name : "",
+				msrId: payload.zendesUserId,
+				firstName: payload.firstName,
+				lastName: "",
 				email: payload.email,
 				phone: payload.phone,
-				dateOfBirth: payload.date_of_birth
-					? new Date(payload.date_of_birth)
+				dateOfBirth: payload.dateOfBirth
+					? new Date(payload.dateOfBirth).toISOString()
 					: null,
 			},
 		});
 		return Response.json({
-			msr_id: msr.msrId.toString(),
-			email: msrPii.email,
+			msrId: msr.msrId.toString(),
 		});
 	} catch (e) {
 		const error = e as Record<string, unknown>;
