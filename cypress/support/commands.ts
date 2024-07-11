@@ -42,12 +42,8 @@ Cypress.Commands.add("fillThirdStep", () => {
 });
 
 Cypress.Commands.add("fillFourthStep", () => {
-	cy.findByRole("checkbox", {
-		name: "Acolhimento psicológico",
-	}).click({ force: true });
-	cy.findByRole("checkbox", {
-		name: "Acolhimento jurídico",
-	}).click({ force: true });
+	cy.findByLabelText("Acolhimento psicológico").click({ force: true });
+	cy.findByLabelText("Acolhimento jurídico").click({ force: true });
 });
 
 // ***********************************************
