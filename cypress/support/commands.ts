@@ -3,13 +3,13 @@
 import "@testing-library/cypress/add-commands";
 
 Cypress.Commands.add("fillFirstStep", () => {
-	const name = "MSR teste";
+	const firstName = "MSR teste";
 	const email = "msr@test.com";
 	const confirmEmail = "msr@test.com";
 	const phone = "81999999999";
 	const dateOfBirth = "18111996";
 
-	cy.get("#name").type(name);
+	cy.get("#name").type(firstName);
 	cy.get("#email").type(email);
 	cy.get("#confirmEmail").type(confirmEmail);
 	cy.get("#phone").type(phone);

@@ -30,7 +30,7 @@ describe("<BasicRegisterInformation />", () => {
 	it("should render fields", () => {
 		setup();
 
-		const nameInput = screen.getByRole("textbox", { name: "Nome" });
+		const nameInput = screen.getByRole("textbox", { name: "Primeiro nome" });
 		const emailInput = screen.getByRole("textbox", { name: "E-mail" });
 		const confirmEmailInput = screen.getByRole("textbox", {
 			name: "Confirme seu E-mail",
@@ -78,7 +78,7 @@ describe("<BasicRegisterInformation />", () => {
 	it("should render error if email field is empty", async () => {
 		setup();
 
-		const nameInput = screen.getByRole("textbox", { name: /Nome/i });
+		const nameInput = screen.getByRole("textbox", { name: /Primeiro nome/i });
 		await userEvent.type(nameInput, "MSR");
 
 		const confirmEmailInput =

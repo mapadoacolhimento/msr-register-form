@@ -3,7 +3,7 @@
 declare namespace Cypress {
 	interface Chainable<Subject = any> {
 		fillFirstStep(
-			name?: string,
+			firstName?: string,
 			email?: string,
 			confirmEmail?: string,
 			phone?: string,

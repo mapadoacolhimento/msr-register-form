@@ -17,7 +17,7 @@ const isDateValid = (dateString: string) => {
 };
 
 const basicRegisterInformationSchema = Yup.object({
-	name: Yup.string().required("Esse campo é obrigatório."),
+	firstName: Yup.string().required("Esse campo é obrigatório."),
 	email: Yup.string()
 		.email("Insira um e-mail válido.")
 		.required("Esse campo é obrigatório."),
@@ -89,8 +89,8 @@ export default function BasicRegisterInformation() {
 			}}
 		>
 			<TextInput
-				name="name"
-				label="Nome"
+				name="firstName"
+				label="Primeiro nome"
 				placeholder="Qual o seu primeiro nome?"
 			/>
 			<TextInput
