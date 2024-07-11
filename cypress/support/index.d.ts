@@ -9,7 +9,7 @@ declare namespace Cypress {
 			phone?: string,
 			dateOfBirth?: string
 		): Chainable<any>;
-		fillSecondStep(color?: string, disabilityStatus?: string): Chainable<any>;
+		fillSecondStep(color?: string, hasDisability?: string): Chainable<any>;
 		fillThirdStep(): Chainable<any>;
 		fillFourthStep(): Chainable<any>;
 	}

@@ -18,10 +18,10 @@ Cypress.Commands.add("fillFirstStep", () => {
 
 Cypress.Commands.add("fillSecondStep", () => {
 	const color = "Preta";
-	const disabilityStatus = "Não";
+	const hasDisability = "Não";
 
 	cy.get("#color").select(color);
-	cy.get("#disabilityStatus").select(disabilityStatus);
+	cy.get("#hasDisability").select(hasDisability);
 });
 
 Cypress.Commands.add("fillThirdStep", () => {

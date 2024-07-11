@@ -5,7 +5,7 @@ it("should display error if color field is empty", () => {
 
 	cy.findByRole("button", { name: "Continuar" }).click();
 
-	cy.get("#disabilityStatus").select("Não");
+	cy.get("#hasDisability").select("Não");
 
 	cy.findByRole("button", { name: "Continuar" }).click();
 	cy.contains("Esse campo é obrigatório.").should("exist");
