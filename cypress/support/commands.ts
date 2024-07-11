@@ -25,28 +25,15 @@ Cypress.Commands.add("fillSecondStep", () => {
 });
 
 Cypress.Commands.add("fillThirdStep", () => {
-	const accept = "Sim, aceito ser atendida online";
-	const notAccept = "Não, só posso receber atendimento presencial";
+	cy.get('[aria-labelledby="radio-label-0"]').should("exist");
+	cy.get('[aria-labelledby="radio-label-1"]').should("exist");
 
-	cy.findByRole("radio", {
-		name: accept,
-	}).should("exist");
-	cy.findByRole("radio", {
-		name: notAccept,
-	}).should("exist");
-
-	cy.findByRole("radio", {
-		name: accept,
-	}).click();
+	cy.get('[aria-labelledby="radio-label-1"]').click();
 });
 
 Cypress.Commands.add("fillFourthStep", () => {
-	cy.findByRole("checkbox", {
-		name: "Acolhimento psicológico",
-	}).click({ force: true });
-	cy.findByRole("checkbox", {
-		name: "Acolhimento jurídico",
-	}).click({ force: true });
+	cy.get("#checkbox-group-supportType > :nth-child(2)").click();
+	cy.get("#checkbox-group-supportType > :nth-child(3)").click();
 });
 
 // ***********************************************
