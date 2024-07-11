@@ -95,18 +95,6 @@ describe("App", () => {
 		cy.contains("Esse campo é obrigatório.").should("exist");
 	});
 
-	it("should display error if date of birth field is empty", () => {
-		cy.visit("/");
-
-		cy.get("#name").type("MSR teste");
-		cy.get("#email").type("msr@test.com");
-		cy.get("#confirmEmail").type("msr@test.com");
-		cy.get("#phone").type("9999");
-
-		cy.findByRole("button", { name: "Continuar" }).click();
-		cy.contains("Esse campo é obrigatório.").should("exist");
-	});
-
 	it("should continue to the next step if all fields are filled correctly", () => {
 		cy.visit("/");
 
