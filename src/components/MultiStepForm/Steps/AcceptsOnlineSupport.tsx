@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import Step from "../Step";
 import RadioInput from "../../RadioInput";
 import { sleep } from "../../../lib";
+import { acceptsOnlineSupportOptions } from "../../../lib/constants";
 
 const acceptsOnlineSupportSchema = Yup.object({
 	acceptsOnlineSupport: Yup.string()
@@ -23,13 +24,7 @@ export default function AcceptsOnlineSupport() {
 		>
 			<RadioInput
 				name="acceptsOnlineSupport"
-				options={[
-					{ value: "sim", name: "Sim, aceito ser atendida online" },
-					{
-						value: "nao",
-						name: "Não, só posso receber atendimento presencial",
-					},
-				]}
+				options={acceptsOnlineSupportOptions}
 				question={"Você aceitaria ser atendida online?"}
 			/>
 		</Step>
