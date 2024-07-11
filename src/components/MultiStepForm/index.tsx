@@ -9,7 +9,7 @@ import { sleep } from "../../lib";
 
 export interface Values {
 	email: string;
-	name: string;
+	firstName: string;
 	confirmEmail: string;
 	phone: string;
 	dateOfBirth: string;
@@ -24,7 +24,7 @@ export default function MultiStepForm() {
 		<MultiStepFormWrapper
 			initialValues={{
 				email: "",
-				name: "",
+				firstName: "",
 				confirmEmail: "",
 				phone: "",
 				dateOfBirth: "",
