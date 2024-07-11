@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useField } from "formik";
 import "./SelectInput.css";
+import ErrorMessage from "../ErrorMessage";
 
 interface SelectInputProps {
 	name: string;
@@ -9,13 +10,8 @@ interface SelectInputProps {
 	placeholder?: string;
 }
 
-const SelectInput: React.FC<SelectInputProps> = ({
-	name,
-	label,
-	options,
-	placeholder,
-}) => {
-	const [field, meta, helpers] = useField(name);
+const SelectInput: React.FC<SelectInputProps> = (props) => {
+	const [field, meta, helpers] = useField(props.name);
 	const [isActive, setIsActive] = useState(false);
 	const hasError = meta.touched && meta.error;
 
@@ -35,15 +31,15 @@ const SelectInput: React.FC<SelectInputProps> = ({
 	return (
 		<div className="input-container">
 			<label
-				htmlFor={name}
+				htmlFor={props.name}
 				className={isActive ? "active" : ""}
 				style={{ outlineColor: isActive ? "var(--red-9)" : "var(--purple-9)" }}
 			>
-				{label}
+				{props.label}
 			</label>
 			<select
-				id={name}
-				name={name}
+				id={props.name}
+				name={props.name}
 				value={field.value}
 				onChange={handleSelectChange}
 				onFocus={handleFocus}
@@ -53,10 +49,10 @@ const SelectInput: React.FC<SelectInputProps> = ({
 				style={{ color: hasError ? "var(--red-9)" : "var(--purple-9)" }}
 			>
 				<option value="" disabled selected>
-					{placeholder}
+					{props.placeholder}
 				</option>
 
-				{options.map((option) => (
+				{props.options.map((option: any) => (
 					<option
 						key={option.value}
 						value={option.value}
@@ -66,7 +62,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
 					</option>
 				))}
 			</select>
-			{hasError && <div className="input-feedback">{meta.error}</div>}
+			<ErrorMessage name={props.name} />
 		</div>
 	);
 };
