@@ -27,6 +27,7 @@ const TextInput: React.FC<TextInputProps> = (props) => {
 	}
 
 	function handleBlur(e: React.FocusEvent<HTMLInputElement>) {
+		field.onBlur(e);
 		if (e.target.value === "") {
 			setIsActive(false);
 		}
