@@ -1,7 +1,20 @@
 import * as Yup from "yup";
-
 import Step from "../Step";
 import TextInput from "../../TextInput";
+
+const today = new Date();
+const minDate = new Date(1900, 0, 1);
+
+const isDateValid = (dateString: string) => {
+	const [day, month, year] = dateString.split("/").map(Number);
+	const date = new Date(year, month - 1, day);
+	return (
+		!isNaN(date.getTime()) &&
+		date.getDate() === day &&
+		date.getMonth() === month - 1 &&
+		date.getFullYear() === year
+	);
+};
 
 const basicRegisterInformationSchema = Yup.object({
 	name: Yup.string().required("Esse campo é obrigatório."),
@@ -17,7 +30,29 @@ const basicRegisterInformationSchema = Yup.object({
 			"Insira um número de telefone válido com DDD."
 		)
 		.required("Esse campo é obrigatório."),
-	dateOfBirth: Yup.string().required("Esse campo é obrigatório."),
+	dateOfBirth: Yup.string()
+		.required("Esse campo é obrigatório.")
+		.test("valid date", "Data de nascimento inválida", (value) => {
+			return isDateValid(value);
+		})
+		.test(
+			"date-range",
+			"A data de nascimento não pode ser anterior ao ano de 1900",
+			(value) => {
+				const [day, month, year] = value.split("/").map(Number);
+				const date = new Date(year, month - 1, day);
+				return date >= minDate;
+			}
+		)
+		.test(
+			"date-range",
+			"A data de nascimento não pode ser superior ao dia de hoje",
+			(value) => {
+				const [day, month, year] = value.split("/").map(Number);
+				const date = new Date(year, month - 1, day);
+				return date <= today;
+			}
+		),
 });
 
 export default function BasicRegisterInformation() {
