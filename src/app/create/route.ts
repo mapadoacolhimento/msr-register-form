@@ -27,7 +27,7 @@ export async function POST(request: Request) {
 
 		const msr = await db.mSRs.create({
 			data: {
-				msrId: payload.zendesUserId,
+				msrId: payload.msrZendeskUserId,
 				gender: payload.gender,
 				raceColor: payload.color,
 				hasDisability: payload.hasDisability ? payload.hasDisability : null,
@@ -43,7 +43,7 @@ export async function POST(request: Request) {
 		});
 		await db.mSRPiiSec.create({
 			data: {
-				msrId: payload.zendesUserId,
+				msrId: payload.msrZendeskUserId,
 				firstName: payload.firstName,
 				email: payload.email,
 				phone: payload.phone,
