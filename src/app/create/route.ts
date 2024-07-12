@@ -45,7 +45,6 @@ export async function POST(request: Request) {
 			data: {
 				msrId: payload.zendesUserId,
 				firstName: payload.firstName,
-				lastName: "",
 				email: payload.email,
 				phone: payload.phone,
 				dateOfBirth: payload.dateOfBirth

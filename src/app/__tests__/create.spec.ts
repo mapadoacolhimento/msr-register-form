@@ -20,7 +20,6 @@ const mockIncompletePayload = {
 	email: "msr@email.br",
 	phone: "71999999999",
 	firstName: "Msr",
-	lastName: "Teste",
 	city: "SALVADOR",
 	state: "BA",
 	neighborhood: "Bairro",
@@ -52,7 +51,6 @@ const mockMsr = {
 const mockMsrPii = {
 	msrId: mockPayload.msrZendeskUserId,
 	firstName: mockPayload.firstName,
-	lastName: "not_found",
 	email: mockPayload.email,
 	phone: mockPayload.phone,
 	dateOfBirth: null,
@@ -78,7 +76,6 @@ const mockMsr2 = {
 const mockMsrPii2 = {
 	msrId: mockPayload2.msrZendeskUserId,
 	firstName: mockPayload2.firstName,
-	lastName: "",
 	email: mockPayload2.email,
 	phone: mockPayload2.phone,
 	dateOfBirth: new Date("1990-03-14"),
