@@ -26,6 +26,8 @@ describe("App", () => {
 		// Step 2
 		cy.fillSecondStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillThirdStep();
 	});
 
 	it("should continue to step4 if all fields are filled correctly", () => {
