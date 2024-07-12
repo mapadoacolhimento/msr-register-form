@@ -6,7 +6,3 @@
 .is-checked {
 	--checkbox-cards-item-background-color: var(--accent-a3);
 }
-
-.rt-CheckboxCardCheckbox {
-	visibility: hidden;
-}
