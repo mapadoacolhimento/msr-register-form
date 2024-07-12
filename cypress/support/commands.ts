@@ -1,6 +1,50 @@
 /// <reference types="cypress" />
+/// <reference types="@testing-library/cypress" />
 
 import "@testing-library/cypress/add-commands";
+
+Cypress.Commands.add("fillFirstStep", () => {
+	const firstName = "MSR teste";
+	const email = "msr@test.com";
+	const confirmEmail = "msr@test.com";
+	const phone = "81999999999";
+	const dateOfBirth = "18111996";
+
+	cy.get("#firstName").type(firstName);
+	cy.get("#email").type(email);
+	cy.get("#confirmEmail").type(confirmEmail);
+	cy.get("#phone").type(phone);
+	cy.get("#dateOfBirth").type(dateOfBirth);
+});
+
+Cypress.Commands.add("fillSecondStep", () => {
+	const color = "Preta";
+	const hasDisability = "Não";
+
+	cy.get("#color").select(color);
+	cy.get("#hasDisability").select(hasDisability);
+});
+
+Cypress.Commands.add("fillThirdStep", () => {
+	const accept = "Sim, aceito ser atendida online";
+	const notAccept = "Não, só posso receber atendimento presencial";
+
+	cy.findByRole("radio", {
+		name: accept,
+	}).should("exist");
+	cy.findByRole("radio", {
+		name: notAccept,
+	}).should("exist");
+
+	cy.findByRole("radio", {
+		name: accept,
+	}).click();
+});
+
+Cypress.Commands.add("fillFourthStep", () => {
+	cy.findByLabelText("Acolhimento psicológico").click({ force: true });
+	cy.findByLabelText("Acolhimento jurídico").click({ force: true });
+});
 
 // ***********************************************
 // This example commands.ts shows you how to

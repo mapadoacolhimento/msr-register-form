@@ -1,12 +1,10 @@
-.input-text-container {
+.select-input-container {
 	position: relative;
-	max-width: 22rem;
 	width: 100%;
-	border-radius: var(--radius-4);
-	background-color: var(--gray-6);
+	max-width: 22rem;
 }
 
-.input-text-container label {
+.select-input-container label {
 	position: absolute;
 	top: 50%;
 	left: 1rem;
@@ -16,7 +14,7 @@
 	visibility: hidden;
 }
 
-.input-text-container label.active {
+.select-input-container label.active {
 	top: -1rem;
 	left: 1rem;
 	font-size: var(--font-size-1);
@@ -25,4 +23,14 @@
 	visibility: visible;
 	background-color: white;
 	font-weight: 700;
+}
+
+.select-input-container select {
+	width: 100%;
+	padding: 0.5rem;
+	font-size: 1rem;
+	border: 1px solid lightgray !important;
+	background-color: var(--gray-2);
+	border-radius: 6px;
+	outline-color: var(--purple-7);
 }

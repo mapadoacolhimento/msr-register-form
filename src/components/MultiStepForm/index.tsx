@@ -1,6 +1,7 @@
 import MultiStepFormWrapper from "./MultiStepFormWrapper";
 import {
 	BasicRegisterInformation,
+	DiversityInformation,
 	AcceptsOnlineSupport,
 	SupportType,
 } from "./Steps";
@@ -8,9 +9,12 @@ import { sleep } from "../../lib";
 
 export interface Values {
 	email: string;
-	name: string;
+	firstName: string;
 	confirmEmail: string;
 	phone: string;
+	dateOfBirth: string;
+	color: string;
+	hasDisability: string;
 	acceptsOnlineSupport: string;
 	supportType: string[];
 }
@@ -20,9 +24,12 @@ export default function MultiStepForm() {
 		<MultiStepFormWrapper
 			initialValues={{
 				email: "",
-				name: "",
+				firstName: "",
 				confirmEmail: "",
 				phone: "",
+				dateOfBirth: "",
+				color: "",
+				hasDisability: "",
 				acceptsOnlineSupport: "",
 				supportType: [],
 			}}
@@ -31,6 +38,7 @@ export default function MultiStepForm() {
 			}
 		>
 			{BasicRegisterInformation()}
+			{DiversityInformation()}
 			{AcceptsOnlineSupport()}
 			{SupportType()}
 		</MultiStepFormWrapper>

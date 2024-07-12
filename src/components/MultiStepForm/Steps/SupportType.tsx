@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import Step from "../Step";
 import CheckboxInput from "../../CheckboxInput";
 import { sleep } from "../../../lib";
+import { supportTypeOptions } from "../../../lib/constants";
 
 const supportTypeSchema = Yup.object({
 	supportType: Yup.array()
@@ -23,16 +24,7 @@ export default function SupportType() {
 		>
 			<CheckboxInput
 				name={"supportType"}
-				options={[
-					{
-						name: "Acolhimento psicológico",
-						value: "psychological",
-					},
-					{
-						name: "Acolhimento jurídico",
-						value: "legal",
-					},
-				]}
+				options={supportTypeOptions}
 				question={"Que tipo de acolhimento você precisa?"}
 			/>
 		</Step>
