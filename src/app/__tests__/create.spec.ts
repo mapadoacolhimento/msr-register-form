@@ -1,4 +1,3 @@
-import { expect } from "vitest";
 import { NextRequest } from "next/server";
 import { mockReset } from "vitest-mock-extended";
 import { type Gender, type MSRStatus, Prisma, type Race } from "@prisma/client";
