@@ -25,8 +25,24 @@ export async function POST(request: Request) {
 
 		await payloadSchema.validate(payload);
 
-		const msr = await db.mSRs.create({
-			data: {
+		const msr = await db.mSRs.upsert({
+			where: {
+				msrId: payload.msrZendeskUserId,
+			},
+			update: {
+				gender: payload.gender,
+				raceColor: payload.color,
+				hasDisability: payload.hasDisability ? payload.hasDisability : null,
+				acceptsOnlineSupport: payload.acceptsOnlineSupport
+					? payload.acceptsOnlineSupport
+					: true,
+				neighborhood: payload.neighborhood,
+				city: payload.city,
+				state: payload.state,
+				zipcode: payload.zipcode,
+				status: payload.status,
+			},
+			create: {
 				msrId: payload.msrZendeskUserId,
 				gender: payload.gender,
 				raceColor: payload.color,
@@ -41,8 +57,19 @@ export async function POST(request: Request) {
 				status: payload.status,
 			},
 		});
-		await db.mSRPiiSec.create({
-			data: {
+		await db.mSRPiiSec.upsert({
+			where: {
+				msrId: payload.msrZendeskUserId,
+				email: payload.email,
+			},
+			update: {
+				firstName: payload.firstName,
+				phone: payload.phone,
+				dateOfBirth: payload.dateOfBirth
+					? new Date(payload.dateOfBirth).toISOString()
+					: null,
+			},
+			create: {
 				msrId: payload.msrZendeskUserId,
 				firstName: payload.firstName,
 				email: payload.email,

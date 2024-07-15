@@ -89,8 +89,8 @@ describe("POST /create", () => {
 	});
 
 	it("should create new msr with basics fields on db", async () => {
-		mockedDb.mSRs.create.mockResolvedValueOnce(mockMsr);
-		mockedDb.mSRPiiSec.create.mockResolvedValueOnce(mockMsrPii);
+		mockedDb.mSRs.upsert.mockResolvedValueOnce(mockMsr);
+		mockedDb.mSRPiiSec.upsert.mockResolvedValueOnce(mockMsrPii);
 		const request = new NextRequest(
 			new Request("http://localhost:3000/create", {
 				method: "POST",
@@ -98,8 +98,8 @@ describe("POST /create", () => {
 			})
 		);
 		const response = await POST(request);
-		expect(mockedDb.mSRs.create).toHaveBeenCalledTimes(1);
-		expect(mockedDb.mSRPiiSec.create).toHaveBeenCalledTimes(1);
+		expect(mockedDb.mSRs.upsert).toHaveBeenCalledTimes(1);
+		expect(mockedDb.mSRPiiSec.upsert).toHaveBeenCalledTimes(1);
 		expect(response.status).toEqual(200);
 		expect(await response.json()).toStrictEqual({
 			msrId: mockPayload.msrZendeskUserId.toString(),
@@ -107,8 +107,8 @@ describe("POST /create", () => {
 	});
 
 	it("should create new msr with all fields on db", async () => {
-		mockedDb.mSRs.create.mockResolvedValueOnce(mockMsr2);
-		mockedDb.mSRPiiSec.create.mockResolvedValueOnce(mockMsrPii2);
+		mockedDb.mSRs.upsert.mockResolvedValueOnce(mockMsr2);
+		mockedDb.mSRPiiSec.upsert.mockResolvedValueOnce(mockMsrPii2);
 		const request = new NextRequest(
 			new Request("http://localhost:3000/create", {
 				method: "POST",
@@ -116,34 +116,12 @@ describe("POST /create", () => {
 			})
 		);
 		const response = await POST(request);
-		expect(mockedDb.mSRs.create).toHaveBeenCalledTimes(1);
-		expect(mockedDb.mSRPiiSec.create).toHaveBeenCalledTimes(1);
+		expect(mockedDb.mSRs.upsert).toHaveBeenCalledTimes(1);
+		expect(mockedDb.mSRPiiSec.upsert).toHaveBeenCalledTimes(1);
 		expect(response.status).toEqual(200);
 		expect(await response.json()).toStrictEqual({
 			msrId: mockPayload2.msrZendeskUserId.toString(),
 		});
-	});
-
-	it("returns error when msr already exists", async () => {
-		mockedDb.mSRs.create.mockRejectedValueOnce(
-			new Prisma.PrismaClientKnownRequestError(
-				"Unique constraint failed on the fields: (`msr_id`)",
-				{ code: "P2002", clientVersion: "some-version" }
-			)
-		);
-
-		const request = new NextRequest(
-			new Request("http://localhost:3000/create", {
-				method: "POST",
-				body: JSON.stringify(mockPayload),
-			})
-		);
-		const response = await POST(request);
-		expect(mockedDb.mSRs.create).toHaveBeenCalledTimes(1);
-		expect(response.status).toEqual(400);
-		expect(await response.text()).toEqual(
-			"Unique constraint failed on the fields: (`msr_id`)"
-		);
 	});
 
 	it("returns error when dont have a valid payload", async () => {
