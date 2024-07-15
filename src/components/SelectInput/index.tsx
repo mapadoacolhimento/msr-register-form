@@ -16,7 +16,7 @@ interface SelectInputProps {
 	placeholder?: string;
 }
 
-export const SelectInput: React.FC<SelectInputProps> = ({
+const SelectInput: React.FC<SelectInputProps> = ({
 	name,
 	label,
 	options,
@@ -103,3 +103,5 @@ const SelectItem = React.forwardRef(
 
 SelectItem.displayName = "SelectItem";
 SelectInput.displayName = "SelectInput";
+
+export default SelectInput;
