@@ -1,5 +1,11 @@
-import React, { useState } from "react";
+import React, { ForwardedRef, useState } from "react";
 import { useField } from "formik";
+import * as Select from "@radix-ui/react-select";
+import {
+	CheckIcon,
+	ChevronDownIcon,
+	ChevronUpIcon,
+} from "@radix-ui/react-icons";
 import "./SelectInput.css";
 import ErrorMessage from "../ErrorMessage";
 
@@ -10,61 +16,90 @@ interface SelectInputProps {
 	placeholder?: string;
 }
 
-const SelectInput: React.FC<SelectInputProps> = (props) => {
-	const [field, meta, helpers] = useField(props.name);
-	const [isActive, setIsActive] = useState(false);
-	const hasError = meta.touched && meta.error;
+export const SelectInput: React.FC<SelectInputProps> = ({
+	name,
+	label,
+	options,
+	placeholder,
+}) => {
+	const [field, meta, helpers] = useField(name);
+	const [isFocused, setIsFocused] = useState(false);
 
-	function handleSelectChange(e: React.ChangeEvent<HTMLSelectElement>) {
-		helpers.setValue(e.target.value);
-		setIsActive(true);
-	}
+	const handleFocus = () => {
+		setIsFocused(true);
+	};
 
-	function handleFocus() {
-		setIsActive(true);
-	}
+	const handleBlur = () => {
+		setIsFocused(field.value !== "");
+	};
 
-	function handleBlur() {
-		setIsActive(field.value !== "");
-	}
+	const handleValueChange = (value: string) => {
+		helpers.setValue(value);
+		setIsFocused(true);
+	};
 
 	return (
 		<div className="select-input-container">
-			<label
-				htmlFor={props.name}
-				className={isActive ? "active" : ""}
-				style={{ outlineColor: isActive ? "var(--red-9)" : "var(--purple-9)" }}
-			>
-				{props.label}
+			<label className={isFocused || field.value ? "active" : ""}>
+				{label}
 			</label>
-			<select
-				id={props.name}
-				name={props.name}
-				value={field.value}
-				onChange={handleSelectChange}
-				onFocus={handleFocus}
-				onBlur={handleBlur}
-				aria-invalid={hasError ? "true" : "false"}
-				className={`${hasError ? "error" : ""}`}
-				style={{ color: hasError ? "var(--red-9)" : "var(--purple-9)" }}
-			>
-				<option value="" disabled selected>
-					{props.placeholder}
-				</option>
-
-				{props.options.map((option: any) => (
-					<option
-						key={option.value}
-						value={option.value}
-						className={option.value === "" ? "placeholder" : ""}
-					>
-						{option.label}
-					</option>
-				))}
-			</select>
-			<ErrorMessage name={props.name} />
+			<Select.Root onValueChange={handleValueChange}>
+				<Select.Trigger
+					className="SelectTrigger"
+					onFocus={handleFocus}
+					onBlur={handleBlur}
+					aria-label={label}
+				>
+					<Select.Value className="placeholder" placeholder={placeholder} />
+					<Select.Icon className="SelectIcon">
+						<ChevronDownIcon />
+					</Select.Icon>
+				</Select.Trigger>
+				<Select.Portal>
+					<Select.Content className="SelectContent">
+						<Select.ScrollUpButton className="SelectScrollButton">
+							<ChevronUpIcon />
+						</Select.ScrollUpButton>
+						<Select.Viewport className="SelectViewport">
+							<Select.Group>
+								{options.map((option) => (
+									<SelectItem key={option.value} value={option.value}>
+										{option.label}
+									</SelectItem>
+								))}
+							</Select.Group>
+						</Select.Viewport>
+						<Select.ScrollDownButton className="SelectScrollButton">
+							<ChevronDownIcon />
+						</Select.ScrollDownButton>
+					</Select.Content>
+				</Select.Portal>
+			</Select.Root>
+			<ErrorMessage name={name} />
 		</div>
 	);
 };
 
-export default SelectInput;
+type SelectItemProps = React.ComponentPropsWithoutRef<typeof Select.Item> & {
+	children: React.ReactNode;
+	className?: string;
+};
+
+const SelectItem = React.forwardRef(
+	(
+		{ children, className, ...props }: SelectItemProps,
+		forwardedRef: ForwardedRef<HTMLDivElement>
+	) => {
+		return (
+			<Select.Item {...props} ref={forwardedRef}>
+				<Select.ItemText>{children}</Select.ItemText>
+				<Select.ItemIndicator className="SelectItemIndicator">
+					<CheckIcon />
+				</Select.ItemIndicator>
+			</Select.Item>
+		);
+	}
+);
+
+SelectItem.displayName = "SelectItem";
+SelectInput.displayName = "SelectInput";
