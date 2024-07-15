@@ -25,62 +25,53 @@ export async function POST(request: Request) {
 
 		await payloadSchema.validate(payload);
 
-		const msr = await db.mSRs.upsert({
+		const msr = {
+			gender: payload.gender,
+			raceColor: payload.color,
+			hasDisability: payload.hasDisability ? payload.hasDisability : null,
+			acceptsOnlineSupport: payload.acceptsOnlineSupport
+				? payload.acceptsOnlineSupport
+				: true,
+			neighborhood: payload.neighborhood,
+			city: payload.city,
+			state: payload.state,
+			zipcode: payload.zipcode,
+			status: payload.status,
+		};
+
+		const msrPii = {
+			firstName: payload.firstName,
+			email: payload.email,
+			phone: payload.phone,
+			dateOfBirth: payload.dateOfBirth
+				? new Date(payload.dateOfBirth).toISOString()
+				: null,
+		};
+
+		const msrResult = await db.mSRs.upsert({
 			where: {
 				msrId: payload.msrZendeskUserId,
 			},
-			update: {
-				gender: payload.gender,
-				raceColor: payload.color,
-				hasDisability: payload.hasDisability ? payload.hasDisability : null,
-				acceptsOnlineSupport: payload.acceptsOnlineSupport
-					? payload.acceptsOnlineSupport
-					: true,
-				neighborhood: payload.neighborhood,
-				city: payload.city,
-				state: payload.state,
-				zipcode: payload.zipcode,
-				status: payload.status,
-			},
+			update: msr,
 			create: {
 				msrId: payload.msrZendeskUserId,
-				gender: payload.gender,
-				raceColor: payload.color,
-				hasDisability: payload.hasDisability ? payload.hasDisability : null,
-				acceptsOnlineSupport: payload.acceptsOnlineSupport
-					? payload.acceptsOnlineSupport
-					: true,
-				neighborhood: payload.neighborhood,
-				city: payload.city,
-				state: payload.state,
-				zipcode: payload.zipcode,
-				status: payload.status,
+				...msr,
 			},
 		});
+
 		await db.mSRPiiSec.upsert({
 			where: {
 				msrId: payload.msrZendeskUserId,
 				email: payload.email,
 			},
-			update: {
-				firstName: payload.firstName,
-				phone: payload.phone,
-				dateOfBirth: payload.dateOfBirth
-					? new Date(payload.dateOfBirth).toISOString()
-					: null,
-			},
+			update: msrPii,
 			create: {
 				msrId: payload.msrZendeskUserId,
-				firstName: payload.firstName,
-				email: payload.email,
-				phone: payload.phone,
-				dateOfBirth: payload.dateOfBirth
-					? new Date(payload.dateOfBirth).toISOString()
-					: null,
+				...msrPii,
 			},
 		});
 		return Response.json({
-			msrId: msr.msrId.toString(),
+			msrId: msrResult.msrId.toString(),
 		});
 	} catch (e) {
 		const error = e as Record<string, unknown>;
