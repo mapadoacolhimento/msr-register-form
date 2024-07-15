@@ -26,3 +26,7 @@ fieldset {
 .rt-ProgressRoot:where(.rt-variant-soft) {
 	background-color: #ebe5ef;
 }
+
+[role="alert"] {
+	background-color: white !important;
+}
