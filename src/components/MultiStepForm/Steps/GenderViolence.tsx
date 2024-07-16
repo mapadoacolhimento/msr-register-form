@@ -13,7 +13,7 @@ const genderViolenceSchema = Yup.object({
 export default function GenderViolence() {
 	return (
 		<Step
-			onSubmit={() => sleep(300).then(() => console.log("Step2 onSubmit"))}
+			onSubmit={() => sleep(300).then(() => console.log("Step6 onSubmit"))}
 			validationSchema={genderViolenceSchema}
 			title={"Sobre a violência"}
 			img={{
