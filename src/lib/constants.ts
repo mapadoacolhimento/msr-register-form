@@ -29,3 +29,19 @@ export const supportTypeOptions = [
 		value: "legal",
 	},
 ];
+
+export const genderIdentityOptions = [
+	{ value: "ciswoman", name: "Mulher Cisgênero" },
+	{
+		value: "transwoman",
+		name: "Mulher Transgênero",
+	},
+	{
+		value: "non-binary",
+		name: "Mulher Não-binária",
+	},
+	{
+		value: "genderfluid",
+		name: "Mulher Gênero Fluido",
+	},
+];
