@@ -2,15 +2,19 @@
 
 declare namespace Cypress {
 	interface Chainable<Subject = any> {
-		fillFirstStep(
+		fillBasicRegisterInformationStep(
 			firstName?: string,
 			email?: string,
 			confirmEmail?: string,
 			phone?: string,
 			dateOfBirth?: string
 		): Chainable<any>;
-		fillSecondStep(color?: string, hasDisability?: string): Chainable<any>;
-		fillThirdStep(): Chainable<any>;
-		fillFourthStep(): Chainable<any>;
+		fillDiversityInformationStep(
+			color?: string,
+			hasDisability?: string
+		): Chainable<any>;
+		fillGenderIdentityStep(): Chainable<any>;
+		fillAcceptsOnlineSupportStep(): Chainable<any>;
+		fillSupportTypeStep(): Chainable<any>;
 	}
 }

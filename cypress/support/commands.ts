@@ -3,7 +3,7 @@
 
 import "@testing-library/cypress/add-commands";
 
-Cypress.Commands.add("fillFirstStep", () => {
+Cypress.Commands.add("fillBasicRegisterInformationStep", () => {
 	const firstName = "MSR teste";
 	const email = "msr@test.com";
 	const confirmEmail = "msr@test.com";
@@ -17,7 +17,7 @@ Cypress.Commands.add("fillFirstStep", () => {
 	cy.get("#dateOfBirth").type(dateOfBirth);
 });
 
-Cypress.Commands.add("fillSecondStep", () => {
+Cypress.Commands.add("fillDiversityInformationStep", () => {
 	const color = "Preta";
 	const hasDisability = "Não";
 
@@ -28,7 +28,12 @@ Cypress.Commands.add("fillSecondStep", () => {
 	cy.contains(hasDisability).click();
 });
 
-Cypress.Commands.add("fillThirdStep", () => {
+Cypress.Commands.add("fillGenderIdentityStep", () => {
+	const gender = "Mulher Transgênero";
+	cy.contains(gender).click();
+});
+
+Cypress.Commands.add("fillAcceptsOnlineSupportStep", () => {
 	const accept = "Sim, aceito ser atendida online";
 	const notAccept = "Não, só posso receber atendimento presencial";
 
@@ -44,7 +49,7 @@ Cypress.Commands.add("fillThirdStep", () => {
 	}).click();
 });
 
-Cypress.Commands.add("fillFourthStep", () => {
+Cypress.Commands.add("fillSupportTypeStep", () => {
 	cy.findByLabelText("Acolhimento psicológico").click({ force: true });
 	cy.findByLabelText("Acolhimento jurídico").click({ force: true });
 });
