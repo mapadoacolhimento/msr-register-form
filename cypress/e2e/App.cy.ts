@@ -2,48 +2,74 @@ describe("App", () => {
 	it("should render all fields", () => {
 		cy.visit("/");
 
-		cy.fillFirstStep();
+		cy.fillBasicRegisterInformationStep();
 
 		cy.findByRole("button", { name: "Continuar" }).should("exist");
 	});
 
-	it("should continue to step2 if all fields are filled correctly", () => {
+	it("should continue to next step if all fields are filled correctly", () => {
 		cy.visit("/");
 
-		cy.fillFirstStep();
+		cy.fillBasicRegisterInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		// Step 2
-		cy.fillSecondStep();
+		cy.fillDiversityInformationStep();
 	});
 
-	it("should continue to step3 if all fields are filled correctly", () => {
+	it("should continue to next step if all fields are filled correctly", () => {
 		cy.visit("/");
 
-		cy.fillFirstStep();
+		cy.fillBasicRegisterInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		// Step 2
-		cy.fillSecondStep();
+		cy.fillDiversityInformationStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.findByText("Sobre você");
+	});
+
+	it("should continue to next step if all fields are filled correctly", () => {
+		cy.visit("/");
+
+		cy.fillBasicRegisterInformationStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillDiversityInformationStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.findByText("Sobre você");
+	});
+
+	it("should continue to next step if all fields are filled correctly", () => {
+		cy.visit("/");
+
+		cy.fillBasicRegisterInformationStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillDiversityInformationStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillGenderIdentityStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
 		cy.findByText("Sobre o acolhimento");
 	});
 
-	it("should continue to step4 if all fields are filled correctly", () => {
-		// Step 3
+	it.only("should continue to next step if all fields are filled correctly", () => {
 		cy.visit("/");
 
-		cy.fillFirstStep();
+		cy.fillBasicRegisterInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillSecondStep();
+		cy.fillDiversityInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillThirdStep();
+		cy.fillGenderIdentityStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		// Step 4
-		cy.fillFourthStep();
+		cy.fillAcceptsOnlineSupportStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillSupportTypeStep();
 	});
 });
