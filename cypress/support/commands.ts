@@ -22,7 +22,8 @@ Cypress.Commands.add("fillSecondStep", () => {
 	const hasDisability = "Não";
 
 	cy.get("#color").click();
-	cy.get("#react-select-3-listbox").contains(color).click();
+	cy.findAllByText(color)
+	.click();
 
 	cy.get("#hasDisability").click();
 	cy.contains(hasDisability).click();

@@ -106,7 +106,8 @@ it("should display error if disability status field is empty", () => {
 	cy.findByRole("button", { name: "Continuar" }).click();
 
 	cy.get("#color").click();
-	cy.get("#react-select-3-listbox").contains(color).click();
+	cy.findAllByText(color)
+	.click();
 
 	cy.findByRole("button", { name: "Continuar" }).click();
 	cy.contains("Esse campo é obrigatório.").should("exist");
