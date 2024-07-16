@@ -6,7 +6,7 @@ import { sleep, acceptsOnlineSupportOptions } from "../../../lib";
 
 const acceptsOnlineSupportSchema = Yup.object({
 	acceptsOnlineSupport: Yup.string()
-		.oneOf(["sim", "nao"])
+		.oneOf(["yes", "no"])
 		.required("Esse campo é obrigatório."),
 });
 
