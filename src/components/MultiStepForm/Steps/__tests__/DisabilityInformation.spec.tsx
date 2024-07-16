@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import DiversityInformation from "../DiversityInformation";
+import DisabilityInformation from "../DisabilityInformation";
 import MultiStepFormWrapper from "../../MultiStepFormWrapper";
 import { sleep } from "../../../../lib";
-
 import { type Values } from "../..";
+import { disabilityOptions } from "../../../../lib/constants";
 
 const setup = () => {
 	return render(
@@ -14,29 +14,32 @@ const setup = () => {
 			}
 			initialValues={
 				{
-					color: "",
+					hasDisability: "",
 				} as Values
 			}
 		>
-			{DiversityInformation()}
+			{DisabilityInformation()}
 		</MultiStepFormWrapper>
 	);
 };
 
-describe("<DiversityInformation />", () => {
+describe("<GenderIdentity />", () => {
 	it("should render fields", () => {
 		setup();
 
-		const colorInput = screen.getByRole("combobox", { name: /Cor/i });
-
-		expect(colorInput).toBeInTheDocument();
+		disabilityOptions.forEach((option) => {
+			const optionElement = screen.getByText(option.name);
+			expect(optionElement).toBeInTheDocument();
+		});
 	});
 
-	it("should display error if color field is empty", async () => {
+	it("should render an error if no option is selected", async () => {
 		setup();
 
 		const btn = screen.getByRole("button", { name: /enviar/i });
 		await userEvent.click(btn);
+
+		await screen.findByRole("alert");
 
 		expect(screen.getByRole("alert")).toHaveTextContent(
 			"Esse campo é obrigatório."

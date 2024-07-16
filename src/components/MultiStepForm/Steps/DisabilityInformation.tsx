@@ -5,8 +5,8 @@ import RadioInput from "../../RadioInput";
 import { sleep, disabilityOptions } from "../../../lib";
 
 const disabilityInformationSchema = Yup.object({
-	genderIdentity: Yup.string()
-		.oneOf(["sim", "nao"])
+	hasDisability: Yup.string()
+		.oneOf(["yes", "no"])
 		.required("Esse campo é obrigatório."),
 });
 
