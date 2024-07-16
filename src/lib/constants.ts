@@ -12,9 +12,9 @@ export const disabilityOptions = [
 ];
 
 export const acceptsOnlineSupportOptions = [
-	{ value: "sim", name: "Sim, aceito ser atendida online" },
+	{ value: "yes", name: "Sim, aceito ser atendida online" },
 	{
-		value: "nao",
+		value: "no",
 		name: "Não, só posso receber atendimento presencial",
 	},
 ];
@@ -47,9 +47,9 @@ export const genderIdentityOptions = [
 ];
 
 export const genderViolenceOptions = [
-	{ value: "sim", name: "Sim" },
+	{ value: "yes", name: "Sim" },
 	{
-		value: "nao",
+		value: "no",
 		name: "Não",
 	},
 ];
