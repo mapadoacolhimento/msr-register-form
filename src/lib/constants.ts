@@ -45,3 +45,11 @@ export const genderIdentityOptions = [
 		name: "Mulher Gênero Fluido",
 	},
 ];
+
+export const genderViolenceOptions = [
+	{ value: "sim", name: "Sim" },
+	{
+		value: "nao",
+		name: "Não",
+	},
+];
