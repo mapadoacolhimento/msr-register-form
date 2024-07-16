@@ -7,8 +7,8 @@ export const colorOptions = [
 ];
 
 export const disabilityOptions = [
-	{ value: "yes", label: "Sim" },
-	{ value: "no", label: "Não" },
+	{ value: "yes", name: "Sim" },
+	{ value: "no", name: "Não" },
 ];
 
 export const acceptsOnlineSupportOptions = [

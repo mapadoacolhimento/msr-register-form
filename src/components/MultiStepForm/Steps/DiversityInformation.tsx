@@ -1,18 +1,17 @@
 import * as Yup from "yup";
 
 import Step from "../Step";
-import { sleep, colorOptions, disabilityOptions } from "../../../lib";
+import { sleep, colorOptions } from "../../../lib";
 import SelectInput from "../../SelectInput";
 
 const diversityInformationSchema = Yup.object({
 	color: Yup.string().required("Esse campo é obrigatório."),
-	hasDisability: Yup.string().required("Esse campo é obrigatório."),
 });
 
 export default function DiversityInformation() {
 	return (
 		<Step
-			onSubmit={() => sleep(300).then(() => console.log("Step2 onSubmit"))}
+			onSubmit={() => sleep(300).then(() => console.log("Step onSubmit"))}
 			validationSchema={diversityInformationSchema}
 			title={"Seus dados"}
 			img={{
@@ -25,12 +24,6 @@ export default function DiversityInformation() {
 				label="Cor"
 				options={colorOptions}
 				placeholder="Cor"
-			/>
-			<SelectInput
-				name="hasDisability"
-				label="Pessoa com deficiência"
-				options={disabilityOptions}
-				placeholder="Você é uma pessoa com deficiência (PcD)?"
 			/>
 		</Step>
 	);
