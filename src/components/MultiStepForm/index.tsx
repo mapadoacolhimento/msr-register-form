@@ -5,6 +5,7 @@ import {
 	AcceptsOnlineSupport,
 	SupportType,
 	GenderIdentity,
+	GenderViolence,
 } from "./Steps";
 import { sleep } from "../../lib";
 
@@ -19,6 +20,7 @@ export interface Values {
 	acceptsOnlineSupport: string;
 	supportType: string[];
 	genderIdentity: string;
+	genderViolence: string;
 }
 
 export default function MultiStepForm() {
@@ -35,6 +37,7 @@ export default function MultiStepForm() {
 				acceptsOnlineSupport: "",
 				supportType: [],
 				genderIdentity: "",
+				genderViolence: "",
 			}}
 			onSubmit={async (values: Values) =>
 				sleep(300).then(() => console.log("Wizard submit", values))
@@ -45,6 +48,7 @@ export default function MultiStepForm() {
 			{GenderIdentity()}
 			{AcceptsOnlineSupport()}
 			{SupportType()}
+			{GenderViolence()}
 		</MultiStepFormWrapper>
 	);
 }
