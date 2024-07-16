@@ -1,9 +1,8 @@
 import * as Yup from "yup";
 
 import Step from "../Step";
-import { sleep } from "../../../lib";
+import { sleep, colorOptions, disabilityOptions } from "../../../lib";
 import SelectInput from "../../SelectInput";
-import { colorOptions, disabilityOptions } from "../../../lib/constants";
 
 const diversityInformationSchema = Yup.object({
 	color: Yup.string().required("Esse campo é obrigatório."),

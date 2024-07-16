@@ -1,68 +1,67 @@
 import React, { useState } from "react";
 import { useField } from "formik";
 import "./SelectInput.css";
+import Select, { SingleValue } from "react-select";
 import ErrorMessage from "../ErrorMessage";
+
+type Option = { value: string; label: string };
 
 interface SelectInputProps {
 	name: string;
 	label: string;
-	options: { value: string; label: string }[];
+	options: Option[];
 	placeholder?: string;
 }
 
-const SelectInput: React.FC<SelectInputProps> = (props) => {
-	const [field, meta, helpers] = useField(props.name);
-	const [isActive, setIsActive] = useState(false);
+const SelectInput: React.FC<SelectInputProps> = ({
+	name,
+	label,
+	options,
+	placeholder,
+}) => {
+	const [field, meta, helpers] = useField(name);
+	const [isFocused, setIsFocused] = useState(false);
 	const hasError = meta.touched && meta.error;
 
-	function handleSelectChange(e: React.ChangeEvent<HTMLSelectElement>) {
-		helpers.setValue(e.target.value);
-		setIsActive(true);
-	}
+	const handleFocus = () => {
+		setIsFocused(true);
+	};
 
-	function handleFocus() {
-		setIsActive(true);
-	}
+	const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+		field.onBlur(e);
+		setIsFocused(field.value !== "");
+	};
 
-	function handleBlur() {
-		setIsActive(field.value !== "");
-	}
+	const handleValueChange = (option: SingleValue<Option>) => {
+		helpers.setValue(option?.value);
+		setIsFocused(true);
+	};
 
 	return (
 		<div className="select-input-container">
 			<label
-				htmlFor={props.name}
-				className={isActive ? "active" : ""}
-				style={{ outlineColor: isActive ? "var(--red-9)" : "var(--purple-9)" }}
+				className={isFocused || field.value ? "active" : ""}
+				htmlFor={field.name}
+				id={`select-label-${field.name}`}
 			>
-				{props.label}
+				{label}
 			</label>
-			<select
-				id={props.name}
-				name={props.name}
-				value={field.value}
-				onChange={handleSelectChange}
-				onFocus={handleFocus}
+			<Select
+				classNamePrefix="custom-select"
+				options={options}
+				name={field.name}
+				id={field.name}
+				value={
+					options ? options.find((option) => option.value === field.value) : ""
+				}
+				onChange={(option) => handleValueChange(option as SingleValue<Option>)}
 				onBlur={handleBlur}
-				aria-invalid={hasError ? "true" : "false"}
-				className={`${hasError ? "error" : ""}`}
-				style={{ color: hasError ? "var(--red-9)" : "var(--purple-9)" }}
-			>
-				<option value="" disabled selected>
-					{props.placeholder}
-				</option>
-
-				{props.options.map((option: any) => (
-					<option
-						key={option.value}
-						value={option.value}
-						className={option.value === "" ? "placeholder" : ""}
-					>
-						{option.label}
-					</option>
-				))}
-			</select>
-			<ErrorMessage name={props.name} />
+				onFocus={handleFocus}
+				placeholder={placeholder}
+				aria-invalid={!!hasError}
+				aria-labelledby={`select-label-${field.name}`}
+			/>
+			<ErrorMessage name={name} />
 		</div>
 	);
 };

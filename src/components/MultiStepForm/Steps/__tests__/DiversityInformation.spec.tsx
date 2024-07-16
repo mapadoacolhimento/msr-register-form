@@ -28,33 +28,40 @@ describe("<DiversityInformation />", () => {
 	it("should render fields", () => {
 		setup();
 
-		const colorInput = screen.getByLabelText("Cor");
-		const hasDisabilityInput = screen.getByLabelText("Pessoa com deficiência");
+		const colorInput = screen.getByRole("combobox", { name: /Cor/i });
+		const hasDisabilityInput = screen.getByRole("combobox", {
+			name: /Pessoa com deficiência/i,
+		});
 
 		expect(colorInput).toBeInTheDocument();
 		expect(hasDisabilityInput).toBeInTheDocument();
 	});
 
-	it("should display error if colorInput is empty", async () => {
+	it("should display error if color field is empty", async () => {
 		setup();
 
-		const colorInput = screen.getByLabelText("Cor");
-		const hasDisabilityInput = screen.getByLabelText("Pessoa com deficiência");
-
-		await userEvent.selectOptions(hasDisabilityInput, ["Sim"]);
+		const hasDisabilityInput = screen.getByRole("combobox", {
+			name: /Pessoa com deficiência/i,
+		});
+		await userEvent.click(hasDisabilityInput);
+		await userEvent.click(await screen.findByRole("option", { name: /sim/i }));
 
 		const btn = screen.getByRole("button", { name: /enviar/i });
 		await userEvent.click(btn);
 
-		expect(screen.getAllByText("Esse campo é obrigatório."));
+		expect(screen.getByRole("alert")).toHaveTextContent(
+			"Esse campo é obrigatório."
+		);
 	});
 
 	it("should display error if disability status is empty", async () => {
 		setup();
 
-		const colorInput = screen.getByLabelText("Cor");
-
-		await userEvent.selectOptions(colorInput, ["Preta"]);
+		const colorInput = screen.getByRole("combobox", { name: /Cor/i });
+		await userEvent.click(colorInput);
+		await userEvent.click(
+			await screen.findByRole("option", { name: /preta/i })
+		);
 
 		const btn = screen.getByRole("button", { name: /enviar/i });
 		await userEvent.click(btn);

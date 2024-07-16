@@ -1,7 +1,8 @@
 .select-input-container {
 	position: relative;
-	width: 100%;
 	max-width: 22rem;
+	width: 100%;
+	border-radius: var(--radius-4);
 }
 
 .select-input-container label {
@@ -15,22 +16,30 @@
 }
 
 .select-input-container label.active {
-	top: -1rem;
+	top: 0;
 	left: 1rem;
 	font-size: var(--font-size-1);
 	color: var(--purple-9);
-	margin-top: 1rem;
+	z-index: 9;
 	visibility: visible;
 	background-color: white;
 	font-weight: 700;
 }
 
-.select-input-container select {
-	width: 100%;
-	padding: 0.5rem;
-	font-size: 1rem;
-	border: 1px solid lightgray !important;
-	background-color: var(--gray-2);
-	border-radius: 6px;
-	outline-color: var(--purple-7);
+.custom-select__control {
+	background-color: var(--gray-2) !important;
+}
+
+.custom-select__control--is-focused {
+	border-color: purple !important;
+	box-shadow: 0 0 0 1px purple !important;
+}
+
+.custom-select__value-container {
+	padding-left: 1rem;
+}
+
+.custom-select__placeholder,
+.custom-select__single-value {
+	margin-left: 1rem;
 }

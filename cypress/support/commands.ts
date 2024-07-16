@@ -21,8 +21,12 @@ Cypress.Commands.add("fillSecondStep", () => {
 	const color = "Preta";
 	const hasDisability = "Não";
 
-	cy.get("#color").select(color);
-	cy.get("#hasDisability").select(hasDisability);
+	cy.get("#color").click();
+	cy.findAllByText(color)
+	.click();
+
+	cy.get("#hasDisability").click();
+	cy.contains(hasDisability).click();
 });
 
 Cypress.Commands.add("fillThirdStep", () => {

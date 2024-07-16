@@ -2,8 +2,7 @@ import * as Yup from "yup";
 
 import Step from "../Step";
 import RadioInput from "../../RadioInput";
-import { sleep } from "../../../lib";
-import { acceptsOnlineSupportOptions } from "../../../lib/constants";
+import { sleep, acceptsOnlineSupportOptions } from "../../../lib";
 
 const acceptsOnlineSupportSchema = Yup.object({
 	acceptsOnlineSupport: Yup.string()
