@@ -6,7 +6,7 @@ import { sleep, genderViolenceOptions } from "../../../lib";
 
 const genderViolenceSchema = Yup.object({
 	genderViolence: Yup.string()
-		.oneOf(["sim", "nao"])
+		.oneOf(["yes", "no"])
 		.required("Esse campo é obrigatório."),
 });
 
