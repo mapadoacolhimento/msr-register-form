@@ -15,7 +15,7 @@ const setup = () => {
 			}
 			initialValues={
 				{
-					genderIdentity: "",
+					genderViolence: "",
 				} as Values
 			}
 		>
@@ -34,13 +34,13 @@ describe("<GenderViolence />", () => {
 		});
 	});
 
-	it.only("should render an error if no option is selected", async () => {
+	it("should render an error if no option is selected", async () => {
 		setup();
 
 		const btn = screen.getByRole("button", { name: /enviar/i });
 		await userEvent.click(btn);
 
-		await screen.findByText("alert");
+		await screen.findByRole("alert");
 
 		expect(screen.getByRole("alert")).toHaveTextContent(
 			"Esse campo é obrigatório."
