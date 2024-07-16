@@ -86,7 +86,7 @@ it("should display error if color field is empty", () => {
 	const hasDisability = "Não";
 	cy.visit("/");
 
-	cy.fillFirstStep();
+	cy.fillBasicRegisterInformationStep();
 
 	cy.findByRole("button", { name: "Continuar" }).click();
 
@@ -101,7 +101,7 @@ it("should display error if disability status field is empty", () => {
 	const color = "Preta";
 	cy.visit("/");
 
-	cy.fillFirstStep();
+	cy.fillBasicRegisterInformationStep();
 
 	cy.findByRole("button", { name: "Continuar" }).click();
 
