@@ -13,7 +13,7 @@ const genderViolenceSchema = Yup.object({
 export default function GenderViolence() {
 	return (
 		<Step
-			onSubmit={() => sleep(300).then(() => console.log("Step6 onSubmit"))}
+			onSubmit={() => sleep(300).then(() => console.log("Step2 onSubmit"))}
 			validationSchema={genderViolenceSchema}
 			title={"Sobre a violência"}
 			img={{
@@ -22,7 +22,7 @@ export default function GenderViolence() {
 			}}
 		>
 			<RadioInput
-				name="acceptsOnlineSupport"
+				name="genderViolence"
 				options={genderViolenceOptions}
 				question={"Você sofreu ou está sofrendo violência de gênero?"}
 			/>
