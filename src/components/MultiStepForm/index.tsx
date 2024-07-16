@@ -18,6 +18,7 @@ export interface Values {
 	hasDisability: string;
 	acceptsOnlineSupport: string;
 	supportType: string[];
+	genderIdentity: string;
 }
 
 export default function MultiStepForm() {
@@ -33,6 +34,7 @@ export default function MultiStepForm() {
 				hasDisability: "",
 				acceptsOnlineSupport: "",
 				supportType: [],
+				genderIdentity: "",
 			}}
 			onSubmit={async (values: Values) =>
 				sleep(300).then(() => console.log("Wizard submit", values))
