@@ -6,6 +6,7 @@ import {
 	SupportType,
 	GenderIdentity,
 	GenderViolence,
+	DisabilityInformation,
 } from "./Steps";
 import { sleep } from "../../lib";
 
@@ -45,6 +46,7 @@ export default function MultiStepForm() {
 		>
 			{BasicRegisterInformation()}
 			{DiversityInformation()}
+			{DisabilityInformation()}
 			{GenderIdentity()}
 			{AcceptsOnlineSupport()}
 			{SupportType()}
