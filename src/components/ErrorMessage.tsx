@@ -9,7 +9,7 @@ function CustomErrorMessage({ children }: Readonly<PropsWithChildren>) {
 			color={"red"}
 			size={"2"}
 			as={"p"}
-			style={{ paddingTop: "var(--space-1)" }}
+			style={{ paddingTop: "var(--space-1)", backgroundColor: "white" }}
 		>
 			{children}
 		</Text>
