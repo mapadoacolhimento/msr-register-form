@@ -30,3 +30,8 @@ fieldset {
 [role="alert"] {
 	background-color: white !important;
 }
+
+b,
+strong {
+	color: var(--purple-9);
+}
