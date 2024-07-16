@@ -5,3 +5,4 @@ export { default as SupportType } from "./SupportType";
 export { default as GenderIdentity } from "./GenderIdentity";
 export { default as GenderViolence } from "./GenderViolence";
 export { default as DisabilityInformation } from "./DisabilityInformation";
+export { default as ViolenceLocation } from "./ViolenceLocation";

@@ -12,7 +12,7 @@ type RadioOption = {
 type RadioInputProps = {
 	name: string;
 	options: RadioOption[];
-	question: string;
+	question: React.ReactNode;
 };
 
 export default function RadioInput({

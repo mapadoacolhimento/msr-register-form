@@ -53,3 +53,11 @@ export const genderViolenceOptions = [
 		name: "Não",
 	},
 ];
+
+export const violenceLocationOptions = [
+	{ value: "yes", name: "Sim" },
+	{
+		value: "no",
+		name: "Não",
+	},
+];
