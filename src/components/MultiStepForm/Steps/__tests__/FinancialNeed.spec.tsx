@@ -34,7 +34,7 @@ describe("<FinancialNeed />", () => {
 		});
 	});
 
-	it.only("should render an error if no option is selected", async () => {
+	it("should render an error if no option is selected", async () => {
 		setup();
 
 		const btn = screen.getByRole("button", { name: /enviar/i });
@@ -42,8 +42,8 @@ describe("<FinancialNeed />", () => {
 
 		await screen.findByRole("alert");
 
-		// expect(screen.getByRole("alert")).toHaveTextContent(
-		// 	"Esse campo é obrigatório."
-		// );
+		expect(screen.getByRole("alert")).toHaveTextContent(
+			"Esse campo é obrigatório."
+		);
 	});
 });
