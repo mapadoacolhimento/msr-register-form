@@ -37,10 +37,13 @@ describe("<BasicRegisterInformation />", () => {
 			name: "Confirme seu E-mail",
 		});
 		const whatsappInput = screen.getByRole("textbox", { name: "Whatsapp" });
+		const colorInput = screen.getByRole("combobox", { name: "Cor" });
 
 		expect(nameInput).toBeInTheDocument();
 		expect(emailInput).toBeInTheDocument();
 		expect(confirmEmailInput).toBeInTheDocument();
+		expect(whatsappInput).toBeInTheDocument();
+		expect(colorInput).toBeInTheDocument();
 	});
 
 	it("should render empty field error if no info provided", async () => {
@@ -75,10 +78,8 @@ describe("<BasicRegisterInformation />", () => {
 		const btn = screen.getByRole("button", { name: /enviar/i });
 		await userEvent.click(btn);
 
-		expect(await screen.findByRole("alert")).toBeInTheDocument();
-		expect(screen.getByRole("alert")).toHaveTextContent(
-			"Esse campo é obrigatório."
-		);
+		expect(await screen.findAllByRole("alert"));
+		expect(screen.getAllByRole("alert")).toHaveLength(1);
 	});
 
 	it("should render error if email field is empty", async () => {

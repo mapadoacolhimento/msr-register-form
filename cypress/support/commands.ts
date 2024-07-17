@@ -9,19 +9,15 @@ Cypress.Commands.add("fillBasicRegisterInformationStep", () => {
 	const confirmEmail = "msr@test.com";
 	const phone = "81999999999";
 	const dateOfBirth = "18111996";
+	const colorOption = "Indígena";
 
 	cy.get("#firstName").type(firstName);
 	cy.get("#email").type(email);
 	cy.get("#confirmEmail").type(confirmEmail);
 	cy.get("#phone").type(phone);
 	cy.get("#dateOfBirth").type(dateOfBirth);
-});
-
-Cypress.Commands.add("fillDiversityInformationStep", () => {
-	const color = "Preta";
-
 	cy.get("#color").click();
-	cy.findAllByText(color).click();
+	cy.contains(colorOption).should("be.visible").click();
 });
 
 Cypress.Commands.add("fillDisabilityStep", () => {
@@ -56,7 +52,7 @@ Cypress.Commands.add("fillSupportTypeStep", () => {
 });
 
 Cypress.Commands.add("fillGenderViolenceStep", () => {
-	cy.findByLabelText("Sim").click({ force: true });
+	cy.findByLabelText("Não").click({ force: true });
 });
 
 Cypress.Commands.add("fillViolenceLocationStep", () => {

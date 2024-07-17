@@ -13,16 +13,6 @@ describe("App", () => {
 		cy.fillBasicRegisterInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillDiversityInformationStep();
-	});
-
-	it("should continue to next step if all fields are filled correctly", () => {
-		cy.visit("/");
-
-		cy.fillBasicRegisterInformationStep();
-		cy.findByRole("button", { name: "Continuar" }).click();
-
-		cy.fillDiversityInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
 		cy.findByText("Seus dados");
@@ -34,7 +24,6 @@ describe("App", () => {
 		cy.fillBasicRegisterInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillDiversityInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
 		cy.fillDisabilityStep();
@@ -49,7 +38,6 @@ describe("App", () => {
 		cy.fillBasicRegisterInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillDiversityInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
 		cy.fillDisabilityStep();
@@ -67,7 +55,6 @@ describe("App", () => {
 		cy.fillBasicRegisterInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillDiversityInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
 		cy.fillDisabilityStep();
@@ -88,7 +75,6 @@ describe("App", () => {
 		cy.fillBasicRegisterInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillDiversityInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
 		cy.fillDisabilityStep();
@@ -113,7 +99,6 @@ describe("App", () => {
 		cy.fillBasicRegisterInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillDiversityInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
 		cy.fillDisabilityStep();
@@ -143,7 +128,6 @@ describe("App", () => {
 		cy.fillBasicRegisterInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillDiversityInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
 		cy.fillDisabilityStep();
