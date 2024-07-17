@@ -17,5 +17,6 @@ declare namespace Cypress {
 		fillGenderViolenceStep(): Chainable<any>;
 		fillViolenceLocationStep(): Chainable<any>;
 		fillExternalSupportStep(): Chainable<any>;
+		fillFinancialNeedStep(): Chainable<any>;
 	}
 }

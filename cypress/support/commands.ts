@@ -67,6 +67,10 @@ Cypress.Commands.add("fillExternalSupportStep", () => {
 	cy.findByLabelText("Sim").click({ force: true });
 });
 
+Cypress.Commands.add("fillFinancialNeedStep", () => {
+	cy.findByLabelText("Sim").click({ force: true });
+});
+
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
