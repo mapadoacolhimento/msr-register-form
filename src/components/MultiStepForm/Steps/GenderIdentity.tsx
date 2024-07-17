@@ -2,7 +2,7 @@ import * as Yup from "yup";
 import Step from "../Step";
 import RadioInput from "../../RadioInput";
 import { sleep, genderIdentityOptions } from "../../../lib";
-import HoverInfo from "@/components/HoverInfo";
+import HoverInfo from "../../HoverInfo";
 
 const genderIdentitySchema = Yup.object({
 	genderIdentity: Yup.string()
