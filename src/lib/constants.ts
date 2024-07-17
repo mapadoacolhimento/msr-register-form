@@ -61,3 +61,19 @@ export const violenceLocationOptions = [
 		name: "Não",
 	},
 ];
+
+export const externalSupportOptions = [
+	{ value: "no", name: "Não estou sendo acompanhada" },
+	{
+		value: "psychologist",
+		name: "Estou sendo acompanhada por um(a) psicólogo(a) particular",
+	},
+	{
+		value: "lawyer",
+		name: "Estou sendo acompanhada por um(a) advogado(a) particular",
+	},
+	{
+		value: "public-defender",
+		name: "Estou sendo acompanhada na defensoria pública/NUDEM",
+	},
+];
