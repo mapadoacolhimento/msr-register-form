@@ -2,6 +2,7 @@ import * as Yup from "yup";
 import Step from "../Step";
 import RadioInput from "../../RadioInput";
 import { sleep, genderIdentityOptions } from "../../../lib";
+import HoverInfo from "@/components/HoverInfo";
 
 const genderIdentitySchema = Yup.object({
 	genderIdentity: Yup.string()
@@ -23,7 +24,15 @@ export default function GenderIdentity() {
 			<RadioInput
 				name="genderIdentity"
 				options={genderIdentityOptions}
-				question={"Como você se identifica?"}
+				question={
+					<>
+						Qual sua identidade <strong>de gênero</strong>?
+					</>
+				}
+			/>
+			<HoverInfo
+				text="O que isso significa?"
+				explanation="Identidade de gênero refere-se à forma como uma pessoa se identifica internamente e como ela se define em termos de gênero. Isso pode ou não corresponder ao sexo atribuído no nascimento."
 			/>
 		</Step>
 	);

@@ -31,18 +31,14 @@ export const supportTypeOptions = [
 ];
 
 export const genderIdentityOptions = [
-	{ value: "ciswoman", name: "Mulher Cisgênero" },
+	{ value: "ciswoman", name: "Eu sou uma mulher cis" },
 	{
 		value: "transwoman",
-		name: "Mulher Transgênero",
+		name: "Eu sou uma mulher trans/travesti",
 	},
 	{
-		value: "non-binary",
-		name: "Mulher Não-binária",
-	},
-	{
-		value: "genderfluid",
-		name: "Mulher Gênero Fluido",
+		value: "no-woman",
+		name: "Não me identifico como mulher",
 	},
 ];
 

@@ -1,0 +1,37 @@
+.info-container {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.explanation {
+	visibility: hidden;
+	opacity: 0;
+	transition:
+		visibility 0s,
+		opacity 0.2s linear;
+	position: absolute;
+	background-color: var(--gray-2);
+	padding: 10px;
+	border: 1px solid var(--gray-5);
+	border-radius: 4px;
+	width: 20rem;
+	top: 2rem;
+	left: -5rem;
+	z-index: 9;
+}
+
+.explanation.visible {
+	visibility: visible;
+	opacity: 1;
+}
+
+.arrow {
+	display: inline-block;
+	margin-left: 5px;
+	transition: transform 0.2s;
+}
+
+.arrow.rotated {
+	transform: rotate(180deg);
+}
