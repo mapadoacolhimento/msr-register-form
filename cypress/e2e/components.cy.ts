@@ -93,7 +93,7 @@ it("should display error if color field is empty", () => {
 	cy.contains("Esse campo é obrigatório.").should("exist");
 });
 
-it.only("should display error if disability status field is empty", () => {
+it("should display error if disability status field is empty", () => {
 	const color = "Preta";
 	cy.visit("/");
 
