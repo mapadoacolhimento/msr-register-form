@@ -26,7 +26,7 @@ Cypress.Commands.add("fillDisabilityStep", () => {
 });
 
 Cypress.Commands.add("fillGenderIdentityStep", () => {
-	const gender = "Mulher Transgênero";
+	const gender = "Eu sou uma mulher cis";
 	cy.contains(gender).click();
 });
 
