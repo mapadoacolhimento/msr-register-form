@@ -137,7 +137,7 @@ describe("App", () => {
 		cy.fillExternalSupportStep();
 	});
 
-	it.only("should continue to next step if all fields are filled correctly", () => {
+	it("should continue to next step if all fields are filled correctly", () => {
 		cy.visit("/");
 
 		cy.fillBasicRegisterInformationStep();
