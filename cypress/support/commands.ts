@@ -19,13 +19,13 @@ Cypress.Commands.add("fillBasicRegisterInformationStep", () => {
 
 Cypress.Commands.add("fillDiversityInformationStep", () => {
 	const color = "Preta";
-	const hasDisability = "Não";
 
 	cy.get("#color").click();
-	cy.findAllByText(color)
-	.click();
+	cy.findAllByText(color).click();
+});
 
-	cy.get("#hasDisability").click();
+Cypress.Commands.add("fillDisabilityStep", () => {
+	const hasDisability = "Sim";
 	cy.contains(hasDisability).click();
 });
 
@@ -53,6 +53,18 @@ Cypress.Commands.add("fillAcceptsOnlineSupportStep", () => {
 Cypress.Commands.add("fillSupportTypeStep", () => {
 	cy.findByLabelText("Acolhimento psicológico").click({ force: true });
 	cy.findByLabelText("Acolhimento jurídico").click({ force: true });
+});
+
+Cypress.Commands.add("fillGenderViolenceStep", () => {
+	cy.findByLabelText("Sim").click({ force: true });
+});
+
+Cypress.Commands.add("fillViolenceLocationStep", () => {
+	cy.findByLabelText("Sim").click({ force: true });
+});
+
+Cypress.Commands.add("fillExternalSupportStep", () => {
+	cy.findByLabelText("Sim").click({ force: true });
 });
 
 // ***********************************************

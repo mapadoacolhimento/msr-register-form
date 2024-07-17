@@ -25,6 +25,21 @@ describe("App", () => {
 		cy.fillDiversityInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
+		cy.findByText("Seus dados");
+	});
+
+	it("should continue to next step if all fields are filled correctly", () => {
+		cy.visit("/");
+
+		cy.fillBasicRegisterInformationStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillDiversityInformationStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillDisabilityStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
 		cy.findByText("Sobre você");
 	});
 
@@ -37,22 +52,34 @@ describe("App", () => {
 		cy.fillDiversityInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.findByText("Sobre você");
-	});
-
-	it("should continue to next step if all fields are filled correctly", () => {
-		cy.visit("/");
-
-		cy.fillBasicRegisterInformationStep();
-		cy.findByRole("button", { name: "Continuar" }).click();
-
-		cy.fillDiversityInformationStep();
+		cy.fillDisabilityStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
 		cy.fillGenderIdentityStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
 		cy.findByText("Sobre o acolhimento");
+	});
+
+	it("should continue to next step if all fields are filled correctly", () => {
+		cy.visit("/");
+
+		cy.fillBasicRegisterInformationStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillDiversityInformationStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillDisabilityStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillGenderIdentityStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillAcceptsOnlineSupportStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillSupportTypeStep();
 	});
 
 	it.only("should continue to next step if all fields are filled correctly", () => {
@@ -64,6 +91,9 @@ describe("App", () => {
 		cy.fillDiversityInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
+		cy.fillDisabilityStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
 		cy.fillGenderIdentityStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
@@ -71,5 +101,39 @@ describe("App", () => {
 		cy.findByRole("button", { name: "Continuar" }).click();
 
 		cy.fillSupportTypeStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillGenderViolenceStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+	});
+
+	it("should continue to next step if all fields are filled correctly", () => {
+		cy.visit("/");
+
+		cy.fillBasicRegisterInformationStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillDiversityInformationStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillDisabilityStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillGenderIdentityStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillAcceptsOnlineSupportStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillSupportTypeStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillGenderViolenceStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillViolenceLocationStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillExternalSupportStep();
 	});
 });
