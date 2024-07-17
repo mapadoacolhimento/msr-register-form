@@ -1,13 +1,13 @@
 import * as React from "react";
 import * as Yup from "yup";
 import Step from "../Step";
-import CheckboxInput from "../../CheckboxInput";
 import { sleep, externalSupportOptions } from "../../../lib";
+import RadioInput from "../../RadioInput";
 
 const externalSupportSchema = Yup.object({
-	externalSupport: Yup.array()
-		.of(Yup.string().oneOf(["no", "psychologist", "lawyer", "public-defender"]))
-		.min(1, "Esse campo é obrigatório."),
+	externalSupport: Yup.string()
+		.oneOf(["yes", "no"])
+		.required("Esse campo é obrigatório."),
 });
 
 export default function ExternalSupport() {
@@ -21,13 +21,13 @@ export default function ExternalSupport() {
 				alt: "Ilustração de uma mulher de cabeça baixa tampando os ouvidos",
 			}}
 		>
-			<CheckboxInput
+			<RadioInput
 				name={"externalSupport"}
 				options={externalSupportOptions}
 				question={
 					<>
-						Você está em atendimento psicológico e/ou jurídico{" "}
-						<strong>fora do Mapa do Acolhimento</strong>?
+						Você está recebendo acompanhamento jurídico pela{" "}
+						<strong>defensoria pública</strong>?
 					</>
 				}
 			/>

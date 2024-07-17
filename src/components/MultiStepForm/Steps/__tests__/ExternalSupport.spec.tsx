@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 
 import ExternalSupport from "../ExternalSupport";
 import MultiStepFormWrapper from "../../MultiStepFormWrapper";
-import { sleep } from "../../../../lib";
+import { sleep, externalSupportOptions } from "../../../../lib";
 import { type Values } from "../..";
 
 const setup = () => {
@@ -14,7 +14,7 @@ const setup = () => {
 			}
 			initialValues={
 				{
-					externalSupport: [] as string[],
+					externalSupport: "",
 				} as Values
 			}
 		>
@@ -27,26 +27,10 @@ describe("<ExternalSupport />", () => {
 	it("should render four options", () => {
 		setup();
 
-		expect(
-			screen.getByRole("checkbox", {
-				name: /Não estou sendo acompanhada/i,
-			})
-		).toBeInTheDocument();
-		expect(
-			screen.getByRole("checkbox", {
-				name: "Estou sendo acompanhada por um(a) psicólogo(a) particular",
-			})
-		).toBeInTheDocument();
-		expect(
-			screen.getByRole("checkbox", {
-				name: "Estou sendo acompanhada por um(a) advogado(a) particular",
-			})
-		).toBeInTheDocument();
-		expect(
-			screen.getByRole("checkbox", {
-				name: "Estou sendo acompanhada na defensoria pública/NUDEM",
-			})
-		).toBeInTheDocument();
+		externalSupportOptions.forEach((option) => {
+			const optionElement = screen.getByText(option.name);
+			expect(optionElement).toBeInTheDocument();
+		});
 	});
 
 	it("should render an error if no option is selected", async () => {

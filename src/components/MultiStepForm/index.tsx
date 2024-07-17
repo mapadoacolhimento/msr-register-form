@@ -25,7 +25,7 @@ export interface Values {
 	genderIdentity: string;
 	genderViolence: string;
 	violenceLocation: string;
-	externalSupport: string[];
+	externalSupport: string;
 	financialNeed: string;
 }
 
@@ -45,7 +45,7 @@ export default function MultiStepForm() {
 				genderIdentity: "",
 				genderViolence: "",
 				violenceLocation: "",
-				externalSupport: [],
+				externalSupport: "",
 				financialNeed: "",
 			}}
 			onSubmit={async (values: Values) =>
