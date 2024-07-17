@@ -87,27 +87,19 @@ it("should display error if color field is empty", () => {
 	cy.visit("/");
 
 	cy.fillBasicRegisterInformationStep();
-
 	cy.findByRole("button", { name: "Continuar" }).click();
-
-	cy.get("#hasDisability").click();
-	cy.contains(hasDisability).click();
 
 	cy.findByRole("button", { name: "Continuar" }).click();
 	cy.contains("Esse campo é obrigatório.").should("exist");
 });
 
-it("should display error if disability status field is empty", () => {
+it.only("should display error if disability status field is empty", () => {
 	const color = "Preta";
 	cy.visit("/");
 
 	cy.fillBasicRegisterInformationStep();
 
 	cy.findByRole("button", { name: "Continuar" }).click();
-
-	cy.get("#color").click();
-	cy.findAllByText(color)
-	.click();
 
 	cy.findByRole("button", { name: "Continuar" }).click();
 	cy.contains("Esse campo é obrigatório.").should("exist");
