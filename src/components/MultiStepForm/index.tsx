@@ -9,6 +9,7 @@ import {
 	DisabilityInformation,
 	ViolenceLocation,
 	ExternalSupport,
+	FinancialNeed,
 } from "./Steps";
 import { sleep } from "../../lib";
 
@@ -26,6 +27,7 @@ export interface Values {
 	genderViolence: string;
 	violenceLocation: string;
 	externalSupport: string[];
+	financialNeed: string;
 }
 
 export default function MultiStepForm() {
@@ -45,6 +47,7 @@ export default function MultiStepForm() {
 				genderViolence: "",
 				violenceLocation: "",
 				externalSupport: [],
+				financialNeed: "",
 			}}
 			onSubmit={async (values: Values) =>
 				sleep(300).then(() => console.log("Wizard submit", values))
@@ -59,6 +62,7 @@ export default function MultiStepForm() {
 			{GenderViolence()}
 			{ViolenceLocation()}
 			{ExternalSupport()}
+			{FinancialNeed()}
 		</MultiStepFormWrapper>
 	);
 }

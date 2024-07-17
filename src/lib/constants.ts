@@ -77,3 +77,11 @@ export const externalSupportOptions = [
 		name: "Estou sendo acompanhada na defensoria pública/NUDEM",
 	},
 ];
+
+export const financialNeedOptions = [
+	{ value: "yes", name: "Sim" },
+	{
+		value: "no",
+		name: "Não",
+	},
+];
