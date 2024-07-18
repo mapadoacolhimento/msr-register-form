@@ -16,7 +16,6 @@
 	justify-content: center;
 }
 
-.radioContainer {
-	display: flex;
-	align-items: center !important;
+#question {
+	max-width: 22rem;
 }
