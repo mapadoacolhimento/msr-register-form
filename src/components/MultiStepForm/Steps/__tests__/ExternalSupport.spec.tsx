@@ -28,8 +28,10 @@ describe("<ExternalSupport />", () => {
 		setup();
 
 		externalSupportOptions.forEach((option) => {
-			const optionElement = screen.getByText(option.name);
-			expect(optionElement).toBeInTheDocument();
+			const roleOptionElement = screen.getByRole("radio", {
+				name: option.name,
+			});
+			expect(roleOptionElement).toBeInTheDocument();
 		});
 	});
 
