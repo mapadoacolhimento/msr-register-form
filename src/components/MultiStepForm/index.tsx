@@ -27,6 +27,7 @@ export interface Values {
 	violenceLocation: string;
 	externalSupport: string;
 	financialNeed: string;
+	checkboxInfo: boolean;
 }
 
 export default function MultiStepForm() {
@@ -47,6 +48,7 @@ export default function MultiStepForm() {
 				violenceLocation: "",
 				externalSupport: "",
 				financialNeed: "",
+				checkboxInfo: false,
 			}}
 			onSubmit={async (values: Values) =>
 				sleep(300).then(() => console.log("Wizard submit", values))
@@ -58,8 +60,8 @@ export default function MultiStepForm() {
 			{AcceptsOnlineSupport()}
 			{SupportType()}
 			{GenderViolence()}
-			{ViolenceLocation()}
 			{ExternalSupport()}
+			{ViolenceLocation()}
 			{FinancialNeed()}
 		</MultiStepFormWrapper>
 	);

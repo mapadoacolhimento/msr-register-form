@@ -28,6 +28,7 @@ fieldset {
 }
 
 b,
-strong {
+strong,
+a {
 	color: var(--purple-9);
 }
