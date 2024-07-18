@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./HoverInfo.css";
+import { ChevronDownIcon } from "@radix-ui/react-icons";
 
 interface HoverInfoProps {
 	text: string;
@@ -19,11 +20,7 @@ const HoverInfo: React.FC<HoverInfoProps> = ({ text, explanation }) => {
 			onMouseLeave={handleMouseLeave}
 		>
 			{text}
-			<img
-				src="/illustrations/icon-down.svg"
-				className={`arrow ${visible ? "rotated" : ""}`}
-				alt="arrow icon"
-			/>
+			<ChevronDownIcon className={`arrow ${visible ? "rotated" : ""}`} />
 			<div className={`explanation ${visible ? "visible" : "hidden"}`}>
 				{explanation}
 			</div>
