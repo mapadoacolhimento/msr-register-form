@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import { CheckIcon } from "@radix-ui/react-icons";
-import { useField, useFormikContext } from "formik";
+import { useField } from "formik";
 import "./CheckboxInfo.css";
 import ErrorMessage from "../ErrorMessage";
 
