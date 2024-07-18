@@ -24,7 +24,11 @@ export default function DisabilityInformation() {
 			<RadioInput
 				name="hasDisability"
 				options={disabilityOptions}
-				question={"Você é PcD (Pessoa com deficiência)?"}
+				question={
+					<>
+						Você é <strong>PcD </strong>(Pessoa com deficiência)?
+					</>
+				}
 			/>
 		</Step>
 	);

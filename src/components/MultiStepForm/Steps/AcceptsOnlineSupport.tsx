@@ -24,7 +24,11 @@ export default function AcceptsOnlineSupport() {
 			<RadioInput
 				name="acceptsOnlineSupport"
 				options={acceptsOnlineSupportOptions}
-				question={"Você aceitaria ser atendida online?"}
+				question={
+					<>
+						Você aceitaria ser atendida <strong>online</strong>?
+					</>
+				}
 			/>
 		</Step>
 	);

@@ -26,7 +26,7 @@ export default function GenderIdentity() {
 				options={genderIdentityOptions}
 				question={
 					<>
-						Qual sua identidade <strong>de gênero</strong>?
+						Qual sua <strong>identidade de gênero</strong>?
 					</>
 				}
 			/>

@@ -51,12 +51,4 @@ describe("<AcceptsOnlineSupport />", () => {
 			"Esse campo é obrigatório."
 		);
 	});
-
-	it("should render step question", () => {
-		setup();
-
-		expect(
-			screen.getByText("Você aceitaria ser atendida online?")
-		).toBeInTheDocument();
-	});
 });

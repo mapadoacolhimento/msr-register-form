@@ -24,7 +24,11 @@ export default function SupportType() {
 			<CheckboxInput
 				name={"supportType"}
 				options={supportTypeOptions}
-				question={"Que tipo de acolhimento você precisa?"}
+				question={
+					<>
+						Que <strong>tipo de acolhimento</strong> você precisa?
+					</>
+				}
 			/>
 		</Step>
 	);

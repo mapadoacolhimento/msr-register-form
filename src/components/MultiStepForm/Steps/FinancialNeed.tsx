@@ -30,7 +30,10 @@ export default function FinancialNeed() {
 				name="financialNeed"
 				options={financialNeedOptions}
 				question={
-					"Você declara que não pode pagar por atendimento jurídico/psicológico?"
+					<>
+						Você declara que <strong>não pode pagar</strong> por atendimento
+						jurídico/psicológico?
+					</>
 				}
 			/>
 			<CheckboxInfo
