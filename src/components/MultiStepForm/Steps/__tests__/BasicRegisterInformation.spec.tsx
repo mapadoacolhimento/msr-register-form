@@ -78,8 +78,10 @@ describe("<BasicRegisterInformation />", () => {
 		const btn = screen.getByRole("button", { name: /enviar/i });
 		await userEvent.click(btn);
 
-		expect(await screen.findAllByRole("alert"));
-		expect(screen.getAllByRole("alert")).toHaveLength(1);
+		expect(await screen.findByRole("alert")).toBeInTheDocument();
+		expect(screen.getByRole("alert")).toHaveTextContent(
+			"Esse campo é obrigatório."
+		);
 	});
 
 	it("should render error if email field is empty", async () => {

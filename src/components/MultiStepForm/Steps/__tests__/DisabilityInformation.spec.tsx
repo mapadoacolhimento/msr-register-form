@@ -28,7 +28,7 @@ describe("<GenderIdentity />", () => {
 		setup();
 
 		disabilityOptions.forEach((option) => {
-			const optionElement = screen.getByText(option.name);
+			const optionElement = screen.getByRole("radio", { name: option.name });
 			expect(optionElement).toBeInTheDocument();
 		});
 	});
