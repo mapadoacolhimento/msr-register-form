@@ -3,11 +3,11 @@ import "./HoverInfo.css";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 
 interface HoverInfoProps {
-	text: string;
-	explanation: string;
+	title: string;
+	description: string;
 }
 
-const HoverInfo: React.FC<HoverInfoProps> = ({ text, explanation }) => {
+const HoverInfo: React.FC<HoverInfoProps> = ({ title, description }) => {
 	const [visible, setVisible] = useState(false);
 
 	const handleMouseEnter = () => setVisible(true);
@@ -19,10 +19,10 @@ const HoverInfo: React.FC<HoverInfoProps> = ({ text, explanation }) => {
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
 		>
-			{text}
+			{title}
 			<ChevronDownIcon className={`arrow ${visible ? "rotated" : ""}`} />
-			<div className={`explanation ${visible ? "visible" : "hidden"}`}>
-				{explanation}
+			<div className={`description ${visible ? "visible" : "hidden"}`}>
+				{description}
 			</div>
 		</div>
 	);

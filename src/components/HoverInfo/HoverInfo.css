@@ -4,7 +4,7 @@
 	cursor: pointer;
 }
 
-.explanation {
+.description {
 	visibility: hidden;
 	opacity: 0;
 	transition:
@@ -21,7 +21,7 @@
 	z-index: 9;
 }
 
-.explanation.visible {
+.description.visible {
 	visibility: visible;
 	opacity: 1;
 }

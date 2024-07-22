@@ -31,8 +31,8 @@ export default function GenderIdentity() {
 				}
 			/>
 			<HoverInfo
-				text="O que isso significa?"
-				explanation="Identidade de gênero refere-se à forma como uma pessoa se identifica internamente e como ela se define em termos de gênero. Isso pode ou não corresponder ao sexo atribuído no nascimento."
+				title="O que isso significa?"
+				description="Identidade de gênero refere-se à forma como uma pessoa se identifica internamente e como ela se define em termos de gênero. Isso pode ou não corresponder ao sexo atribuído no nascimento."
 			/>
 		</Step>
 	);
