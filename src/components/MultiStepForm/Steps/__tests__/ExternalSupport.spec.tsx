@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import AcceptsOnlineSupport from "../AcceptsOnlineSupport";
+import ExternalSupport from "../ExternalSupport";
 import MultiStepFormWrapper from "../../MultiStepFormWrapper";
-import { sleep } from "../../../../lib";
+import { sleep, externalSupportOptions } from "../../../../lib";
 import { type Values } from "../..";
 
 const setup = () => {
@@ -14,29 +14,25 @@ const setup = () => {
 			}
 			initialValues={
 				{
-					acceptsOnlineSupport: "",
+					externalSupport: "",
 				} as Values
 			}
 		>
-			{AcceptsOnlineSupport()}
+			{ExternalSupport()}
 		</MultiStepFormWrapper>
 	);
 };
 
-describe("<AcceptsOnlineSupport />", () => {
-	it("should render two options", () => {
+describe("<ExternalSupport />", () => {
+	it("should render four options", () => {
 		setup();
 
-		expect(
-			screen.getByRole("radio", {
-				name: /sim, aceito ser atendida online/i,
-			})
-		).toBeInTheDocument();
-		expect(
-			screen.getByRole("radio", {
-				name: /não, só posso receber atendimento presencial/i,
-			})
-		).toBeInTheDocument();
+		externalSupportOptions.forEach((option) => {
+			const roleOptionElement = screen.getByRole("radio", {
+				name: option.name,
+			});
+			expect(roleOptionElement).toBeInTheDocument();
+		});
 	});
 
 	it("should render an error if no option is selected", async () => {

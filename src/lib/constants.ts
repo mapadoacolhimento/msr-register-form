@@ -7,14 +7,14 @@ export const colorOptions = [
 ];
 
 export const disabilityOptions = [
-	{ value: "yes", label: "Sim" },
-	{ value: "no", label: "Não" },
+	{ value: "yes", name: "Sim" },
+	{ value: "no", name: "Não" },
 ];
 
 export const acceptsOnlineSupportOptions = [
-	{ value: "sim", name: "Sim, aceito ser atendida online" },
+	{ value: "yes", name: "Sim, aceito ser atendida online" },
 	{
-		value: "nao",
+		value: "no",
 		name: "Não, só posso receber atendimento presencial",
 	},
 ];
@@ -27,5 +27,49 @@ export const supportTypeOptions = [
 	{
 		name: "Acolhimento jurídico",
 		value: "legal",
+	},
+];
+
+export const genderIdentityOptions = [
+	{ value: "ciswoman", name: "Eu sou uma mulher cis" },
+	{
+		value: "transwoman",
+		name: "Eu sou uma mulher trans/travesti",
+	},
+	{
+		value: "no-woman",
+		name: "Não me identifico como mulher",
+	},
+];
+
+export const genderViolenceOptions = [
+	{ value: "yes", name: "Sim" },
+	{
+		value: "no",
+		name: "Não",
+	},
+];
+
+export const violenceLocationOptions = [
+	{ value: "yes", name: "Sim" },
+	{
+		value: "no",
+		name: "Não",
+	},
+];
+
+export const externalSupportOptions = [
+	{ value: "yes", name: "Sim" },
+	{
+		value: "no",
+		name: "Não",
+	},
+];
+
+export const financialNeedOptions = [
+	{ value: "yes", name: "Sim" },
+	{
+		value: "no",
+		name: "Não",
 	},
 ];

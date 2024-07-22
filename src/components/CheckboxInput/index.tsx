@@ -12,7 +12,7 @@ type CheckboxOption = {
 type CheckboxInputProps = {
 	name: string;
 	options: CheckboxOption[];
-	question: string;
+	question: React.ReactNode;
 };
 
 export default function CheckboxInput({

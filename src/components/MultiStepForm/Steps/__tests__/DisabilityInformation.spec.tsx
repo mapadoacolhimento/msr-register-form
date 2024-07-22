@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-
-import AcceptsOnlineSupport from "../AcceptsOnlineSupport";
+import DisabilityInformation from "../DisabilityInformation";
 import MultiStepFormWrapper from "../../MultiStepFormWrapper";
 import { sleep } from "../../../../lib";
 import { type Values } from "../..";
+import { disabilityOptions } from "../../../../lib/constants";
 
 const setup = () => {
 	return render(
@@ -14,29 +14,23 @@ const setup = () => {
 			}
 			initialValues={
 				{
-					acceptsOnlineSupport: "",
+					hasDisability: "",
 				} as Values
 			}
 		>
-			{AcceptsOnlineSupport()}
+			{DisabilityInformation()}
 		</MultiStepFormWrapper>
 	);
 };
 
-describe("<AcceptsOnlineSupport />", () => {
-	it("should render two options", () => {
+describe("<GenderIdentity />", () => {
+	it("should render fields", () => {
 		setup();
 
-		expect(
-			screen.getByRole("radio", {
-				name: /sim, aceito ser atendida online/i,
-			})
-		).toBeInTheDocument();
-		expect(
-			screen.getByRole("radio", {
-				name: /não, só posso receber atendimento presencial/i,
-			})
-		).toBeInTheDocument();
+		disabilityOptions.forEach((option) => {
+			const optionElement = screen.getByRole("radio", { name: option.name });
+			expect(optionElement).toBeInTheDocument();
+		});
 	});
 
 	it("should render an error if no option is selected", async () => {

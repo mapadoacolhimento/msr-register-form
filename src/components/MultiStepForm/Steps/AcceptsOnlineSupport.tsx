@@ -3,10 +3,11 @@ import * as Yup from "yup";
 import Step from "../Step";
 import RadioInput from "../../RadioInput";
 import { sleep, acceptsOnlineSupportOptions } from "../../../lib";
+import { Strong } from "@radix-ui/themes";
 
 const acceptsOnlineSupportSchema = Yup.object({
 	acceptsOnlineSupport: Yup.string()
-		.oneOf(["sim", "nao"])
+		.oneOf(acceptsOnlineSupportOptions.map((a) => a.value))
 		.required("Esse campo é obrigatório."),
 });
 
@@ -24,7 +25,11 @@ export default function AcceptsOnlineSupport() {
 			<RadioInput
 				name="acceptsOnlineSupport"
 				options={acceptsOnlineSupportOptions}
-				question={"Você aceitaria ser atendida online?"}
+				question={
+					<>
+						Você aceitaria ser atendida <Strong>online</Strong>?
+					</>
+				}
 			/>
 		</Step>
 	);

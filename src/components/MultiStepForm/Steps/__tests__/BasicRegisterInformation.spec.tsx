@@ -37,10 +37,13 @@ describe("<BasicRegisterInformation />", () => {
 			name: "Confirme seu E-mail",
 		});
 		const whatsappInput = screen.getByRole("textbox", { name: "Whatsapp" });
+		const colorInput = screen.getByRole("combobox", { name: "Cor" });
 
 		expect(nameInput).toBeInTheDocument();
 		expect(emailInput).toBeInTheDocument();
 		expect(confirmEmailInput).toBeInTheDocument();
+		expect(whatsappInput).toBeInTheDocument();
+		expect(colorInput).toBeInTheDocument();
 	});
 
 	it("should render empty field error if no info provided", async () => {

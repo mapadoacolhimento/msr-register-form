@@ -26,13 +26,14 @@
 	font-weight: 700;
 }
 
-.custom-select__control {
-	background-color: var(--gray-2) !important;
+.select-input-container .custom-select__control {
+	background-color: var(--gray-2);
 }
 
-.custom-select__control--is-focused {
-	border-color: purple !important;
-	box-shadow: 0 0 0 1px purple !important;
+.select-input-container .custom-select__control--is-focused,
+.select-input-container .custom-select__control--is-focused:hover {
+	border-color: var(--focus-8);
+	box-shadow: 0 0 0 1px var(--focus-8);
 }
 
 .custom-select__value-container {

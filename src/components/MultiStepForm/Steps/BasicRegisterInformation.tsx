@@ -1,6 +1,8 @@
 import * as Yup from "yup";
 import Step from "../Step";
 import TextInput from "../../TextInput";
+import { colorOptions } from "../../../lib";
+import SelectInput from "../../SelectInput";
 
 const today = new Date();
 const minDate = new Date(1900, 0, 1);
@@ -53,6 +55,7 @@ const basicRegisterInformationSchema = Yup.object({
 				return date <= today;
 			}
 		),
+	color: Yup.string().required("Esse campo é obrigatório."),
 });
 
 export default function BasicRegisterInformation() {
@@ -118,6 +121,12 @@ export default function BasicRegisterInformation() {
 				label="Data de Nascimento"
 				placeholder="DD/MM/AAAA"
 				mask="99/99/9999"
+			/>
+			<SelectInput
+				name="color"
+				label="Cor"
+				options={colorOptions}
+				placeholder="Cor"
 			/>
 		</Step>
 	);

@@ -27,6 +27,8 @@ fieldset {
 	background-color: #ebe5ef;
 }
 
-[role="alert"] {
-	background-color: white !important;
+b,
+strong,
+a {
+	color: var(--purple-9);
 }
