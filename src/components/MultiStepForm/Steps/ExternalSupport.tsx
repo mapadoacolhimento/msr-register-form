@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import Step from "../Step";
 import { sleep, externalSupportOptions } from "../../../lib";
 import RadioInput from "../../RadioInput";
+import { Strong } from "@radix-ui/themes";
 
 const externalSupportSchema = Yup.object({
 	externalSupport: Yup.string()
@@ -27,7 +28,7 @@ export default function ExternalSupport() {
 				question={
 					<>
 						Você está recebendo acompanhamento jurídico pela{" "}
-						<strong>defensoria pública</strong>?
+						<Strong>defensoria pública</Strong>?
 					</>
 				}
 			/>

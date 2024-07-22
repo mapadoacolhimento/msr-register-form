@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import Step from "../Step";
 import CheckboxInput from "../../CheckboxInput";
 import { sleep, supportTypeOptions } from "../../../lib";
+import { Strong } from "@radix-ui/themes";
 
 const supportTypeSchema = Yup.object({
 	supportType: Yup.array()
@@ -26,7 +27,7 @@ export default function SupportType() {
 				options={supportTypeOptions}
 				question={
 					<>
-						Que <strong>tipo de acolhimento</strong> você precisa?
+						Que <Strong>tipo de acolhimento</Strong> você precisa?
 					</>
 				}
 			/>

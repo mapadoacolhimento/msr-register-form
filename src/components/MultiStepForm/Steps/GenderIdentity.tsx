@@ -3,6 +3,7 @@ import Step from "../Step";
 import RadioInput from "../../RadioInput";
 import { sleep, genderIdentityOptions } from "../../../lib";
 import HoverInfo from "../../HoverInfo";
+import { Strong } from "@radix-ui/themes";
 
 const genderIdentitySchema = Yup.object({
 	genderIdentity: Yup.string()
@@ -26,7 +27,7 @@ export default function GenderIdentity() {
 				options={genderIdentityOptions}
 				question={
 					<>
-						Qual sua <strong>identidade de gênero</strong>?
+						Qual sua <Strong>identidade de gênero</Strong>?
 					</>
 				}
 			/>

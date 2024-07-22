@@ -4,6 +4,7 @@ import Step from "../Step";
 import RadioInput from "../../RadioInput";
 import { sleep, financialNeedOptions } from "../../../lib";
 import dynamic from "next/dynamic";
+import { Strong } from "@radix-ui/themes";
 const CheckboxInfo = dynamic(() => import("../../CheckboxInfo"), {
 	ssr: false,
 });
@@ -31,7 +32,7 @@ export default function FinancialNeed() {
 				options={financialNeedOptions}
 				question={
 					<>
-						Você declara que <strong>não pode pagar</strong> por atendimento
+						Você declara que <Strong>não pode pagar</Strong> por atendimento
 						jurídico/psicológico?
 					</>
 				}

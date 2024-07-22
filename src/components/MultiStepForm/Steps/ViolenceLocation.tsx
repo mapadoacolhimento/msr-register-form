@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import Step from "../Step";
 import RadioInput from "../../RadioInput";
 import { sleep, violenceLocationOptions } from "../../../lib";
+import { Strong } from "@radix-ui/themes";
 
 const violenceLocationSchema = Yup.object({
 	violenceLocation: Yup.string()
@@ -26,7 +27,7 @@ export default function ViolenceLocation() {
 				options={violenceLocationOptions}
 				question={
 					<>
-						A violência ocorreu <strong>no Brasil</strong>?
+						A violência ocorreu <Strong>no Brasil</Strong>?
 					</>
 				}
 			/>

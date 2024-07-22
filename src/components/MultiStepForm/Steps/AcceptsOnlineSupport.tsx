@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import Step from "../Step";
 import RadioInput from "../../RadioInput";
 import { sleep, acceptsOnlineSupportOptions } from "../../../lib";
+import { Strong } from "@radix-ui/themes";
 
 const acceptsOnlineSupportSchema = Yup.object({
 	acceptsOnlineSupport: Yup.string()
@@ -26,7 +27,7 @@ export default function AcceptsOnlineSupport() {
 				options={acceptsOnlineSupportOptions}
 				question={
 					<>
-						Você aceitaria ser atendida <strong>online</strong>?
+						Você aceitaria ser atendida <Strong>online</Strong>?
 					</>
 				}
 			/>
