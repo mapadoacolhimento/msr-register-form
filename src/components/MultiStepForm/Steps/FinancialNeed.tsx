@@ -11,7 +11,7 @@ const financialNeedSchema = Yup.object({
 	financialNeed: Yup.string()
 		.oneOf(financialNeedOptions.map((a) => a.value))
 		.required("Esse campo é obrigatório."),
-	checkboxInfo: Yup.boolean().oneOf([true], "Você deve marcar este campo."),
+	terms: Yup.boolean().oneOf([true], "Você deve marcar este campo."),
 });
 
 export default function FinancialNeed() {
@@ -47,8 +47,6 @@ export default function FinancialNeed() {
 				</a>
 				. Você pode cancelar o recebimento desses e-mails a qualquer momento.
 			</CheckboxInfo>
-
-			{/* Ao inserir seus dados, você concorda em ter seus dados compartilhados com os organizadores dessa página e aceita receber emails de atualização, conforme descrito na <a href= "https://queroseracolhida.mapadoacolhimento.org/static/politica-de-privacidade.pdf" target="_blank"> política de privacidade</a>. Você pode cancelar o recebimento desses e-mails a qualquer momento. */}
 		</Step>
 	);
 }
