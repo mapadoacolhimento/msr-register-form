@@ -1,4 +1,3 @@
-import * as React from "react";
 import * as Yup from "yup";
 import Step from "../Step";
 import RadioInput from "../../RadioInput";
