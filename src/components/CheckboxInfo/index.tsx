@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import { CheckIcon } from "@radix-ui/react-icons";
 import { useField } from "formik";
@@ -7,10 +7,10 @@ import ErrorMessage from "../ErrorMessage";
 
 interface CheckBoxInfoProps {
 	name: string;
-	info: string;
+	children: React.ReactNode;
 }
 
-const CheckboxInfo: React.FC<CheckBoxInfoProps> = ({ name, info }) => {
+function CheckboxInfo({ name, children }: CheckBoxInfoProps) {
 	const [field, meta, helpers] = useField(name);
 
 	const handleCheckedChange = (checked: boolean) => {
@@ -24,18 +24,19 @@ const CheckboxInfo: React.FC<CheckBoxInfoProps> = ({ name, info }) => {
 					className="checkboxInfoRoot"
 					onCheckedChange={handleCheckedChange}
 					id={name}
+					{...field}
 				>
 					<Checkbox.Indicator className="CheckboxIndicator">
 						<CheckIcon />
 					</Checkbox.Indicator>
 				</Checkbox.Root>
 				<label className="infoLabel" htmlFor={name}>
-					<span dangerouslySetInnerHTML={{ __html: info }} />
+					{children}
 				</label>
 			</div>
 			<ErrorMessage name={name} />
 		</div>
 	);
-};
+}
 
 export default CheckboxInfo;

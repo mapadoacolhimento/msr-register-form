@@ -1,13 +1,11 @@
 import * as React from "react";
 import * as Yup from "yup";
+import { Strong } from "@radix-ui/themes";
+
 import Step from "../Step";
 import RadioInput from "../../RadioInput";
+import CheckboxInfo from "../../CheckboxInfo";
 import { sleep, financialNeedOptions } from "../../../lib";
-import dynamic from "next/dynamic";
-import { Strong } from "@radix-ui/themes";
-const CheckboxInfo = dynamic(() => import("../../CheckboxInfo"), {
-	ssr: false,
-});
 
 const financialNeedSchema = Yup.object({
 	financialNeed: Yup.string()
