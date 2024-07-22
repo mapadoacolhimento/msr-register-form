@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./HoverInfo.css";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
+import { Text } from "@radix-ui/themes";
 
 interface HoverInfoProps {
 	title: string;
@@ -19,11 +20,14 @@ const HoverInfo: React.FC<HoverInfoProps> = ({ title, description }) => {
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
 		>
-			{title}
+			<Text>{title}</Text>
 			<ChevronDownIcon className={`arrow ${visible ? "rotated" : ""}`} />
-			<div className={`description ${visible ? "visible" : "hidden"}`}>
+			<Text
+				className={`description ${visible ? "visible" : "hidden"}`}
+				aria-hidden={!!visible}
+			>
 				{description}
-			</div>
+			</Text>
 		</div>
 	);
 };

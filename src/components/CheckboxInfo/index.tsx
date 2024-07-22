@@ -1,4 +1,4 @@
-import { Checkbox, Box, Flex, Text } from "@radix-ui/themes";
+import { Checkbox, Flex, Text } from "@radix-ui/themes";
 import { useField } from "formik";
 import "./CheckboxInfo.css";
 import ErrorMessage from "../ErrorMessage";
@@ -9,7 +9,7 @@ interface CheckBoxInfoProps {
 }
 
 const CheckboxInfo: React.FC<CheckBoxInfoProps> = ({ name, children }) => {
-	const [field, meta, helpers] = useField(name);
+	const [field, _meta, helpers] = useField(name);
 
 	const handleCheckedChange = (checked: boolean) => {
 		helpers.setValue(checked === true);

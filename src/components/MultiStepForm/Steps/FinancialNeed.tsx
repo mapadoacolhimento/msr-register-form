@@ -1,4 +1,3 @@
-import * as React from "react";
 import * as Yup from "yup";
 import { Strong } from "@radix-ui/themes";
 
@@ -43,7 +42,7 @@ export default function FinancialNeed() {
 					href="https://queroseracolhida.mapadoacolhimento.org/static/politica-de-privacidade.pdf"
 					target="_blank"
 				>
-					 política de privacidade
+					política de privacidade
 				</a>
 				. Você pode cancelar o recebimento desses e-mails a qualquer momento.
 			</CheckboxInfo>
