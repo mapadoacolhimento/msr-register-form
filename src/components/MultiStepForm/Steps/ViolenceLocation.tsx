@@ -6,7 +6,7 @@ import { sleep, violenceLocationOptions } from "../../../lib";
 
 const violenceLocationSchema = Yup.object({
 	violenceLocation: Yup.string()
-		.oneOf(["yes", "no"])
+		.oneOf(violenceLocationOptions.map((a) => a.value))
 		.required("Esse campo é obrigatório."),
 });
 

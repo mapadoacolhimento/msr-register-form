@@ -6,7 +6,7 @@ import { sleep, disabilityOptions } from "../../../lib";
 
 const disabilityInformationSchema = Yup.object({
 	hasDisability: Yup.string()
-		.oneOf(["yes", "no"])
+		.oneOf(disabilityOptions.map((a) => a.value))
 		.required("Esse campo é obrigatório."),
 });
 

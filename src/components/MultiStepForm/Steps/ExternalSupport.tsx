@@ -6,7 +6,7 @@ import RadioInput from "../../RadioInput";
 
 const externalSupportSchema = Yup.object({
 	externalSupport: Yup.string()
-		.oneOf(["yes", "no"])
+		.oneOf(externalSupportOptions.map((a) => a.value))
 		.required("Esse campo é obrigatório."),
 });
 

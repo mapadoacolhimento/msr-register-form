@@ -6,7 +6,7 @@ import HoverInfo from "../../HoverInfo";
 
 const genderIdentitySchema = Yup.object({
 	genderIdentity: Yup.string()
-		.oneOf(["ciswoman", "transwoman", "non-binary", "genderfluid"])
+		.oneOf(genderIdentityOptions.map((a) => a.value))
 		.required("Esse campo é obrigatório."),
 });
 
