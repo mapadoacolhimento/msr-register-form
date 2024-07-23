@@ -8,7 +8,17 @@ describe("POST /search", () => {
 		mockReset(mockedDb);
 	});
 
-	it("returns true when msr exits", async () => {
+	it("returns false when msr and match exits", async () => {
+		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce({
+			msrId: 12345566 as unknown as bigint,
+			email: "lua@email.com",
+		});
+
+		mockedDb.matches.findMany.mockResolvedValue({
+			msrId: 12345566 as unknown as bigint,
+			msrZendeskTicketId: 1234,
+		});
+
 		const request = new NextRequest(
 			new Request("http://localhost:3000/search", {
 				method: "POST",
@@ -18,7 +28,22 @@ describe("POST /search", () => {
 		const response = await POST(request);
 		expect(response.status).toEqual(200);
 		expect(await response.json()).toEqual({
-			found: true,
+			continue: false,
+		});
+	});
+
+	it("returns true when msr does not exits", async () => {
+		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(null);
+		const request = new NextRequest(
+			new Request("http://localhost:3000/search", {
+				method: "POST",
+				body: JSON.stringify({ email: "lua@email.com" }),
+			})
+		);
+		const response = await POST(request);
+		expect(response.status).toEqual(200);
+		expect(await response.json()).toEqual({
+			continue: true,
 		});
 	});
 

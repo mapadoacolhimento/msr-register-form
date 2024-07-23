@@ -1,3 +1,6 @@
+import { MatchStatus, SupportRequestsStatus } from "@prisma/client";
+import msrPayload from "./__mocks__/payloads";
+
 export const colorOptions = [
 	{ value: "black", label: "Preta" },
 	{ value: "mixed", label: "Parda" },
@@ -72,4 +75,15 @@ export const financialNeedOptions = [
 		value: "no",
 		name: "Não",
 	},
+];
+
+export const statusMatchInProgress = [
+	MatchStatus.waiting_contact,
+	MatchStatus.started_contact,
+	MatchStatus.in_contact,
+];
+
+export const statusSuppotRequestSocialWorker = [
+	SupportRequestsStatus.scheduled_social_worker,
+	SupportRequestsStatus.social_worker,
 ];
