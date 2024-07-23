@@ -4,8 +4,8 @@ import {
 	getErrorMessage,
 	statusMatchInProgress,
 	statusSuppotRequestSocialWorker,
+	updateTicket,
 } from "../../lib";
-import { MatchStatus } from "@prisma/client";
 
 const payloadSchema = Yup.object({
 	email: Yup.string().email().required(),
@@ -57,6 +57,33 @@ export async function POST(request: Request) {
 			return Response.json({
 				continue: true,
 			});
+		}
+		// atualizar ticket match
+		if (match) {
+			for (let i = 0; i < match.length; i++) {
+				await updateTicket({
+					id: match[0].msrZendeskTicketId as unknown as number,
+					status: "new",
+					comment: {
+						body: "MSR tentou pedir um acolhimento novamente.",
+						public: false,
+					},
+				});
+			}
+		}
+
+		// ataulizar ticket supportreuquest
+		if (suppotRequest) {
+			for (let i = 0; i < suppotRequest.length; i++) {
+				await updateTicket({
+					id: suppotRequest[i].zendeskTicketId as unknown as number,
+					status: "new",
+					comment: {
+						body: "MSR tentou pedir um acolhimento novamente.",
+						public: false,
+					},
+				});
+			}
 		}
 
 		return Response.json({

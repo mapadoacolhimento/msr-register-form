@@ -15,8 +15,9 @@ describe("POST /search", () => {
 		});
 
 		mockedDb.matches.findMany.mockResolvedValue({
-			msrId: 12345566 as unknown as bigint,
+			matchId: 12345566,
 			msrZendeskTicketId: 1234,
+			status: "waiting_contact",
 		});
 
 		const request = new NextRequest(
