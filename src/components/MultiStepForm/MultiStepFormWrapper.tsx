@@ -80,7 +80,13 @@ export default function MultiStepFormWrapper({
 										Voltar para o passo anterior
 									</VisuallyHidden.Root>
 								</IconButton>
-								<Box px={"5"} align="center">
+								<div
+									style={{
+										display: "flex",
+										flexDirection: "column",
+										alignItems: "center",
+									}}
+								>
 									<Heading
 										as={"h1"}
 										size={"8"}
@@ -95,15 +101,16 @@ export default function MultiStepFormWrapper({
 											{step.props.description}
 										</Text>
 									</Flex>
-									<Flex
-										direction={"column"}
-										align={"center"}
-										justify={"center"}
-										gapY={"4"}
-									>
-										{step}
-									</Flex>
-								</Box>
+								</div>
+								<Flex
+									direction={"column"}
+									align={"center"}
+									justify={"center"}
+									gapY={"4"}
+								>
+									{step}
+								</Flex>
+
 								<StepsController
 									stepName={step.props.title}
 									stepNumber={stepNumber}

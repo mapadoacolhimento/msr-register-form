@@ -7,7 +7,7 @@ export default function DesktopIllustration({
 		<Flex
 			display={{ initial: "none", md: "flex" }}
 			asChild
-			style={{ backgroundColor: "var(--yellow-2)" }}
+			style={{ backgroundColor: "var(--yellow-2)", height: "100%" }}
 			height={"calc(100vh - 100px)"}
 			justify={"center"}
 			align={"center"}
