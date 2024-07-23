@@ -5,7 +5,7 @@ import {
 	Children,
 } from "react";
 import { type FormikHelpers, Form, Formik } from "formik";
-import { Box, Flex, Grid, Heading, IconButton } from "@radix-ui/themes";
+import { Box, Flex, Grid, Heading, IconButton, Text } from "@radix-ui/themes";
 import { ChevronLeftIcon } from "@radix-ui/react-icons";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 
@@ -69,28 +69,32 @@ export default function MultiStepFormWrapper({
 					>
 						{({ isSubmitting, values }) => (
 							<Form>
-								<Box px={"5"}>
-									<IconButton
-										onClick={() => previousStep(values)}
-										variant="ghost"
-										disabled={stepIndex === 0}
-										type={"button"}
-									>
-										<ChevronLeftIcon width="24" height="24" />
-										<VisuallyHidden.Root>
-											Voltar para o passo anterior
-										</VisuallyHidden.Root>
-									</IconButton>
-
+								<IconButton
+									onClick={() => previousStep(values)}
+									variant="ghost"
+									disabled={stepIndex === 0}
+									type={"button"}
+								>
+									<ChevronLeftIcon width="24" height="24" />
+									<VisuallyHidden.Root>
+										Voltar para o passo anterior
+									</VisuallyHidden.Root>
+								</IconButton>
+								<Box px={"5"} align="center">
 									<Heading
 										as={"h1"}
+										size={"8"}
 										color={"purple"}
 										highContrast
 										align={"center"}
 									>
 										{step.props.title}
 									</Heading>
-
+									<Flex justify={"center"} align={"center"} maxWidth="25rem">
+										<Text align={"center"} mb={"5"}>
+											{step.props.description}
+										</Text>
+									</Flex>
 									<Flex
 										direction={"column"}
 										align={"center"}

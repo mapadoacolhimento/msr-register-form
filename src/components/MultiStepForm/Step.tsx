@@ -5,8 +5,9 @@ import { type Values } from "./";
 
 export interface StepChildrenProps {
 	onSubmit: (values: Values, bag: FormikHelpers<Values>) => Promise<void>;
-	validationSchema: AnyObjectSchema;
+	validationSchema?: AnyObjectSchema;
 	title: string;
+	description?: React.ReactNode;
 	img: {
 		src: string;
 		alt: string;
