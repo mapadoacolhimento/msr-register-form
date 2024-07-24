@@ -5,23 +5,26 @@ import {
 } from "../constants";
 import getErrorMessage from "../getErrorMessage";
 
-type UpdateTicket = {
-	id: number;
-	status?: string;
-	comment?: {
-		body: string;
-		public: boolean;
+type BodyUpdate = {
+	ticket: {
+		status?: string;
+		comment?: {
+			body: string;
+			public: boolean;
+		};
 	};
 };
-
-export default async function updateTicket(ticket: UpdateTicket) {
+export default async function updateManyTickets(
+	ids: string,
+	body: BodyUpdate | BodyUpdate[]
+) {
 	try {
 		const endpoint =
-			ZENDESK_SUBDOMAIN + "/api/v2/tickets/" + ticket.id.toString() + ".json";
+			ZENDESK_SUBDOMAIN + "api/v2/tickets/update_many.json?" + ids + ".json";
 
 		const response = await fetch(endpoint, {
 			body: JSON.stringify({
-				ticket,
+				body,
 			}),
 			method: "PUT",
 			headers: {

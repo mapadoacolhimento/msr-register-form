@@ -2,34 +2,116 @@ import { NextRequest } from "next/server";
 import { mockReset } from "vitest-mock-extended";
 import mockedDb from "../../lib/__mocks__/db";
 import { POST } from "../search/route";
+import * as updateManyTickets from "../../lib/zendesk/updateManyTickets";
+import { expect } from "vitest";
 
 describe("POST /search", () => {
 	beforeEach(() => {
 		mockReset(mockedDb);
 	});
 
-	it("returns false when msr and match exits", async () => {
-		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce({
-			msrId: 12345566 as unknown as bigint,
-			email: "lua@email.com",
-		});
+	const msr = {
+		email: "lua@email.com",
+		supportTypes: ["psychological"],
+	};
 
-		mockedDb.matches.findMany.mockResolvedValue({
-			matchId: 12345566,
+	const msr2 = {
+		email: "sol@email.com",
+		supportTypes: ["psychological", "legal"],
+	};
+
+	const mockMsrPiiSec = {
+		msrId: 12345566 as unknown as bigint,
+		email: "lua@email.com",
+	};
+	const mockMatch = [
+		{
+			matchId: 23,
 			msrZendeskTicketId: 1234,
 			status: "waiting_contact",
-		});
+		},
+	];
+
+	const mockSupportRequest = [
+		{
+			supportRequestId: 222,
+			status: "scheduled_social_worker",
+			zendeskTicketId: 5678,
+		},
+	];
+
+	const mockUpdateTicket = vi.spyOn(updateManyTickets, "default");
+	it("returns false when msr and match in progress exits", async () => {
+		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
+
+		mockedDb.matches.findMany.mockResolvedValue(mockMatch);
 
 		const request = new NextRequest(
 			new Request("http://localhost:3000/search", {
 				method: "POST",
-				body: JSON.stringify({ email: "lua@email.com" }),
+				body: JSON.stringify(msr),
 			})
 		);
 		const response = await POST(request);
+		expect(mockUpdateTicket).toHaveBeenCalledWith("1234", {
+			ticket: {
+				comment: {
+					body: "MSR tentou pedir um acolhimento novamente.",
+					public: false,
+				},
+			},
+		});
 		expect(response.status).toEqual(200);
 		expect(await response.json()).toEqual({
 			continue: false,
+		});
+	});
+
+	it("returns false when msr and support request exits", async () => {
+		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
+
+		mockedDb.supportRequests.findMany.mockResolvedValue(mockSupportRequest);
+
+		const request = new NextRequest(
+			new Request("http://localhost:3000/search", {
+				method: "POST",
+				body: JSON.stringify(msr),
+			})
+		);
+		const response = await POST(request);
+		expect(mockUpdateTicket).toHaveBeenCalled();
+		expect(response.status).toEqual(200);
+		expect(await response.json()).toEqual({
+			continue: false,
+		});
+	});
+
+	it("returns false when msr, match and support request exits", async () => {
+		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
+
+		mockedDb.supportRequests.findMany.mockResolvedValue(mockSupportRequest);
+
+		mockedDb.matches.findMany.mockResolvedValue(mockMatch);
+
+		const request = new NextRequest(
+			new Request("http://localhost:3000/search", {
+				method: "POST",
+				body: JSON.stringify(msr2),
+			})
+		);
+		const response = await POST(request);
+		expect(mockUpdateTicket).toHaveBeenCalled();
+		expect(response.status).toEqual(200);
+		expect(await response.json()).toEqual({
+			continue: false,
+		});
+		expect(mockUpdateTicket).toHaveBeenCalledWith("1234,5678", {
+			ticket: {
+				comment: {
+					body: "MSR tentou pedir um acolhimento novamente.",
+					public: false,
+				},
+			},
 		});
 	});
 
@@ -38,7 +120,7 @@ describe("POST /search", () => {
 		const request = new NextRequest(
 			new Request("http://localhost:3000/search", {
 				method: "POST",
-				body: JSON.stringify({ email: "lua@email.com" }),
+				body: JSON.stringify(msr),
 			})
 		);
 		const response = await POST(request);
@@ -58,7 +140,7 @@ describe("POST /search", () => {
 		const response = await POST(request);
 		expect(response.status).equal(400);
 		expect(await response.text()).equal(
-			"Validation error: email is a required field"
+			"Validation error: supportTypes is a required field"
 		);
 	});
 });

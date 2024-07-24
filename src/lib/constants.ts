@@ -1,5 +1,4 @@
 import { MatchStatus, SupportRequestsStatus } from "@prisma/client";
-import msrPayload from "./__mocks__/payloads";
 
 export const colorOptions = [
 	{ value: "black", label: "Preta" },
@@ -87,3 +86,6 @@ export const statusSuppotRequestSocialWorker = [
 	SupportRequestsStatus.scheduled_social_worker,
 	SupportRequestsStatus.social_worker,
 ];
+export const ZENDESK_SUBDOMAIN = process.env["ZENDESK_SUBDOMAIN"];
+export const ZENDESK_API_USER = `${process.env["ZENDESK_API_USER"]}/token`;
+export const ZENDESK_API_TOKEN = process.env["ZENDESK_API_TOKEN"];

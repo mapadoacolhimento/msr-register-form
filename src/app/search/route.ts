@@ -4,11 +4,12 @@ import {
 	getErrorMessage,
 	statusMatchInProgress,
 	statusSuppotRequestSocialWorker,
-	updateTicket,
+	updateManyTickets,
 } from "../../lib";
 
 const payloadSchema = Yup.object({
 	email: Yup.string().email().required(),
+	supportTypes: Yup.array().required(),
 }).required();
 
 export async function POST(request: Request) {
@@ -31,10 +32,13 @@ export async function POST(request: Request) {
 				continue: true,
 			});
 		}
+
+		let ids: bigint[] = [];
 		const match = await db.matches.findMany({
 			where: {
 				msrId: msr.msrId,
 				status: { in: statusMatchInProgress },
+				supportType: { in: payload.supportTypes },
 			},
 			select: {
 				matchId: true,
@@ -42,50 +46,49 @@ export async function POST(request: Request) {
 				msrZendeskTicketId: true,
 			},
 		});
-		const suppotRequest = await db.supportRequests.findMany({
-			where: {
-				msrId: msr.msrId,
-				status: { in: statusSuppotRequestSocialWorker },
-			},
-			select: {
-				supportRequestId: true,
-				status: true,
-				zendeskTicketId: true,
-			},
-		});
-		if (!match && !suppotRequest) {
-			return Response.json({
-				continue: true,
+
+		if (match) {
+			match.map((element) => {
+				ids.push(element.msrZendeskTicketId);
 			});
 		}
-		// atualizar ticket match
-		if (match) {
-			for (let i = 0; i < match.length; i++) {
-				await updateTicket({
-					id: match[0].msrZendeskTicketId as unknown as number,
-					status: "new",
-					comment: {
-						body: "MSR tentou pedir um acolhimento novamente.",
-						public: false,
-					},
+
+		if (!match || (match.length == 1 && payload.supportTypes.length == 2)) {
+			const supportRequest = await db.supportRequests.findMany({
+				where: {
+					msrId: msr.msrId,
+					status: { in: statusSuppotRequestSocialWorker },
+					supportType: { in: payload.supportTypes },
+				},
+				select: {
+					supportRequestId: true,
+					status: true,
+					zendeskTicketId: true,
+				},
+			});
+
+			if (!match && !supportRequest) {
+				return Response.json({
+					continue: true,
+				});
+			}
+			if (supportRequest) {
+				supportRequest.map((element) => {
+					ids.push(element.zendeskTicketId);
 				});
 			}
 		}
 
-		// ataulizar ticket supportreuquest
-		if (suppotRequest) {
-			for (let i = 0; i < suppotRequest.length; i++) {
-				await updateTicket({
-					id: suppotRequest[i].zendeskTicketId as unknown as number,
-					status: "new",
-					comment: {
-						body: "MSR tentou pedir um acolhimento novamente.",
-						public: false,
-					},
-				});
-			}
-		}
+		const bodyUpdate = {
+			ticket: {
+				comment: {
+					body: "MSR tentou pedir um acolhimento novamente.",
+					public: false,
+				},
+			},
+		};
 
+		await updateManyTickets(ids.join().toString(), bodyUpdate);
 		return Response.json({
 			continue: false,
 		});
