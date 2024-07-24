@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Box, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import Image from "next/image";
-import DesktopIllustration from "@/components/DesktopIllustration";
-import Header from "@/components/Header";
+import DesktopIllustration from "../../DesktopIllustration";
+import Header from "../../Header";
 
 export default function CriteriaDenied() {
 	return (
@@ -113,7 +113,7 @@ export default function CriteriaDenied() {
 						<Flex px={"3"} py={"3"} pb={"9"} align={"center"} gap={"3"}>
 							<Image
 								src="/illustrations/good-msg.svg"
-								alt="Mulher de cabeça baixa tampando os ouvidos"
+								alt="Balão de diálogo roxo com um coração dentro"
 								width={30}
 								height={30}
 							/>
