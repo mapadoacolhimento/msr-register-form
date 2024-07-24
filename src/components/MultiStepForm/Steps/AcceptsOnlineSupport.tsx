@@ -17,6 +17,11 @@ export default function AcceptsOnlineSupport() {
 			onSubmit={() => sleep(300).then(() => console.log("Step2 onSubmit"))}
 			validationSchema={acceptsOnlineSupportSchema}
 			title={"Sobre o acolhimento"}
+			subtitle={
+				<>
+					Você aceitaria ser atendida <Strong>online</Strong>?
+				</>
+			}
 			img={{
 				src: "/illustrations/woman-getting-support.webp",
 				alt: "Ilustração com duas mulheres sentadas conversando",
@@ -25,11 +30,6 @@ export default function AcceptsOnlineSupport() {
 			<RadioInput
 				name="acceptsOnlineSupport"
 				options={acceptsOnlineSupportOptions}
-				question={
-					<>
-						Você aceitaria ser atendida <Strong>online</Strong>?
-					</>
-				}
 			/>
 		</Step>
 	);

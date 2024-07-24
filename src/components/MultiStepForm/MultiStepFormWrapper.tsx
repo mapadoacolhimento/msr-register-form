@@ -98,7 +98,7 @@ export default function MultiStepFormWrapper({
 									</Heading>
 									<Flex justify={"center"} align={"center"} maxWidth="25rem">
 										<Text align={"center"} mb={"5"}>
-											{step.props.description}
+											{step.props.subtitle}
 										</Text>
 									</Flex>
 								</div>

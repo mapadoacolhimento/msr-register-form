@@ -19,21 +19,18 @@ export default function FinancialNeed() {
 			onSubmit={() => sleep(300).then(() => console.log("Step onSubmit"))}
 			validationSchema={financialNeedSchema}
 			title={"Sobre sua renda"}
+			subtitle={
+				<>
+					Você declara que <Strong>não pode pagar</Strong> por atendimento
+					jurídico/psicológico?
+				</>
+			}
 			img={{
 				src: "/illustrations/notebook.webp",
 				alt: "Ilustração de um caderno, um lápis amarelo e alguns clips",
 			}}
 		>
-			<RadioInput
-				name="financialNeed"
-				options={financialNeedOptions}
-				question={
-					<>
-						Você declara que <Strong>não pode pagar</Strong> por atendimento
-						jurídico/psicológico?
-					</>
-				}
-			/>
+			<RadioInput name="financialNeed" options={financialNeedOptions} />
 			<CheckboxInfo name="terms">
 				Ao inserir seus dados, você concorda em ter seus dados compartilhados
 				com os organizadores dessa página e aceita receber emails de

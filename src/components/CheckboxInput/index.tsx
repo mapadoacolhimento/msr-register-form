@@ -12,12 +12,10 @@ type CheckboxOption = {
 type CheckboxInputProps = {
 	name: string;
 	options: CheckboxOption[];
-	question: React.ReactNode;
 };
 
 export default function CheckboxInput({
 	options,
-	question,
 	name,
 }: Readonly<CheckboxInputProps>) {
 	const [field, _meta, helpers] = useField({
@@ -45,11 +43,6 @@ export default function CheckboxInput({
 			id={`checkbox-group-${name}`}
 			color={"purple"}
 		>
-			<Box asChild pb={{ initial: "7", sm: "5" }}>
-				<Text asChild align={"center"} id={"question"}>
-					<legend>{question}</legend>
-				</Text>
-			</Box>
 			{options.map((option: CheckboxOption, i) => {
 				return (
 					<CheckboxCards.Item

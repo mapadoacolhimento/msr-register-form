@@ -17,20 +17,17 @@ export default function GenderIdentity() {
 			onSubmit={() => sleep(300).then(() => console.log("Step3 onSubmit"))}
 			validationSchema={genderIdentitySchema}
 			title={"Sobre você"}
+			subtitle={
+				<>
+					Qual sua <Strong>identidade de gênero</Strong>?
+				</>
+			}
 			img={{
 				src: "/illustrations/woman-self-hug.webp",
 				alt: "Ilustração com uma mulher de cabelo roxo se abraçando",
 			}}
 		>
-			<RadioInput
-				name="genderIdentity"
-				options={genderIdentityOptions}
-				question={
-					<>
-						Qual sua <Strong>identidade de gênero</Strong>?
-					</>
-				}
-			/>
+			<RadioInput name="genderIdentity" options={genderIdentityOptions} />
 			<HoverInfo
 				title="O que isso significa?"
 				description="Identidade de gênero refere-se à forma como uma pessoa se identifica internamente e como ela se define em termos de gênero. Isso pode ou não corresponder ao sexo atribuído no nascimento."

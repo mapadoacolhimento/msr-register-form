@@ -17,20 +17,17 @@ export default function DisabilityInformation() {
 			onSubmit={() => sleep(300).then(() => console.log("Step onSubmit"))}
 			validationSchema={disabilityInformationSchema}
 			title={"Seus dados"}
+			subtitle={
+				<>
+					Você é <Strong>PcD </Strong>(Pessoa com deficiência)?
+				</>
+			}
 			img={{
 				src: "/illustrations/woman-floating.webp",
 				alt: "Ilustração com uma mulher flutuando.",
 			}}
 		>
-			<RadioInput
-				name="hasDisability"
-				options={disabilityOptions}
-				question={
-					<>
-						Você é <Strong>PcD </Strong>(Pessoa com deficiência)?
-					</>
-				}
-			/>
+			<RadioInput name="hasDisability" options={disabilityOptions} />
 		</Step>
 	);
 }

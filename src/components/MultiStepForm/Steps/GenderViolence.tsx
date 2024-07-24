@@ -15,16 +15,13 @@ export default function GenderViolence() {
 			onSubmit={() => sleep(300).then(() => console.log("Step6 onSubmit"))}
 			validationSchema={genderViolenceSchema}
 			title={"Sobre a violência"}
+			subtitle={"Você sofreu ou está sofrendo violência de gênero?"}
 			img={{
 				src: "/illustrations/woman-covering-ears.webp",
 				alt: "Ilustração de uma mulher de cabeça baixa tampando os ouvidos",
 			}}
 		>
-			<RadioInput
-				name="genderViolence"
-				options={genderViolenceOptions}
-				question={"Você sofreu ou está sofrendo violência de gênero?"}
-			/>
+			<RadioInput name="genderViolence" options={genderViolenceOptions} />
 		</Step>
 	);
 }
