@@ -124,8 +124,23 @@ export default function CriteriaDenied() {
 				</div>
 			</div>
 			<DesktopIllustration
-				img={{ src: "/illustrations/laptop.webp", alt: "" }}
+				img={{
+					src: "/illustrations/laptop.webp",
+					alt: "Computador branco com rosa,  com a logo roxa do mapa do acolhimento na tela do monitor",
+				}}
 			/>
+			<Box
+				position={"absolute"}
+				right={"0"}
+				bottom="-15rem"
+				display={{ initial: "block", md: "none" }}
+			>
+				<img
+					src="/illustrations/laptop.webp"
+					height={"250px"}
+					alt="Computador branco com rosa,  com a logo roxa do mapa do acolhimento na tela do monitor"
+				/>
+			</Box>
 		</Grid>
 	);
 }
