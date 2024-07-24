@@ -70,10 +70,10 @@ describe("<GenderIdentity />", () => {
 		});
 		expect(heartIcon).toBeInTheDocument();
 
-		const text1 = screen.getByText("Ficou com alguma dúvida?");
+		const text1 = screen.queryByText(/Ficou\scom\salguma\sdúvida\?/i);
 		expect(text1).toBeInTheDocument();
 
-		const text2 = screen.getByText("Fale conosco em contato@mapa.org.br");
+		const text2 = screen.queryByText(/Fale\sconosco\sem\scontato@mapa.org.br/i);
 		expect(text2).toBeInTheDocument();
 	});
 });
