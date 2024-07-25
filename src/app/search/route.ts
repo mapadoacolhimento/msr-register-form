@@ -88,7 +88,10 @@ export async function POST(request: Request) {
 			},
 		};
 
-		await updateManyTickets(ids.join().toString(), bodyUpdate);
+		const response = await updateManyTickets(ids.join().toString(), bodyUpdate);
+
+		console.log(await response.text(), response.status);
+
 		return Response.json({
 			continue: false,
 		});
