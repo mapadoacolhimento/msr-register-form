@@ -32,9 +32,7 @@ export async function POST(request: Request) {
 			});
 		}
 
-		let ids: bigint[] = [];
-
-		const supportRequest = await db.supportRequests.findMany({
+		const supportRequests = await db.supportRequests.findMany({
 			where: {
 				msrId: msr.msrId,
 				status: { in: statusSuppotRequestInProgress },
@@ -47,15 +45,15 @@ export async function POST(request: Request) {
 			},
 		});
 
-		if (supportRequest.length == 0) {
+		if (supportRequests.length == 0) {
 			return Response.json({
 				continue: true,
 			});
 		}
 
-		supportRequest.map((element) => {
-			ids.push(element.zendeskTicketId);
-		});
+		const ids = supportRequests
+			.map(({ zendeskTicketId }) => zendeskTicketId)
+			.join();
 
 		const bodyUpdate = {
 			ticket: {
@@ -67,8 +65,7 @@ export async function POST(request: Request) {
 			},
 		};
 
-		const response = await updateManyTickets(ids.join().toString(), bodyUpdate);
-		console.log(await response.text(), response.status);
+		const response = await updateManyTickets(ids, bodyUpdate);
 
 		return Response.json({
 			continue: false,
