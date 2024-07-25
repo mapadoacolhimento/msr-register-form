@@ -23,7 +23,7 @@ export default function DisabilityInformation() {
 				</>
 			}
 			img={{
-				src: "/illustrations/woman-floating.webp",
+				src: "/illustrations/woman-floating.svg",
 				alt: "Ilustração com uma mulher flutuando.",
 			}}
 		>

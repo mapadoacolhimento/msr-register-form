@@ -26,7 +26,7 @@ export default function FinancialNeed() {
 				</>
 			}
 			img={{
-				src: "/illustrations/notebook.webp",
+				src: "/illustrations/notebook.svg",
 				alt: "Ilustração de um caderno, um lápis amarelo e alguns clips",
 			}}
 		>

@@ -23,7 +23,7 @@ export default function SupportType() {
 				</>
 			}
 			img={{
-				src: "/illustrations/woman-getting-support.webp",
+				src: "/illustrations/woman-getting-support.svg",
 				alt: "Ilustração com duas mulheres sentadas conversando",
 			}}
 		>

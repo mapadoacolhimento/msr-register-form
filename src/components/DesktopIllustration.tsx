@@ -7,7 +7,7 @@ export default function DesktopIllustration({
 		<Flex
 			display={{ initial: "none", md: "flex" }}
 			asChild
-			style={{ backgroundColor: "var(--yellow-2)", height: "100%" }}
+			style={{ backgroundColor: "var(--yellow-2)", minHeight: "100%" }}
 			height={"calc(100vh - 100px)"}
 			justify={"center"}
 			align={"center"}
@@ -16,9 +16,7 @@ export default function DesktopIllustration({
 				<img
 					src={img.src}
 					alt={img.alt}
-					style={{ maxWidth: "100%", maxHeight: "100%" }}
-					width={"auto"}
-					height={"auto"}
+					style={{ minWidth: "100%", maxHeight: "100%" }}
 				/>
 			</aside>
 		</Flex>

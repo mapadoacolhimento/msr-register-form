@@ -60,7 +60,7 @@ export default function CriteriaDenied() {
 									maxHeight={"6rem"}
 								>
 									<Image
-										src="/illustrations/woman-receiving-care.svg"
+										src="/illustrations/woman-getting-support.svg"
 										alt="Mulher recebendo atendimento por outra mulher"
 										width={100}
 										height={100}
@@ -96,9 +96,9 @@ export default function CriteriaDenied() {
 									maxHeight={"6rem"}
 								>
 									<Image
-										src="/illustrations/mini-woman-covering-ears.svg"
+										src="/illustrations/woman-covering-ears.svg"
 										alt="Mulher de cabeça baixa tampando os ouvidos"
-										width={100}
+										width={120}
 										height={100}
 									/>
 								</Box>
@@ -125,7 +125,7 @@ export default function CriteriaDenied() {
 			</div>
 			<DesktopIllustration
 				img={{
-					src: "/illustrations/laptop.webp",
+					src: "/illustrations/laptop.svg",
 					alt: "Computador branco com rosa,  com a logo roxa do mapa do acolhimento na tela do monitor",
 				}}
 			/>
@@ -136,7 +136,7 @@ export default function CriteriaDenied() {
 				display={{ initial: "block", md: "none" }}
 			>
 				<img
-					src="/illustrations/laptop.webp"
+					src="/illustrations/laptop.svg"
 					height={"250px"}
 					alt="Computador branco com rosa,  com a logo roxa do mapa do acolhimento na tela do monitor"
 				/>

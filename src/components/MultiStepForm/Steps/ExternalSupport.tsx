@@ -23,7 +23,7 @@ export default function ExternalSupport() {
 				</>
 			}
 			img={{
-				src: "/illustrations/woman-covering-ears.webp",
+				src: "/illustrations/woman-covering-ears.svg",
 				alt: "Ilustração de uma mulher de cabeça baixa tampando os ouvidos",
 			}}
 		>

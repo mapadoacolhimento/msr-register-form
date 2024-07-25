@@ -23,7 +23,7 @@ export default function GenderIdentity() {
 				</>
 			}
 			img={{
-				src: "/illustrations/woman-self-hug.webp",
+				src: "/illustrations/woman-self-hug.svg",
 				alt: "Ilustração com uma mulher de cabelo roxo se abraçando",
 			}}
 		>
