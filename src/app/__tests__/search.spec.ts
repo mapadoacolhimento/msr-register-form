@@ -50,7 +50,7 @@ describe("POST /search", () => {
 
 	const mockUpdateTicket = vi.spyOn(updateManyTickets, "default");
 
-	it("returns false when msr and support request exits", async () => {
+	it("should return `continue: false` when msr and support request exists", async () => {
 		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
 
 		mockedDb.matches.findMany.mockResolvedValue([]);
@@ -74,7 +74,7 @@ describe("POST /search", () => {
 		expect(mockUpdateTicket).toHaveBeenCalledWith("1234", body);
 	});
 
-	it("returns false when msr, two support request exits", async () => {
+	it("should return `continue: false` when msr exists and has two support requests", async () => {
 		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
 
 		mockedDb.supportRequests.findMany.mockResolvedValue(mockSupportRequest);
@@ -94,7 +94,7 @@ describe("POST /search", () => {
 		expect(mockUpdateTicket).toHaveBeenCalledWith("1234,5678", body);
 	});
 
-	it("returns true when msr does not exits", async () => {
+	it("should return `continue: true` when msr does not exist", async () => {
 		const request = new NextRequest(
 			new Request("http://localhost:3000/search", {
 				method: "POST",
@@ -108,7 +108,25 @@ describe("POST /search", () => {
 		});
 	});
 
-	it("returns error when dont have a valid payload", async () => {
+	it("should return `continue: true` when msr exists and suppor request does not exits", async () => {
+		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
+
+		mockedDb.supportRequests.findMany.mockResolvedValue([]);
+
+		const request = new NextRequest(
+			new Request("http://localhost:3000/search", {
+				method: "POST",
+				body: JSON.stringify(msr),
+			})
+		);
+		const response = await POST(request);
+		expect(response.status).toEqual(200);
+		expect(await response.json()).toEqual({
+			continue: true,
+		});
+	});
+
+	it("should return an error when theres not a valid payload", async () => {
 		const request = new NextRequest(
 			new Request("http://localhost:3000/search", {
 				method: "POST",
