@@ -5,6 +5,7 @@ import HeaderComponent from "./components/Header";
 import InfoBox from "./components/InfoBox";
 import Image from "next/image";
 import BackgroundIllustration from "./components/BackgroundIllustration";
+import Contact from "./components/Contact";
 
 export default function CriteriaDenied() {
 	return (
@@ -36,16 +37,7 @@ export default function CriteriaDenied() {
 						title="Sofri violência, e agora?"
 						description="Um guia prático para deixar o ciclo da violência"
 					/>
-					<Flex px={"3"} py={"3"} pb={"9"} align={"center"} gap={"3"}>
-						<Image
-							src="/illustrations/good-msg.svg"
-							alt="Balão de diálogo roxo com um coração dentro"
-							width={30}
-							height={30}
-						/>
-						Ficou com alguma dúvida? <br />
-						Fale conosco em contato@mapa.org.br
-					</Flex>
+					<Contact />
 				</HeaderComponent>
 			</div>
 			<BackgroundIllustration />
