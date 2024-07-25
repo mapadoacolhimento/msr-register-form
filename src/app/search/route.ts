@@ -46,7 +46,7 @@ export async function POST(request: Request) {
 				zendeskTicketId: true,
 			},
 		});
-		console.log(supportRequest);
+
 		if (supportRequest.length == 0) {
 			return Response.json({
 				continue: true,
