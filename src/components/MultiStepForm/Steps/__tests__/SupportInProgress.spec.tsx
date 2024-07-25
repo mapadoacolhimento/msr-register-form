@@ -1,15 +1,17 @@
 import { render, screen } from "@testing-library/react";
-import CriteriaDenied from "../CriteriaDenied";
+import SupportInProgress from "../SupportInProgress";
 
 const setup = () => {
-	return render(<CriteriaDenied />);
+	return render(<SupportInProgress />);
 };
 
-describe("<CriteriaDenied />", () => {
+describe("<SupportInProgress />", () => {
 	it("should render headers and descriptions", () => {
 		setup();
 
-		const heading1 = screen.getByRole("heading", { name: "Sentimos muito" });
+		const heading1 = screen.getByRole("heading", {
+			name: "Você já recebeu uma voluntária",
+		});
 		expect(heading1).toBeInTheDocument();
 
 		const heading2 = screen.getByRole("heading", {
@@ -17,9 +19,21 @@ describe("<CriteriaDenied />", () => {
 		});
 		expect(heading2).toBeInTheDocument();
 
-		const description1 = screen.getByText(
-			"O Mapa do Acolhimento atende mulheres cis, trans ou travestis maiores de 18 anos, que vivem no Brasil e enfrentam situações de vulnerabilidade socioeconômica."
-		);
+		const description1 = screen.getByText((content, element: any) => {
+			const hasText = (node: any) =>
+				node?.textContent &&
+				/Verificamos\sque\svocê\sjá\ssolicitou\sajuda\santeriormente\.\sO\scontato\sda\svoluntária\sfoi\senviado\spara\so\sseu\se-mail\.\sDe\stoda\sforma,\sentraremos\sem\scontato\scom\svocê\spor\se-mail\sem\saté\s3\sdias\súteis\spara\scompreender\so\sque\shouve\se,\sse\snecessário,\ste\sindicar\soutra\svoluntária\.\sSe\sdesejar,\spode\snos\scontatar\sdiretamente\spelo\se-mail\satendimento@mapadoacolhimento\.org\sObrigada\spela\sconfiança!/i.test(
+					node.textContent
+				);
+
+			const nodeHasText = hasText(element);
+			const childrenDontHaveText = Array.from(element.childNodes).every(
+				(child) => !hasText(child)
+			);
+
+			return nodeHasText && childrenDontHaveText;
+		});
+
 		expect(description1).toBeInTheDocument();
 
 		const description2 = screen.getByText(
