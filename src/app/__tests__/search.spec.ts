@@ -108,7 +108,7 @@ describe("POST /search", () => {
 		});
 	});
 
-	it("should return `continue: true` when msr exists and suppor request does not exits", async () => {
+	it("should return `continue: true` when msr exists but she has no support requests", async () => {
 		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
 
 		mockedDb.supportRequests.findMany.mockResolvedValue([]);
