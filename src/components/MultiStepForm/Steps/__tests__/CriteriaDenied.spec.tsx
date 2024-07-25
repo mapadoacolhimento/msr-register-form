@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import CriteriaDenied from "../CriteriaDenied";
+import CriteriaDenied from "../DeniedScreens/CriteriaDenied";
 
 const setup = () => {
 	return render(<CriteriaDenied />);
