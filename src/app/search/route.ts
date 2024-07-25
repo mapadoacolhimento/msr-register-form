@@ -2,8 +2,7 @@ import * as Yup from "yup";
 import {
 	db,
 	getErrorMessage,
-	statusMatchInProgress,
-	statusSuppotRequestSocialWorker,
+	statusSuppotRequestInProgress,
 	updateManyTickets,
 } from "../../lib";
 
@@ -34,54 +33,29 @@ export async function POST(request: Request) {
 		}
 
 		let ids: bigint[] = [];
-		const match = await db.matches.findMany({
+
+		const supportRequest = await db.supportRequests.findMany({
 			where: {
 				msrId: msr.msrId,
-				status: { in: statusMatchInProgress },
+				status: { in: statusSuppotRequestInProgress },
 				supportType: { in: payload.supportTypes },
 			},
 			select: {
-				matchId: true,
+				supportRequestId: true,
 				status: true,
-				msrZendeskTicketId: true,
+				zendeskTicketId: true,
 			},
 		});
-
-		if (match) {
-			match.map((element) => {
-				ids.push(element.msrZendeskTicketId);
+		console.log(supportRequest);
+		if (supportRequest.length == 0) {
+			return Response.json({
+				continue: true,
 			});
 		}
 
-		if (
-			match.length == 0 ||
-			(match.length == 1 && payload.supportTypes.length == 2)
-		) {
-			const supportRequest = await db.supportRequests.findMany({
-				where: {
-					msrId: msr.msrId,
-					status: { in: statusSuppotRequestSocialWorker },
-					supportType: { in: payload.supportTypes },
-				},
-				select: {
-					supportRequestId: true,
-					status: true,
-					zendeskTicketId: true,
-				},
-			});
-
-			if (match.length == 0 && supportRequest.length == 0) {
-				return Response.json({
-					continue: true,
-				});
-			}
-
-			if (supportRequest) {
-				supportRequest.map((element) => {
-					ids.push(element.zendeskTicketId);
-				});
-			}
-		}
+		supportRequest.map((element) => {
+			ids.push(element.zendeskTicketId);
+		});
 
 		const bodyUpdate = {
 			ticket: {

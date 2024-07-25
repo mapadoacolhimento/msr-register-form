@@ -24,22 +24,20 @@ describe("POST /search", () => {
 		msrId: 12345566 as unknown as bigint,
 		email: "lua@email.com",
 	};
-	const mockMatch = [
-		{
-			matchId: 23,
-			msrZendeskTicketId: 1234,
-			status: "waiting_contact",
-		},
-	];
 
 	const mockSupportRequest = [
 		{
 			supportRequestId: 222,
 			status: "scheduled_social_worker",
+			zendeskTicketId: 1234,
+		},
+
+		{
+			supportRequestId: 223,
+			status: "matched",
 			zendeskTicketId: 5678,
 		},
 	];
-
 	const body = {
 		ticket: {
 			status: "open",
@@ -51,31 +49,15 @@ describe("POST /search", () => {
 	};
 
 	const mockUpdateTicket = vi.spyOn(updateManyTickets, "default");
-	it("returns false when msr and match in progress exits", async () => {
-		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
-
-		mockedDb.matches.findMany.mockResolvedValue(mockMatch);
-
-		const request = new NextRequest(
-			new Request("http://localhost:3000/search", {
-				method: "POST",
-				body: JSON.stringify(msr),
-			})
-		);
-		const response = await POST(request);
-		expect(mockUpdateTicket).toHaveBeenCalledWith("1234", body);
-		expect(response.status).toEqual(200);
-		expect(await response.json()).toEqual({
-			continue: false,
-		});
-	});
 
 	it("returns false when msr and support request exits", async () => {
 		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
 
 		mockedDb.matches.findMany.mockResolvedValue([]);
 
-		mockedDb.supportRequests.findMany.mockResolvedValue(mockSupportRequest);
+		mockedDb.supportRequests.findMany.mockResolvedValue([
+			mockSupportRequest[0],
+		]);
 
 		const request = new NextRequest(
 			new Request("http://localhost:3000/search", {
@@ -89,15 +71,13 @@ describe("POST /search", () => {
 		expect(await response.json()).toEqual({
 			continue: false,
 		});
-		expect(mockUpdateTicket).toHaveBeenCalledWith("5678", body);
+		expect(mockUpdateTicket).toHaveBeenCalledWith("1234", body);
 	});
 
-	it("returns false when msr, match and support request exits", async () => {
+	it("returns false when msr, two support request exits", async () => {
 		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
 
 		mockedDb.supportRequests.findMany.mockResolvedValue(mockSupportRequest);
-
-		mockedDb.matches.findMany.mockResolvedValue(mockMatch);
 
 		const request = new NextRequest(
 			new Request("http://localhost:3000/search", {

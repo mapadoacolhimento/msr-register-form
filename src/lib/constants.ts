@@ -76,15 +76,13 @@ export const financialNeedOptions = [
 	},
 ];
 
-export const statusMatchInProgress = [
-	MatchStatus.waiting_contact,
-	MatchStatus.started_contact,
-	MatchStatus.in_contact,
-];
-
-export const statusSuppotRequestSocialWorker = [
+export const statusSuppotRequestInProgress = [
 	SupportRequestsStatus.scheduled_social_worker,
 	SupportRequestsStatus.social_worker,
+	SupportRequestsStatus.matched,
+	SupportRequestsStatus.waiting_for_match,
+	SupportRequestsStatus.waiting_for_match_with_priority,
+	SupportRequestsStatus.special_case,
 ];
 export const ZENDESK_SUBDOMAIN = process.env["ZENDESK_SUBDOMAIN"];
 export const ZENDESK_API_USER = `${process.env["ZENDESK_API_USER"]}/token`;
