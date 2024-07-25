@@ -55,7 +55,7 @@ export async function POST(request: Request) {
 			.map(({ zendeskTicketId }) => zendeskTicketId)
 			.join();
 
-		const bodyUpdate = {
+		const ticketUpadate = {
 			ticket: {
 				status: "open",
 				comment: {
@@ -65,7 +65,7 @@ export async function POST(request: Request) {
 			},
 		};
 
-		const response = await updateManyTickets(ids, bodyUpdate);
+		await updateManyTickets(ids, ticketUpadate);
 
 		return Response.json({
 			continue: false,
