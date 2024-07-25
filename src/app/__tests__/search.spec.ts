@@ -40,6 +40,16 @@ describe("POST /search", () => {
 		},
 	];
 
+	const body = {
+		ticket: {
+			status: "open",
+			comment: {
+				body: "MSR tentou realizar pedido de acolhimento novamente.",
+				public: false,
+			},
+		},
+	};
+
 	const mockUpdateTicket = vi.spyOn(updateManyTickets, "default");
 	it("returns false when msr and match in progress exits", async () => {
 		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
@@ -53,14 +63,7 @@ describe("POST /search", () => {
 			})
 		);
 		const response = await POST(request);
-		expect(mockUpdateTicket).toHaveBeenCalledWith("1234", {
-			ticket: {
-				comment: {
-					body: "MSR tentou pedir um acolhimento novamente.",
-					public: false,
-				},
-			},
-		});
+		expect(mockUpdateTicket).toHaveBeenCalledWith("1234", body);
 		expect(response.status).toEqual(200);
 		expect(await response.json()).toEqual({
 			continue: false,
@@ -69,6 +72,8 @@ describe("POST /search", () => {
 
 	it("returns false when msr and support request exits", async () => {
 		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
+
+		mockedDb.matches.findMany.mockResolvedValue([]);
 
 		mockedDb.supportRequests.findMany.mockResolvedValue(mockSupportRequest);
 
@@ -84,6 +89,7 @@ describe("POST /search", () => {
 		expect(await response.json()).toEqual({
 			continue: false,
 		});
+		expect(mockUpdateTicket).toHaveBeenCalledWith("5678", body);
 	});
 
 	it("returns false when msr, match and support request exits", async () => {
@@ -105,18 +111,10 @@ describe("POST /search", () => {
 		expect(await response.json()).toEqual({
 			continue: false,
 		});
-		expect(mockUpdateTicket).toHaveBeenCalledWith("1234,5678", {
-			ticket: {
-				comment: {
-					body: "MSR tentou pedir um acolhimento novamente.",
-					public: false,
-				},
-			},
-		});
+		expect(mockUpdateTicket).toHaveBeenCalledWith("1234,5678", body);
 	});
 
 	it("returns true when msr does not exits", async () => {
-		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(null);
 		const request = new NextRequest(
 			new Request("http://localhost:3000/search", {
 				method: "POST",

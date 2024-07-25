@@ -20,11 +20,16 @@ export default async function updateManyTickets(
 ) {
 	try {
 		const endpoint =
-			ZENDESK_SUBDOMAIN + "api/v2/tickets/update_many.json?" + ids + ".json";
-
+			ZENDESK_SUBDOMAIN + "/api/v2/tickets/update_many.json?ids=" + ids;
+		console.log(
+			endpoint,
+			JSON.stringify({
+				...body,
+			})
+		);
 		const response = await fetch(endpoint, {
 			body: JSON.stringify({
-				body,
+				...body,
 			}),
 			method: "PUT",
 			headers: {
