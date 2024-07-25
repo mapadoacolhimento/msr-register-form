@@ -5,7 +5,7 @@ import {
 	Children,
 } from "react";
 import { type FormikHelpers, Form, Formik } from "formik";
-import { Box, Flex, Grid, Heading, IconButton, Text } from "@radix-ui/themes";
+import { Flex, Grid, Heading, IconButton, Text } from "@radix-ui/themes";
 import { ChevronLeftIcon } from "@radix-ui/react-icons";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 

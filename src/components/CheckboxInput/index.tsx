@@ -1,5 +1,5 @@
 import { useField } from "formik";
-import { Box, CheckboxCards, Text } from "@radix-ui/themes";
+import { CheckboxCards, Text } from "@radix-ui/themes";
 
 import ErrorMessage from "../ErrorMessage";
 import "./CheckboxInput.css";
