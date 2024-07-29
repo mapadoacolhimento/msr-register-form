@@ -2,7 +2,6 @@ import { NextRequest } from "next/server";
 import { mockReset } from "vitest-mock-extended";
 import mockedDb from "../../lib/__mocks__/db";
 import { POST } from "../search/route";
-import { SupportRequestsStatus } from "@prisma/client";
 
 describe("POST /search", () => {
 	beforeEach(() => {
@@ -169,7 +168,7 @@ describe("POST /search", () => {
 			})
 		);
 		const response = await POST(request);
-		//expect(response.status).toStrictEqual(400);
+		expect(response.status).toStrictEqual(400);
 		expect(await response.text()).toStrictEqual(
 			"Validation error: supportTypes is a required field"
 		);

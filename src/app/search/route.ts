@@ -3,12 +3,9 @@ import {
 	db,
 	getErrorMessage,
 	statusOnGoingMatch,
-	statusSuppotRequestisAlreadyInQueue,
 	statusSuppotRequestOnGoing,
-	statusSuppotRequestOnGoingSocialWorker,
 } from "../../lib";
-import { SupportRequestsStatus, SupportType } from "@prisma/client";
-import { S } from "vitest/dist/reporters-yx5ZTtEV.js";
+import { SupportType } from "@prisma/client";
 
 type MsrSearchResponse = {
 	psychological?: {
