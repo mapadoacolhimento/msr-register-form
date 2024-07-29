@@ -82,7 +82,6 @@ export const statusSuppotRequestInProgress = [
 	SupportRequestsStatus.matched,
 	SupportRequestsStatus.waiting_for_match,
 	SupportRequestsStatus.waiting_for_match_with_priority,
-	SupportRequestsStatus.special_case,
 ];
 
 export const ZENDESK_SUBDOMAIN = process.env["ZENDESK_SUBDOMAIN"];
