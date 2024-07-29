@@ -5,12 +5,12 @@ import {
 	Children,
 } from "react";
 import { type FormikHelpers, Form, Formik } from "formik";
-import { Flex, Grid, Heading, IconButton, Text } from "@radix-ui/themes";
+import { Flex, Heading, IconButton, Text } from "@radix-ui/themes";
 import { ChevronLeftIcon } from "@radix-ui/react-icons";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 
 import StepsController from "./StepsController";
-import { DesktopIllustration, Header } from "../";
+import { DesktopIllustration } from "../";
 import { type StepChildrenProps } from "./Step";
 import { type Values } from "./";
 
@@ -58,73 +58,68 @@ export default function MultiStepFormWrapper({
 	};
 
 	return (
-		<Grid columns={{ initial: "1", md: "1fr 55%" }} width="auto">
-			<div>
-				<Header />
-				<main>
-					<Formik
-						initialValues={snapshot}
-						onSubmit={handleSubmit}
-						validationSchema={step.props.validationSchema}
-					>
-						{({ isSubmitting, values }) => (
-							<Form>
-								<IconButton
-									onClick={() => previousStep(values)}
-									variant="ghost"
-									disabled={stepIndex === 0}
-									type={"button"}
-								>
-									<ChevronLeftIcon width="24" height="24" />
-									<VisuallyHidden.Root>
-										Voltar para o passo anterior
-									</VisuallyHidden.Root>
-								</IconButton>
-								<div
-									style={{
-										display: "flex",
-										flexDirection: "column",
-										alignItems: "center",
-									}}
-								>
-									<Heading
-										as={"h1"}
-										size={"8"}
-										color={"purple"}
-										highContrast
-										align={"center"}
-									>
-										{step.props.title}
-									</Heading>
-									<Flex justify={"center"} align={"center"} maxWidth="25rem">
-										<Text align={"center"} mb={"5"}>
-											{step.props.subtitle}
-										</Text>
-									</Flex>
-								</div>
-								<Flex
-									direction={"column"}
-									align={"center"}
-									justify={"center"}
-									gapY={"4"}
-								>
-									{step}
-								</Flex>
+		<>
+			<Formik
+				initialValues={snapshot}
+				onSubmit={handleSubmit}
+				validationSchema={step.props.validationSchema}
+			>
+				{({ isSubmitting, values }) => (
+					<Form>
+						<IconButton
+							onClick={() => previousStep(values)}
+							variant="ghost"
+							disabled={stepIndex === 0}
+							type={"button"}
+						>
+							<ChevronLeftIcon width="24" height="24" />
+							<VisuallyHidden.Root>
+								Voltar para o passo anterior
+							</VisuallyHidden.Root>
+						</IconButton>
+						<div
+							style={{
+								display: "flex",
+								flexDirection: "column",
+								alignItems: "center",
+							}}
+						>
+							<Heading
+								as={"h1"}
+								size={"8"}
+								color={"purple"}
+								highContrast
+								align={"center"}
+							>
+								{step.props.title}
+							</Heading>
+							<Flex justify={"center"} align={"center"} maxWidth="25rem">
+								<Text align={"center"} mb={"5"}>
+									{step.props.subtitle}
+								</Text>
+							</Flex>
+						</div>
+						<Flex
+							direction={"column"}
+							align={"center"}
+							justify={"center"}
+							gapY={"4"}
+						>
+							{step}
+						</Flex>
 
-								<StepsController
-									stepName={step.props.title}
-									stepNumber={stepNumber}
-									isButtonDisabled={isSubmitting}
-									progress={progress}
-									isLastStep={isLastStep}
-									img={step.props.img}
-								/>
-							</Form>
-						)}
-					</Formik>
-				</main>
-			</div>
+						<StepsController
+							stepName={step.props.title}
+							stepNumber={stepNumber}
+							isButtonDisabled={isSubmitting}
+							progress={progress}
+							isLastStep={isLastStep}
+							img={step.props.img}
+						/>
+					</Form>
+				)}
+			</Formik>
 			<DesktopIllustration img={step.props.img} />
-		</Grid>
+		</>
 	);
 }
