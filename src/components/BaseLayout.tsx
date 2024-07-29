@@ -4,7 +4,7 @@ import { type PropsWithChildren } from "react";
 import { Grid } from "@radix-ui/themes";
 import { Header } from "./";
 
-export default function MultiStepFormWrapper({ children }: PropsWithChildren) {
+export default function BaseLayout({ children }: PropsWithChildren) {
 	return (
 		<Grid columns={{ initial: "1", md: "1fr 55%" }} width="auto">
 			<div>

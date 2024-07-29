@@ -1,9 +1,9 @@
 import "@radix-ui/themes/styles.css";
-import { type PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import type { Metadata } from "next";
 import { nunitoSans, idealista } from "@/fonts";
 import Providers from "./providers";
-import BaseFormLayout from "../components/BaseFormLayout";
+import BaseLayout from "@/components/BaseLayout";
 
 export const metadata: Metadata = {
 	title: "Quero ser acolhida - Mapa do Acolhimento",
@@ -19,7 +19,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
 		>
 			<body>
 				<Providers>
-					<BaseFormLayout>{children}</BaseFormLayout>
+					<BaseLayout>{children}</BaseLayout>
 				</Providers>
 			</body>
 		</html>
