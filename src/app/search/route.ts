@@ -94,11 +94,13 @@ export async function POST(request: Request) {
 								match.supportRequestId === supportRequest.supportRequestId
 						)
 					) {
+						let shouldCreateMatch = true;
+						statusSuppotRequestOnGoing.map((status) => {
+							if (supportRequest.status === status) shouldCreateMatch = false;
+						});
 						msrSearchResponse[supportRequest.supportType] = {
 							supportRequestId: supportRequest.supportRequestId,
-							shouldCreateMatch: !statusSuppotRequestOnGoing.includes(
-								supportRequest.status
-							),
+							shouldCreateMatch: shouldCreateMatch,
 						};
 					}
 				});
