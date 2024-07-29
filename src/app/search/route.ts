@@ -55,17 +55,15 @@ export async function POST(request: Request) {
 			.map(({ zendeskTicketId }) => zendeskTicketId)
 			.join();
 
-		const ticketUpadate = {
-			ticket: {
-				status: "open",
-				comment: {
-					body: "MSR tentou realizar pedido de acolhimento novamente.",
-					public: false,
-				},
+		const ticket = {
+			status: "open",
+			comment: {
+				body: "MSR tentou realizar pedido de acolhimento novamente.",
+				public: false,
 			},
 		};
 
-		await updateManyTickets(ids, ticketUpadate);
+		await updateManyTickets(ids, { ticket });
 
 		return Response.json({
 			continue: false,

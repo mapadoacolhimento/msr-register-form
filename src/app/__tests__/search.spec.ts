@@ -69,7 +69,7 @@ describe("POST /search", () => {
 		expect(await response.json()).toEqual({
 			continue: false,
 		});
-		expect(mockUpdateTicket).toHaveBeenCalledWith("1234", ticket);
+		expect(mockUpdateTicket).toHaveBeenCalledWith("1234", { ticket });
 	});
 
 	it("should return `continue: false` when msr exists and has two support requests", async () => {
@@ -89,7 +89,7 @@ describe("POST /search", () => {
 		expect(await response.json()).toEqual({
 			continue: false,
 		});
-		expect(mockUpdateTicket).toHaveBeenCalledWith("1234,5678", ticket);
+		expect(mockUpdateTicket).toHaveBeenCalledWith("1234,5678", { ticket });
 	});
 
 	it("should return `continue: true` when msr does not exist", async () => {
