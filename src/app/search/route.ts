@@ -5,10 +5,13 @@ import {
 	statusSuppotRequestInProgress,
 	updateManyTickets,
 } from "../../lib";
+import { SupportType } from "@prisma/client";
 
 const payloadSchema = Yup.object({
 	email: Yup.string().email().required(),
-	supportTypes: Yup.array().required(),
+	supportTypes: Yup.array()
+		.of(Yup.string().oneOf(Object.values(SupportType)).required())
+		.required(),
 }).required();
 
 export async function POST(request: Request) {
@@ -45,7 +48,7 @@ export async function POST(request: Request) {
 			},
 		});
 
-		if (supportRequests.length == 0) {
+		if (supportRequests.length === 0) {
 			return Response.json({
 				continue: true,
 			});
