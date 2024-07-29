@@ -3,7 +3,6 @@ import { mockReset } from "vitest-mock-extended";
 import mockedDb from "../../lib/__mocks__/db";
 import { POST } from "../search/route";
 import * as updateManyTickets from "../../lib/zendesk/updateManyTickets";
-import { expect } from "vitest";
 
 describe("POST /search", () => {
 	beforeEach(() => {
@@ -65,8 +64,8 @@ describe("POST /search", () => {
 		);
 		const response = await POST(request);
 		expect(mockUpdateTicket).toHaveBeenCalled();
-		expect(response.status).toEqual(200);
-		expect(await response.json()).toEqual({
+		expect(response.status).toStrictEqual(200);
+		expect(await response.json()).toStrictEqual({
 			continue: false,
 		});
 		expect(mockUpdateTicket).toHaveBeenCalledWith("1234", { ticket });
@@ -85,8 +84,8 @@ describe("POST /search", () => {
 		);
 		const response = await POST(request);
 		expect(mockUpdateTicket).toHaveBeenCalled();
-		expect(response.status).toEqual(200);
-		expect(await response.json()).toEqual({
+		expect(response.status).toStrictEqual(200);
+		expect(await response.json()).toStrictEqual({
 			continue: false,
 		});
 		expect(mockUpdateTicket).toHaveBeenCalledWith("1234,5678", { ticket });
@@ -100,8 +99,8 @@ describe("POST /search", () => {
 			})
 		);
 		const response = await POST(request);
-		expect(response.status).toEqual(200);
-		expect(await response.json()).toEqual({
+		expect(response.status).toStrictEqual(200);
+		expect(await response.json()).toStrictEqual({
 			continue: true,
 		});
 	});
@@ -118,8 +117,8 @@ describe("POST /search", () => {
 			})
 		);
 		const response = await POST(request);
-		expect(response.status).toEqual(200);
-		expect(await response.json()).toEqual({
+		expect(response.status).toStrictEqual(200);
+		expect(await response.json()).toStrictEqual({
 			continue: true,
 		});
 	});
@@ -132,8 +131,8 @@ describe("POST /search", () => {
 			})
 		);
 		const response = await POST(request);
-		expect(response.status).equal(400);
-		expect(await response.text()).equal(
+		expect(response.status).toStrictEqual(400);
+		expect(await response.text()).toStrictEqual(
 			"Validation error: supportTypes is a required field"
 		);
 	});
