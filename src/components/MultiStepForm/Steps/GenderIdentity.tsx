@@ -18,7 +18,7 @@ export default function GenderIdentity() {
 			validationSchema={genderIdentitySchema}
 			title={"Sobre você"}
 			img={{
-				src: "/illustrations/woman-self-hug.webp",
+				src: "/illustrations/woman-self-hug.svg",
 				alt: "Ilustração com uma mulher de cabelo roxo se abraçando",
 			}}
 		>

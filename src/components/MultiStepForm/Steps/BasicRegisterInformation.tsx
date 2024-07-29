@@ -87,7 +87,7 @@ export default function BasicRegisterInformation() {
 			validationSchema={basicRegisterInformationSchema}
 			title={"Seus dados"}
 			img={{
-				src: "/illustrations/woman-floating.webp",
+				src: "/illustrations/woman-floating.svg",
 				alt: "Ilustração com uma mulher flutuando.",
 			}}
 		>

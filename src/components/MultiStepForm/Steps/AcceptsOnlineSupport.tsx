@@ -18,7 +18,7 @@ export default function AcceptsOnlineSupport() {
 			validationSchema={acceptsOnlineSupportSchema}
 			title={"Sobre o acolhimento"}
 			img={{
-				src: "/illustrations/woman-getting-support.webp",
+				src: "/illustrations/woman-getting-support.svg",
 				alt: "Ilustração com duas mulheres sentadas conversando",
 			}}
 		>
