@@ -32,7 +32,7 @@ export default function RadioInput({
 			aria-labelledby={"question"}
 			id={`radio-group-${name}`}
 		>
-			<Box asChild pb={{ initial: "7", sm: "5" }}>
+			<Box asChild pb={{ initial: "7", sm: "8" }}>
 				<Text asChild align={"center"} id={"question"}>
 					<legend>{question}</legend>
 				</Text>

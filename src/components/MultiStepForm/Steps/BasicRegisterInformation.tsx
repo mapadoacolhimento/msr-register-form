@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import { Box } from "@radix-ui/themes";
 import Step from "../Step";
 import TextInput from "../../TextInput";
 import { colorOptions } from "../../../lib";
@@ -91,11 +92,13 @@ export default function BasicRegisterInformation() {
 				alt: "Ilustração com uma mulher flutuando.",
 			}}
 		>
-			<TextInput
-				name="firstName"
-				label="Primeiro nome"
-				placeholder="Qual o seu primeiro nome?"
-			/>
+			<Box pt={{ initial: "7", sm: "8" }} width={"100%"} maxWidth={"22rem"}>
+				<TextInput
+					name="firstName"
+					label="Primeiro nome"
+					placeholder="Qual o seu primeiro nome?"
+				/>
+			</Box>
 			<TextInput
 				name="email"
 				type="email"
