@@ -1,4 +1,4 @@
-import { SupportRequestsStatus } from "@prisma/client";
+import { MatchStatus, SupportRequestsStatus } from "@prisma/client";
 
 export const colorOptions = [
 	{ value: "black", label: "Preta" },
@@ -76,10 +76,24 @@ export const financialNeedOptions = [
 	},
 ];
 
-export const statusSuppotRequestInProgress = [
+export const statusOnGoingMatch = [
+	MatchStatus.waiting_contact,
+	MatchStatus.started_contact,
+	MatchStatus.in_contact,
+];
+
+export const statusSuppotRequestOnGoingSocialWorker = [
 	SupportRequestsStatus.scheduled_social_worker,
 	SupportRequestsStatus.social_worker,
-	SupportRequestsStatus.matched,
+];
+export const statusSuppotRequestisAlreadyInQueue = [
+	SupportRequestsStatus.waiting_for_match,
+	SupportRequestsStatus.waiting_for_match_with_priority,
+];
+
+export const statusSuppotRequestOnGoing = [
+	SupportRequestsStatus.scheduled_social_worker,
+	SupportRequestsStatus.social_worker,
 	SupportRequestsStatus.waiting_for_match,
 	SupportRequestsStatus.waiting_for_match_with_priority,
 ];

@@ -2,10 +2,24 @@ import * as Yup from "yup";
 import {
 	db,
 	getErrorMessage,
-	statusSuppotRequestInProgress,
-	updateManyTickets,
+	statusOnGoingMatch,
+	statusSuppotRequestisAlreadyInQueue,
+	statusSuppotRequestOnGoing,
+	statusSuppotRequestOnGoingSocialWorker,
 } from "../../lib";
-import { SupportType } from "@prisma/client";
+import { SupportRequestsStatus, SupportType } from "@prisma/client";
+import { S } from "vitest/dist/reporters-yx5ZTtEV.js";
+
+type MsrSearchResponse = {
+	psychological?: {
+		supportRequestId: number | null;
+		shouldCreateMatch: boolean;
+	};
+	legal?: {
+		supportRequestId: number | null;
+		shouldCreateMatch: boolean;
+	};
+};
 
 const payloadSchema = Yup.object({
 	email: Yup.string().email().required(),
@@ -29,48 +43,69 @@ export async function POST(request: Request) {
 			},
 		});
 
-		if (!msr) {
-			return Response.json({
-				continue: true,
-			});
-		}
+		let msrSearchResponse: MsrSearchResponse = {};
 
-		const supportRequests = await db.supportRequests.findMany({
-			where: {
-				msrId: msr.msrId,
-				status: { in: statusSuppotRequestInProgress },
-				supportType: { in: payload.supportTypes },
-			},
-			select: {
-				supportRequestId: true,
-				status: true,
-				zendeskTicketId: true,
-			},
+		payload.supportTypes.map((type: SupportType) => {
+			msrSearchResponse[type] = {
+				supportRequestId: null,
+				shouldCreateMatch: true,
+			};
 		});
 
-		if (supportRequests.length === 0) {
-			return Response.json({
-				continue: true,
+		if (msr) {
+			const matches = await db.matches.findMany({
+				where: {
+					msrId: msr.msrId,
+					status: { in: statusOnGoingMatch },
+					supportType: { in: payload.supportTypes },
+				},
+				select: {
+					supportRequestId: true,
+					status: true,
+					supportType: true,
+				},
 			});
+
+			matches.map((match) => {
+				msrSearchResponse[match.supportType] = {
+					supportRequestId: match.supportRequestId,
+					shouldCreateMatch: false,
+				};
+			});
+
+			if (matches.length < payload.supportTypes.length) {
+				const supportRequests = await db.supportRequests.findMany({
+					where: {
+						msrId: msr.msrId,
+						supportType: { in: payload.supportTypes },
+					},
+					select: {
+						supportRequestId: true,
+						status: true,
+						supportType: true,
+						zendeskTicketId: true,
+					},
+				});
+
+				supportRequests.map((supportRequest) => {
+					if (
+						!matches.find(
+							(match) =>
+								match.supportRequestId === supportRequest.supportRequestId
+						)
+					) {
+						msrSearchResponse[supportRequest.supportType] = {
+							supportRequestId: supportRequest.supportRequestId,
+							shouldCreateMatch: !statusSuppotRequestOnGoing.includes(
+								supportRequest.status
+							),
+						};
+					}
+				});
+			}
 		}
 
-		const ids = supportRequests
-			.map(({ zendeskTicketId }) => zendeskTicketId)
-			.join();
-
-		const ticket = {
-			status: "open",
-			comment: {
-				body: "MSR tentou realizar pedido de acolhimento novamente.",
-				public: false,
-			},
-		};
-
-		await updateManyTickets(ids, { ticket });
-
-		return Response.json({
-			continue: false,
-		});
+		return Response.json(msrSearchResponse);
 	} catch (e) {
 		const error = e as Record<string, unknown>;
 		if (error["name"] === "ValidationError") {

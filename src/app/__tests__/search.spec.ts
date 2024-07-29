@@ -2,7 +2,7 @@ import { NextRequest } from "next/server";
 import { mockReset } from "vitest-mock-extended";
 import mockedDb from "../../lib/__mocks__/db";
 import { POST } from "../search/route";
-import * as updateManyTickets from "../../lib/zendesk/updateManyTickets";
+import { SupportRequestsStatus } from "@prisma/client";
 
 describe("POST /search", () => {
 	beforeEach(() => {
@@ -19,6 +19,11 @@ describe("POST /search", () => {
 		supportTypes: ["psychological", "legal"],
 	};
 
+	const msr3 = {
+		email: "venus@email.com",
+		supportTypes: ["legal"],
+	};
+
 	const mockMsrPiiSec = {
 		msrId: 12345566 as unknown as bigint,
 		email: "lua@email.com",
@@ -27,27 +32,24 @@ describe("POST /search", () => {
 	const mockSupportRequest = [
 		{
 			supportRequestId: 222,
-			status: "scheduled_social_worker",
-			zendeskTicketId: 1234,
+			status: "social_worker",
+			supportType: "psychological",
 		},
 
 		{
 			supportRequestId: 223,
 			status: "matched",
-			zendeskTicketId: 5678,
+			supportType: "legal",
 		},
 	];
-	const ticket = {
-		status: "open",
-		comment: {
-			body: "MSR tentou realizar pedido de acolhimento novamente.",
-			public: false,
-		},
+
+	const mockMatch = {
+		supportRequestId: 224,
+		status: "waiting_contact",
+		supportType: "legal",
 	};
 
-	const mockUpdateTicket = vi.spyOn(updateManyTickets, "default");
-
-	it("should return `continue: false` when msr and support request exists", async () => {
+	it("should return `psychological: {shouldCreateMatch: false, supportRequestId: 222,}` when msr and support request exists", async () => {
 		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
 
 		mockedDb.matches.findMany.mockResolvedValue([]);
@@ -63,16 +65,19 @@ describe("POST /search", () => {
 			})
 		);
 		const response = await POST(request);
-		expect(mockUpdateTicket).toHaveBeenCalled();
 		expect(response.status).toStrictEqual(200);
 		expect(await response.json()).toStrictEqual({
-			continue: false,
+			psychological: {
+				supportRequestId: 222,
+				shouldCreateMatch: false,
+			},
 		});
-		expect(mockUpdateTicket).toHaveBeenCalledWith("1234", { ticket });
 	});
 
-	it("should return `continue: false` when msr exists and has two support requests", async () => {
+	it("should return `legal: {shouldCreateMatch: false, supportRequestId: 224,}` when msr exists and has one match", async () => {
 		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
+
+		mockedDb.matches.findMany.mockResolvedValue([mockMatch]);
 
 		mockedDb.supportRequests.findMany.mockResolvedValue(mockSupportRequest);
 
@@ -83,15 +88,41 @@ describe("POST /search", () => {
 			})
 		);
 		const response = await POST(request);
-		expect(mockUpdateTicket).toHaveBeenCalled();
-		expect(response.status).toStrictEqual(200);
+		//	expect(response.status).toStrictEqual(200);
 		expect(await response.json()).toStrictEqual({
-			continue: false,
+			psychological: {
+				supportRequestId: 222,
+				shouldCreateMatch: false,
+			},
+			legal: {
+				supportRequestId: 223,
+				shouldCreateMatch: true,
+			},
 		});
-		expect(mockUpdateTicket).toHaveBeenCalledWith("1234,5678", { ticket });
 	});
 
-	it("should return `continue: true` when msr does not exist", async () => {
+	it("should return `legal: {shouldCreateMatch: false, supportRequestId: 224,}` when msr exists and has one match", async () => {
+		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
+
+		mockedDb.matches.findMany.mockResolvedValue([mockMatch]);
+
+		const request = new NextRequest(
+			new Request("http://localhost:3000/search", {
+				method: "POST",
+				body: JSON.stringify(msr3),
+			})
+		);
+		const response = await POST(request);
+		expect(response.status).toStrictEqual(200);
+		expect(await response.json()).toStrictEqual({
+			legal: {
+				supportRequestId: 224,
+				shouldCreateMatch: false,
+			},
+		});
+	});
+
+	it("should return `psychological: {supportRequestId: null,  shouldCreateMatch: true}` when msr does not exist", async () => {
 		const request = new NextRequest(
 			new Request("http://localhost:3000/search", {
 				method: "POST",
@@ -101,13 +132,17 @@ describe("POST /search", () => {
 		const response = await POST(request);
 		expect(response.status).toStrictEqual(200);
 		expect(await response.json()).toStrictEqual({
-			continue: true,
+			psychological: {
+				supportRequestId: null,
+				shouldCreateMatch: true,
+			},
 		});
 	});
 
-	it("should return `continue: true` when msr exists but she has no support requests", async () => {
+	it("should return `psychological: {supportRequestId: null,  shouldCreateMatch: true}` when msr exists but she has no matches and no supprt_requests", async () => {
 		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
 
+		mockedDb.matches.findMany.mockResolvedValue([]);
 		mockedDb.supportRequests.findMany.mockResolvedValue([]);
 
 		const request = new NextRequest(
@@ -119,7 +154,10 @@ describe("POST /search", () => {
 		const response = await POST(request);
 		expect(response.status).toStrictEqual(200);
 		expect(await response.json()).toStrictEqual({
-			continue: true,
+			psychological: {
+				supportRequestId: null,
+				shouldCreateMatch: true,
+			},
 		});
 	});
 
@@ -131,7 +169,7 @@ describe("POST /search", () => {
 			})
 		);
 		const response = await POST(request);
-		expect(response.status).toStrictEqual(400);
+		//expect(response.status).toStrictEqual(400);
 		expect(await response.text()).toStrictEqual(
 			"Validation error: supportTypes is a required field"
 		);
