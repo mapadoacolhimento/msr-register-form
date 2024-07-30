@@ -97,9 +97,9 @@ describe("POST /check-eligibility", () => {
 	it("should return `psychological: {shouldCreateMatch: false, supportRequestId: 222}, legal: {shouldCreateMatch: true, supportRequestId: 223}` when msr exists and has one match", async () => {
 		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec2);
 
-		mockedDb.matches.findFirst.mockResolvedValue([mockMatch]);
+		mockedDb.matches.findFirst.mockResolvedValueOnce(mockMatch);
 
-		mockedDb.supportRequests.findFirst.mockResolvedValue(mockSupportRequest);
+		mockedDb.supportRequests.findFirst.mockResolvedValue(mockSupportRequest[1]);
 
 		const request = new NextRequest(
 			new Request("http://localhost:3000/check-eligibility", {
@@ -111,7 +111,7 @@ describe("POST /check-eligibility", () => {
 		expect(response.status).toStrictEqual(200);
 		expect(await response.json()).toStrictEqual({
 			psychological: {
-				supportRequestId: 222,
+				supportRequestId: 224,
 				shouldCreateMatch: false,
 			},
 			legal: {
@@ -125,17 +125,18 @@ describe("POST /check-eligibility", () => {
 				status: true,
 				supportType: true,
 			},
+			orderBy: { createdAt: "asc" },
 			where: {
 				msrId: mockMsrPiiSec2.msrId,
-				supportType: { in: msr2.supportTypes },
-				supportRequestId: { notIn: [mockMatch.supportRequestId] },
+				supportType: msr2.supportTypes[1],
+				status: { not: "duplicated" },
 			},
 		});
 	});
 	it("should return `legal: {shouldCreateMatch: false, supportRequestId: 224}` when msr exists and has one match", async () => {
 		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec3);
 
-		mockedDb.matches.findFirst.mockResolvedValue([mockMatch]);
+		mockedDb.matches.findFirst.mockResolvedValue(mockMatch);
 
 		const request = new NextRequest(
 			new Request("http://localhost:3000/check-eligibility", {
@@ -173,8 +174,8 @@ describe("POST /check-eligibility", () => {
 	it("should return `psychological: {supportRequestId: null,  shouldCreateMatch: true}` when msr exists but she has no matches and no supprt_requests", async () => {
 		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
 
-		mockedDb.matches.findFirst.mockResolvedValue([]);
-		mockedDb.supportRequests.findFirst.mockResolvedValue([]);
+		mockedDb.matches.findFirst.mockResolvedValue(null);
+		mockedDb.supportRequests.findFirst.mockResolvedValue(null);
 
 		const request = new NextRequest(
 			new Request("http://localhost:3000/check-eligibility", {
