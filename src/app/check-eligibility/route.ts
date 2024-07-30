@@ -93,8 +93,6 @@ async function checkMatchEligibility(
 		supportRequest.status
 	);
 
-	console.log("ola", supportRequest, hasOngoingSupport);
-
 	return {
 		supportRequestId: supportRequest.supportRequestId,
 		shouldCreateMatch: !hasOngoingSupport,
