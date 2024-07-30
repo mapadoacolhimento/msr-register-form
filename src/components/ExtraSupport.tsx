@@ -27,14 +27,14 @@ const ExtraSupport = () => (
 				imgSrc="/illustrations/woman-getting-support.svg"
 				imgAlt="Mulher recebendo atendimento por outra mulher"
 				title="Onde e como posso pedir ajuda?"
-				description="Conheça os serviços públicos de proteção que você pode acessar"
+				description="Conheça os serviços públicos de proteção que você pode acessar."
 			/>
 		</Box>
 		<InfoBox
 			imgSrc="/illustrations/woman-covering-ears.svg"
 			imgAlt="Mulher de cabeça baixa tampando os ouvidos"
 			title="Sofri violência, e agora?"
-			description="Um guia prático para deixar o ciclo da violência"
+			description="Um guia prático para deixar o ciclo da violência."
 		/>
 	</>
 );

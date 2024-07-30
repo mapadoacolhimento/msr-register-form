@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Text } from "@radix-ui/themes";
+import { Box, Flex, Heading, Strong, Text, Link } from "@radix-ui/themes";
 import Contact from "../../components/Contact";
 import ExtraSupport from "../../components/ExtraSupport";
 import DesktopIllustration from "../../components/DesktopIllustration";
@@ -15,15 +15,29 @@ export default function Page() {
 						color={"purple"}
 						highContrast
 					>
-						Sentimos muito
+						Você já recebeu uma voluntária
 					</Heading>
 				</Box>
+				<Text align={"center"}>
+					Verificamos que você já solicitou ajuda anteriormente. O contato da
+					voluntária foi enviado para o seu e-mail.
+				</Text>
+				<br />
+				<Text align={"center"}>
+					De toda forma, entraremos em contato com você por e-mail em até{" "}
+					<Strong>3 dias úteis</Strong> para compreender o que houve e, se
+					necessário, te indicar outra voluntária. Se desejar, pode nos contatar
+					diretamente pelo e-mail{" "}
+					<Link
+						href={"mailto:atendimento@mapadoacolhimento.org"}
+						target={"_blank"}
+					>
+						atendimento@mapadoacolhimento.org
+					</Link>
+				</Text>
+				<br />
 				<Box pb={{ initial: "7", sm: "8" }} asChild>
-					<Text align={"center"}>
-						O Mapa do Acolhimento atende mulheres cis, trans ou travestis
-						maiores de 18 anos, que vivem no Brasil e enfrentam situações de
-						vulnerabilidade socioeconômica.
-					</Text>
+					<Text align={"center"}>Obrigada pela confiança!</Text>
 				</Box>
 				<ExtraSupport />
 				<Contact />

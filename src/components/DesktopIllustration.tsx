@@ -14,7 +14,7 @@ export default function DesktopIllustration({
 			top={"0"}
 			right={"0"}
 			width={"55%"}
-			height={"100vh"}
+			height={"100%"}
 		>
 			<aside>
 				<img src={img.src} alt={img.alt} style={{ maxWidth: "95%" }} />
