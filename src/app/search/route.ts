@@ -42,7 +42,7 @@ export async function POST(request: Request) {
 
 		let msrSearchResponse: MsrSearchResponse = {};
 
-		payload.supportTypes.map((type: SupportType) => {
+		payload.supportTypes.forEach((type: SupportType) => {
 			msrSearchResponse[type] = {
 				supportRequestId: null,
 				shouldCreateMatch: true,
@@ -63,7 +63,7 @@ export async function POST(request: Request) {
 				},
 			});
 
-			matches.map((match) => {
+			matches.forEach((match) => {
 				msrSearchResponse[match.supportType] = {
 					supportRequestId: match.supportRequestId,
 					shouldCreateMatch: false,
@@ -84,7 +84,7 @@ export async function POST(request: Request) {
 					},
 				});
 
-				supportRequests.map((supportRequest) => {
+				supportRequests.forEach((supportRequest) => {
 					if (
 						!matches.find(
 							(match) =>
@@ -92,7 +92,7 @@ export async function POST(request: Request) {
 						)
 					) {
 						let shouldCreateMatch = true;
-						statusSuppotRequestOnGoing.map((status) => {
+						statusSuppotRequestOnGoing.forEach((status) => {
 							if (supportRequest.status === status) shouldCreateMatch = false;
 						});
 						msrSearchResponse[supportRequest.supportType] = {
