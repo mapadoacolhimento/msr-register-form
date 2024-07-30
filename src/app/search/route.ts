@@ -3,7 +3,7 @@ import {
 	db,
 	getErrorMessage,
 	statusOnGoingMatch,
-	statusSuppotRequestOnGoing,
+	statusOnGoingSuppotRequest,
 } from "../../lib";
 import { SupportType } from "@prisma/client";
 
@@ -71,35 +71,38 @@ export async function POST(request: Request) {
 			});
 
 			if (matches.length < payload.supportTypes.length) {
-				const supportRequests = await db.supportRequests.findMany({
-					where: {
+				let where;
+				if (matches.length === 0) {
+					where = {
 						msrId: msr.msrId,
 						supportType: { in: payload.supportTypes },
-					},
+					};
+				} else {
+					let supportRequestIds = matches.map(
+						(match) => match.supportRequestId
+					);
+					where = {
+						msrId: msr.msrId,
+						supportType: { in: payload.supportTypes },
+						supportRequestId: { notIn: supportRequestIds },
+					};
+				}
+				const supportRequests = await db.supportRequests.findMany({
+					where,
 					select: {
 						supportRequestId: true,
 						status: true,
 						supportType: true,
-						zendeskTicketId: true,
 					},
 				});
 
 				supportRequests.forEach((supportRequest) => {
-					if (
-						!matches.find(
-							(match) =>
-								match.supportRequestId === supportRequest.supportRequestId
-						)
-					) {
-						let shouldCreateMatch = true;
-						statusSuppotRequestOnGoing.forEach((status) => {
-							if (supportRequest.status === status) shouldCreateMatch = false;
-						});
-						msrSearchResponse[supportRequest.supportType] = {
-							supportRequestId: supportRequest.supportRequestId,
-							shouldCreateMatch: shouldCreateMatch,
-						};
-					}
+					msrSearchResponse[supportRequest.supportType] = {
+						supportRequestId: supportRequest.supportRequestId,
+						shouldCreateMatch: !statusOnGoingSuppotRequest.includes(
+							supportRequest.status
+						),
+					};
 				});
 			}
 		}

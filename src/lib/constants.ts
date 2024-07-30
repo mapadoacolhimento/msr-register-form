@@ -91,11 +91,11 @@ export const statusSuppotRequestisAlreadyInQueue = [
 	SupportRequestsStatus.waiting_for_match_with_priority,
 ];
 
-export const statusSuppotRequestOnGoing = [
-	SupportRequestsStatus.scheduled_social_worker,
-	SupportRequestsStatus.social_worker,
-	SupportRequestsStatus.waiting_for_match,
-	SupportRequestsStatus.waiting_for_match_with_priority,
+export const statusOnGoingSuppotRequest = [
+	"scheduled_social_worker",
+	"social_worker",
+	"waiting_for_match",
+	"waiting_for_match_with_priority",
 ];
 
 export const ZENDESK_SUBDOMAIN = process.env["ZENDESK_SUBDOMAIN"];

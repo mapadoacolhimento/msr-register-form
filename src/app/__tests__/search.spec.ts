@@ -28,6 +28,16 @@ describe("POST /search", () => {
 		email: "lua@email.com",
 	};
 
+	const mockMsrPiiSec2 = {
+		msrId: 12344455 as unknown as bigint,
+		email: "sol@email.com",
+	};
+
+	const mockMsrPiiSec3 = {
+		msrId: 12347788 as unknown as bigint,
+		email: "venus@email.com",
+	};
+
 	const mockSupportRequest = [
 		{
 			supportRequestId: 222,
@@ -71,10 +81,21 @@ describe("POST /search", () => {
 				shouldCreateMatch: false,
 			},
 		});
+		expect(mockedDb.supportRequests.findMany).toHaveBeenCalledWith({
+			select: {
+				supportRequestId: true,
+				status: true,
+				supportType: true,
+			},
+			where: {
+				msrId: mockMsrPiiSec.msrId,
+				supportType: { in: msr.supportTypes },
+			},
+		});
 	});
 
-	it("should return `legal: {shouldCreateMatch: false, supportRequestId: 224,}` when msr exists and has one match", async () => {
-		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
+	it("should return `psychological: {shouldCreateMatch: false, supportRequestId: 222,}, legal: {shouldCreateMatch: true, supportRequestId: 223,}` when msr exists and has one match", async () => {
+		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec2);
 
 		mockedDb.matches.findMany.mockResolvedValue([mockMatch]);
 
@@ -87,7 +108,7 @@ describe("POST /search", () => {
 			})
 		);
 		const response = await POST(request);
-		//	expect(response.status).toStrictEqual(200);
+		expect(response.status).toStrictEqual(200);
 		expect(await response.json()).toStrictEqual({
 			psychological: {
 				supportRequestId: 222,
@@ -98,10 +119,21 @@ describe("POST /search", () => {
 				shouldCreateMatch: true,
 			},
 		});
+		expect(mockedDb.supportRequests.findMany).toHaveBeenCalledWith({
+			select: {
+				supportRequestId: true,
+				status: true,
+				supportType: true,
+			},
+			where: {
+				msrId: mockMsrPiiSec2.msrId,
+				supportType: { in: msr2.supportTypes },
+				supportRequestId: { notIn: [mockMatch.supportRequestId] },
+			},
+		});
 	});
-
 	it("should return `legal: {shouldCreateMatch: false, supportRequestId: 224,}` when msr exists and has one match", async () => {
-		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
+		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec3);
 
 		mockedDb.matches.findMany.mockResolvedValue([mockMatch]);
 
