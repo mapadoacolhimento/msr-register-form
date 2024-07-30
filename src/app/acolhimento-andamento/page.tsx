@@ -5,8 +5,13 @@ import DesktopIllustration from "../../components/DesktopIllustration";
 
 export default function Page() {
 	return (
-		<Flex width={"100%"} justify={"center"} py={{ initial: "8", md: "9" }}>
-			<Flex direction={"column"} align={"center"} px={"7"} maxWidth={"30rem"}>
+		<Flex
+			width={"100%"}
+			justify={"center"}
+			py={{ initial: "8", md: "9" }}
+			px={{ initial: "6", md: "7" }}
+		>
+			<Flex direction={"column"} align={"center"} maxWidth={"30rem"}>
 				<Box asChild pb={"4"}>
 					<Heading
 						as={"h1"}
