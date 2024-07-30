@@ -82,11 +82,11 @@ export const statusOnGoingMatch = [
 	MatchStatus.in_contact,
 ];
 
-export const statusSuppotRequestOnGoingSocialWorker = [
+export const statusSupportRequestOngoingSocialWorker = [
 	SupportRequestsStatus.scheduled_social_worker,
 	SupportRequestsStatus.social_worker,
 ];
-export const statusSuppotRequestisAlreadyInQueue = [
+export const statusSupportRequestisAlreadyInQueue = [
 	SupportRequestsStatus.waiting_for_match,
 	SupportRequestsStatus.waiting_for_match_with_priority,
 ];
