@@ -91,13 +91,6 @@ export const statusSuppotRequestisAlreadyInQueue = [
 	SupportRequestsStatus.waiting_for_match_with_priority,
 ];
 
-export const statusOnGoingSuppotRequest = [
-	"scheduled_social_worker",
-	"social_worker",
-	"waiting_for_match",
-	"waiting_for_match_with_priority",
-];
-
 export const ZENDESK_SUBDOMAIN = process.env["ZENDESK_SUBDOMAIN"];
 export const ZENDESK_API_USER = `${process.env["ZENDESK_API_USER"]}/token`;
 export const ZENDESK_API_TOKEN = process.env["ZENDESK_API_TOKEN"];

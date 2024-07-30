@@ -58,7 +58,7 @@ describe("POST /search", () => {
 		supportType: "legal",
 	};
 
-	it("should return `psychological: {shouldCreateMatch: false, supportRequestId: 222,}` when msr and support request exists", async () => {
+	it("should return `psychological: {shouldCreateMatch: false, supportRequestId: 222}` when msr and support request exists", async () => {
 		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
 
 		mockedDb.matches.findMany.mockResolvedValue([]);
@@ -94,7 +94,7 @@ describe("POST /search", () => {
 		});
 	});
 
-	it("should return `psychological: {shouldCreateMatch: false, supportRequestId: 222,}, legal: {shouldCreateMatch: true, supportRequestId: 223,}` when msr exists and has one match", async () => {
+	it("should return `psychological: {shouldCreateMatch: false, supportRequestId: 222}, legal: {shouldCreateMatch: true, supportRequestId: 223}` when msr exists and has one match", async () => {
 		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec2);
 
 		mockedDb.matches.findMany.mockResolvedValue([mockMatch]);
@@ -132,7 +132,7 @@ describe("POST /search", () => {
 			},
 		});
 	});
-	it("should return `legal: {shouldCreateMatch: false, supportRequestId: 224,}` when msr exists and has one match", async () => {
+	it("should return `legal: {shouldCreateMatch: false, supportRequestId: 224}` when msr exists and has one match", async () => {
 		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec3);
 
 		mockedDb.matches.findMany.mockResolvedValue([mockMatch]);

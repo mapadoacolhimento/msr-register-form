@@ -3,7 +3,8 @@ import {
 	db,
 	getErrorMessage,
 	statusOnGoingMatch,
-	statusOnGoingSuppotRequest,
+	statusSuppotRequestisAlreadyInQueue,
+	statusSuppotRequestOnGoingSocialWorker,
 } from "../../lib";
 import { SupportType } from "@prisma/client";
 
@@ -63,14 +64,18 @@ export async function POST(request: Request) {
 				},
 			});
 
+			let supportTypesOfMatches: SupportType[] = [];
+
 			matches.forEach((match) => {
 				msrSearchResponse[match.supportType] = {
 					supportRequestId: match.supportRequestId,
 					shouldCreateMatch: false,
 				};
+				if (supportTypesOfMatches.indexOf(match.supportType) === -1)
+					supportTypesOfMatches.push(match.supportType);
 			});
 
-			if (matches.length < payload.supportTypes.length) {
+			if (supportTypesOfMatches.length < payload.supportTypes.length) {
 				let where;
 				if (matches.length === 0) {
 					where = {
@@ -95,6 +100,11 @@ export async function POST(request: Request) {
 						supportType: true,
 					},
 				});
+
+				const statusOnGoingSuppotRequest: string[] = [
+					...statusSuppotRequestisAlreadyInQueue,
+					...statusSuppotRequestOnGoingSocialWorker,
+				];
 
 				supportRequests.forEach((supportRequest) => {
 					msrSearchResponse[supportRequest.supportType] = {
