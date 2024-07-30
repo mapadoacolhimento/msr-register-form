@@ -1,9 +1,9 @@
 import { NextRequest } from "next/server";
 import { mockReset } from "vitest-mock-extended";
 import mockedDb from "../../lib/__mocks__/db";
-import { POST } from "../search/route";
+import { POST } from "../check-eligibility/route";
 
-describe("POST /search", () => {
+describe("POST /check-eligibility", () => {
 	beforeEach(() => {
 		mockReset(mockedDb);
 	});
@@ -60,15 +60,11 @@ describe("POST /search", () => {
 
 	it("should return `psychological: {shouldCreateMatch: false, supportRequestId: 222}` when msr and support request exists", async () => {
 		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
-
-		mockedDb.matches.findMany.mockResolvedValue([]);
-
-		mockedDb.supportRequests.findMany.mockResolvedValue([
-			mockSupportRequest[0],
-		]);
+		mockedDb.matches.findFirst.mockResolvedValue(null);
+		mockedDb.supportRequests.findFirst.mockResolvedValue(mockSupportRequest[0]);
 
 		const request = new NextRequest(
-			new Request("http://localhost:3000/search", {
+			new Request("http://localhost:3000/check-eligibility", {
 				method: "POST",
 				body: JSON.stringify(msr),
 			})
@@ -81,15 +77,19 @@ describe("POST /search", () => {
 				shouldCreateMatch: false,
 			},
 		});
-		expect(mockedDb.supportRequests.findMany).toHaveBeenCalledWith({
+		expect(mockedDb.supportRequests.findFirst).toHaveBeenCalledWith({
 			select: {
 				supportRequestId: true,
 				status: true,
 				supportType: true,
 			},
+			orderBy: {
+				createdAt: "asc",
+			},
 			where: {
 				msrId: mockMsrPiiSec.msrId,
-				supportType: { in: msr.supportTypes },
+				supportType: msr.supportTypes[0],
+				status: { not: "duplicated" },
 			},
 		});
 	});
@@ -97,12 +97,12 @@ describe("POST /search", () => {
 	it("should return `psychological: {shouldCreateMatch: false, supportRequestId: 222}, legal: {shouldCreateMatch: true, supportRequestId: 223}` when msr exists and has one match", async () => {
 		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec2);
 
-		mockedDb.matches.findMany.mockResolvedValue([mockMatch]);
+		mockedDb.matches.findFirst.mockResolvedValue([mockMatch]);
 
-		mockedDb.supportRequests.findMany.mockResolvedValue(mockSupportRequest);
+		mockedDb.supportRequests.findFirst.mockResolvedValue(mockSupportRequest);
 
 		const request = new NextRequest(
-			new Request("http://localhost:3000/search", {
+			new Request("http://localhost:3000/check-eligibility", {
 				method: "POST",
 				body: JSON.stringify(msr2),
 			})
@@ -119,7 +119,7 @@ describe("POST /search", () => {
 				shouldCreateMatch: true,
 			},
 		});
-		expect(mockedDb.supportRequests.findMany).toHaveBeenCalledWith({
+		expect(mockedDb.supportRequests.findFirst).toHaveBeenCalledWith({
 			select: {
 				supportRequestId: true,
 				status: true,
@@ -135,10 +135,10 @@ describe("POST /search", () => {
 	it("should return `legal: {shouldCreateMatch: false, supportRequestId: 224}` when msr exists and has one match", async () => {
 		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec3);
 
-		mockedDb.matches.findMany.mockResolvedValue([mockMatch]);
+		mockedDb.matches.findFirst.mockResolvedValue([mockMatch]);
 
 		const request = new NextRequest(
-			new Request("http://localhost:3000/search", {
+			new Request("http://localhost:3000/check-eligibility", {
 				method: "POST",
 				body: JSON.stringify(msr3),
 			})
@@ -155,7 +155,7 @@ describe("POST /search", () => {
 
 	it("should return `psychological: {supportRequestId: null,  shouldCreateMatch: true}` when msr does not exist", async () => {
 		const request = new NextRequest(
-			new Request("http://localhost:3000/search", {
+			new Request("http://localhost:3000/check-eligibility", {
 				method: "POST",
 				body: JSON.stringify(msr),
 			})
@@ -173,11 +173,11 @@ describe("POST /search", () => {
 	it("should return `psychological: {supportRequestId: null,  shouldCreateMatch: true}` when msr exists but she has no matches and no supprt_requests", async () => {
 		mockedDb.mSRPiiSec.findUnique.mockResolvedValueOnce(mockMsrPiiSec);
 
-		mockedDb.matches.findMany.mockResolvedValue([]);
-		mockedDb.supportRequests.findMany.mockResolvedValue([]);
+		mockedDb.matches.findFirst.mockResolvedValue([]);
+		mockedDb.supportRequests.findFirst.mockResolvedValue([]);
 
 		const request = new NextRequest(
-			new Request("http://localhost:3000/search", {
+			new Request("http://localhost:3000/check-eligibility", {
 				method: "POST",
 				body: JSON.stringify(msr),
 			})
@@ -194,7 +194,7 @@ describe("POST /search", () => {
 
 	it("should return an error when theres not a valid payload", async () => {
 		const request = new NextRequest(
-			new Request("http://localhost:3000/search", {
+			new Request("http://localhost:3000/check-eligibility", {
 				method: "POST",
 				body: JSON.stringify({}),
 			})
