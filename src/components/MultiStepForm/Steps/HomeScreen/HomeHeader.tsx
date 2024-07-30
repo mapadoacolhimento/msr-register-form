@@ -7,8 +7,10 @@ export default function HomeHeader() {
 				<Flex
 					justify="between"
 					style={{ borderBottom: "1px solid var(--gray-4)" }}
+					align="end"
+					pb="2"
 				>
-					<Box pb={"4"}>
+					<Box>
 						<img
 							src={"/logo.svg"}
 							alt="Logo Mapa do Acolhimento"
