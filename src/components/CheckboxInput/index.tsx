@@ -17,8 +17,8 @@ type CheckboxInputProps = {
 
 export default function CheckboxInput({
 	options,
-	question,
 	name,
+	question,
 }: Readonly<CheckboxInputProps>) {
 	const [field, _meta, helpers] = useField({
 		name,
@@ -45,7 +45,7 @@ export default function CheckboxInput({
 			id={`checkbox-group-${name}`}
 			color={"purple"}
 		>
-			<Box asChild pb={{ initial: "7", sm: "5" }}>
+			<Box asChild pb={{ initial: "7", sm: "8" }}>
 				<Text asChild align={"center"} id={"question"}>
 					<legend>{question}</legend>
 				</Text>

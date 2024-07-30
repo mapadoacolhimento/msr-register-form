@@ -68,6 +68,8 @@
 			--pink-surface: color(display-p3 0.984 0.965 0.973 / 0.8);
 			--pink-indicator: oklch(74.6% 0.061 5.336);
 			--pink-track: oklch(74.6% 0.061 5.336);
+			--pink-salmon: color(display-p3 0.984 0.953 0.937);
+			--pink-soft: oklch(92.3% 0.03 5.336);
 		}
 	}
 }
