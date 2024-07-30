@@ -1,40 +1,30 @@
 import { render, screen } from "@testing-library/react";
-import SupportInProgress from "../DeniedScreens/SupportInProgress";
+import CriteriaDenied from "../fora-criterios/page";
 
 const setup = () => {
-	return render(<SupportInProgress />);
+	return render(<CriteriaDenied />);
 };
 
-describe("<SupportInProgress />", () => {
+describe("<CriteriaDenied />", () => {
 	it("should render headers and descriptions", () => {
 		setup();
 
 		const heading1 = screen.getByRole("heading", {
-			name: "Você já recebeu uma voluntária",
+			name: "Sentimos muito",
+			level: 1,
 		});
 		expect(heading1).toBeInTheDocument();
 
 		const heading2 = screen.getByRole("heading", {
 			name: "Como podemos te ajudar:",
+			level: 2,
 		});
 		expect(heading2).toBeInTheDocument();
 
-		// const description1 = screen.getByText((content, element: any) => {
-		// 	const hasText = (node: any) =>
-		// 		node?.textContent &&
-		// 		/Verificamos\sque\svocê\sjá\ssolicitou\sajuda\santeriormente\.\sO\scontato\sda\svoluntária\sfoi\senviado\spara\so\sseu\se-mail\.\sDe\stoda\sforma,\sentraremos\sem\scontato\scom\svocê\spor\se-mail\sem\saté\s3\sdias\súteis\spara\scompreender\so\sque\shouve\se,\sse\snecessário,\ste\sindicar\soutra\svoluntária\.\sSe\sdesejar,\spode\snos\scontatar\sdiretamente\spelo\se-mail\satendimento@mapadoacolhimento\.org\sObrigada\spela\sconfiança!/i.test(
-		// 			node.textContent
-		// 		);
-
-		// 	const nodeHasText = hasText(element);
-		// 	const childrenDontHaveText = Array.from(element.childNodes).every(
-		// 		(child) => !hasText(child)
-		// 	);
-
-		// 	return nodeHasText && childrenDontHaveText;
-		// });
-
-		// expect(description1).toBeInTheDocument();
+		const description1 = screen.getByText(
+			"O Mapa do Acolhimento atende mulheres cis, trans ou travestis maiores de 18 anos, que vivem no Brasil e enfrentam situações de vulnerabilidade socioeconômica."
+		);
+		expect(description1).toBeInTheDocument();
 
 		const description2 = screen.getByText(
 			"Conheça a rede de apoio que você pode acessar e um material preparado com cuidado para te ajudar nesse momento difícil:"
@@ -52,11 +42,12 @@ describe("<SupportInProgress />", () => {
 
 		const heading1 = screen.getByRole("heading", {
 			name: "Onde e como posso pedir ajuda?",
+			level: 3,
 		});
 		expect(heading1).toBeInTheDocument();
 
 		const description1 = screen.getByText(
-			"Conheça os serviços públicos de proteção que você pode acessar"
+			"Conheça os serviços públicos de proteção que você pode acessar."
 		);
 		expect(description1).toBeInTheDocument();
 
@@ -67,11 +58,12 @@ describe("<SupportInProgress />", () => {
 
 		const heading2 = screen.getByRole("heading", {
 			name: "Sofri violência, e agora?",
+			level: 3,
 		});
 		expect(heading2).toBeInTheDocument();
 
 		const description2 = screen.getByText(
-			"Um guia prático para deixar o ciclo da violência"
+			"Um guia prático para deixar o ciclo da violência."
 		);
 		expect(description2).toBeInTheDocument();
 	});
@@ -84,10 +76,13 @@ describe("<SupportInProgress />", () => {
 		});
 		expect(heartIcon).toBeInTheDocument();
 
-		const text1 = screen.queryByText(/Ficou\scom\salguma\sdúvida\?/i);
+		const text1 = screen.getByText("Ficou com alguma dúvida?");
 		expect(text1).toBeInTheDocument();
 
-		const text2 = screen.queryByText(/Fale\sconosco\sem\scontato@mapa.org.br/i);
+		const text2 = screen.getByText("Fale conosco em");
 		expect(text2).toBeInTheDocument();
+
+		const link = screen.getByRole("link", { name: "contato@mapa.org.br" });
+		expect(link).toBeInTheDocument();
 	});
 });

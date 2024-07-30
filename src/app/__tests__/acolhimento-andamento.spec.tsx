@@ -1,15 +1,17 @@
 import { render, screen } from "@testing-library/react";
-import CriteriaDenied from "../DeniedScreens/CriteriaDenied";
+import SupportInProgress from "../acolhimento-andamento/page";
 
 const setup = () => {
-	return render(<CriteriaDenied />);
+	return render(<SupportInProgress />);
 };
 
-describe("<CriteriaDenied />", () => {
+describe("<SupportInProgress />", () => {
 	it("should render headers and descriptions", () => {
 		setup();
 
-		const heading1 = screen.getByRole("heading", { name: "Sentimos muito" });
+		const heading1 = screen.getByRole("heading", {
+			name: "Você já recebeu uma voluntária",
+		});
 		expect(heading1).toBeInTheDocument();
 
 		const heading2 = screen.getByRole("heading", {
@@ -17,10 +19,15 @@ describe("<CriteriaDenied />", () => {
 		});
 		expect(heading2).toBeInTheDocument();
 
-		const description1 = screen.getByText(
-			"O Mapa do Acolhimento atende mulheres cis, trans ou travestis maiores de 18 anos, que vivem no Brasil e enfrentam situações de vulnerabilidade socioeconômica."
+		const description = screen.getByText(
+			"Verificamos que você já solicitou ajuda anteriormente. O contato da voluntária foi enviado para o seu e-mail."
 		);
-		expect(description1).toBeInTheDocument();
+		expect(description).toBeInTheDocument();
+
+		const link = screen.getByRole("link", {
+			name: "atendimento@mapadoacolhimento.org",
+		});
+		expect(link).toBeInTheDocument();
 
 		const description2 = screen.getByText(
 			"Conheça a rede de apoio que você pode acessar e um material preparado com cuidado para te ajudar nesse momento difícil:"
@@ -38,11 +45,12 @@ describe("<CriteriaDenied />", () => {
 
 		const heading1 = screen.getByRole("heading", {
 			name: "Onde e como posso pedir ajuda?",
+			level: 3,
 		});
 		expect(heading1).toBeInTheDocument();
 
 		const description1 = screen.getByText(
-			"Conheça os serviços públicos de proteção que você pode acessar"
+			"Conheça os serviços públicos de proteção que você pode acessar."
 		);
 		expect(description1).toBeInTheDocument();
 
@@ -53,11 +61,12 @@ describe("<CriteriaDenied />", () => {
 
 		const heading2 = screen.getByRole("heading", {
 			name: "Sofri violência, e agora?",
+			level: 3,
 		});
 		expect(heading2).toBeInTheDocument();
 
 		const description2 = screen.getByText(
-			"Um guia prático para deixar o ciclo da violência"
+			"Um guia prático para deixar o ciclo da violência."
 		);
 		expect(description2).toBeInTheDocument();
 	});
@@ -70,10 +79,13 @@ describe("<CriteriaDenied />", () => {
 		});
 		expect(heartIcon).toBeInTheDocument();
 
-		const text1 = screen.queryByText(/Ficou\scom\salguma\sdúvida\?/i);
+		const text1 = screen.getByText("Ficou com alguma dúvida?");
 		expect(text1).toBeInTheDocument();
 
-		const text2 = screen.queryByText(/Fale\sconosco\sem\scontato@mapa.org.br/i);
+		const text2 = screen.getByText("Fale conosco em");
 		expect(text2).toBeInTheDocument();
+
+		const link = screen.getByRole("link", { name: "contato@mapa.org.br" });
+		expect(link).toBeInTheDocument();
 	});
 });

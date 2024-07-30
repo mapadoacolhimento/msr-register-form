@@ -17,17 +17,20 @@ export default function SupportType() {
 			onSubmit={() => sleep(300).then(() => console.log("Step3 onSubmit"))}
 			validationSchema={supportTypeSchema}
 			title={"Sobre o acolhimento"}
-			subtitle={
-				<>
-					Que <Strong>tipo de acolhimento</Strong> você precisa?
-				</>
-			}
 			img={{
 				src: "/illustrations/woman-getting-support.svg",
 				alt: "Ilustração com duas mulheres sentadas conversando",
 			}}
 		>
-			<CheckboxInput name={"supportType"} options={supportTypeOptions} />
+			<CheckboxInput
+				name={"supportType"}
+				options={supportTypeOptions}
+				question={
+					<>
+						Que <Strong>tipo de acolhimento</Strong> você precisa?
+					</>
+				}
+			/>
 		</Step>
 	);
 }

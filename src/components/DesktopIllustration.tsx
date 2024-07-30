@@ -7,17 +7,17 @@ export default function DesktopIllustration({
 		<Flex
 			display={{ initial: "none", md: "flex" }}
 			asChild
-			style={{ backgroundColor: "var(--yellow-2)", minHeight: "100%" }}
-			height={"calc(100vh - 100px)"}
+			style={{ backgroundColor: "var(--yellow-2)", zIndex: "-1" }}
 			justify={"center"}
 			align={"center"}
+			position={"absolute"}
+			top={"0"}
+			right={"0"}
+			width={"55%"}
+			height={"100%"}
 		>
 			<aside>
-				<img
-					src={img.src}
-					alt={img.alt}
-					style={{ minWidth: "100%", maxHeight: "100%" }}
-				/>
+				<img src={img.src} alt={img.alt} style={{ maxWidth: "95%" }} />
 			</aside>
 		</Flex>
 	);

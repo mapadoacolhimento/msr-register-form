@@ -16,17 +16,20 @@ export default function ViolenceLocation() {
 			onSubmit={() => sleep(300).then(() => console.log("Step onSubmit"))}
 			validationSchema={violenceLocationSchema}
 			title={"Sobre a violência"}
-			subtitle={
-				<>
-					A violência ocorreu <Strong>no Brasil</Strong>?
-				</>
-			}
 			img={{
 				src: "/illustrations/woman-covering-ears.svg",
 				alt: "Ilustração de uma mulher de cabeça baixa tampando os ouvidos",
 			}}
 		>
-			<RadioInput name="violenceLocation" options={violenceLocationOptions} />
+			<RadioInput
+				name="violenceLocation"
+				options={violenceLocationOptions}
+				question={
+					<>
+						A violência ocorreu <Strong>no Brasil</Strong>?
+					</>
+				}
+			/>
 		</Step>
 	);
 }

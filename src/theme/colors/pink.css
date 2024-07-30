@@ -31,8 +31,6 @@
 	--pink-surface: #fdf6f8cc;
 	--pink-indicator: #cf9da7;
 	--pink-track: #cf9da7;
-	--pink-salmon: #fff3ef;
-	--pink-soft: #ecc2cc;
 }
 
 @supports (color: color(display-p3 1 1 1)) {

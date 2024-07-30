@@ -30,7 +30,7 @@ export default function StepsController({
 			<Box
 				position={"absolute"}
 				right={"0"}
-				bottom={"100px"}
+				bottom={"115px"}
 				display={{ initial: "block", md: "none" }}
 			>
 				<img src={img.src} height={"150px"} alt={img.alt} />

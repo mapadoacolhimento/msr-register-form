@@ -12,11 +12,13 @@ type RadioOption = {
 type RadioInputProps = {
 	name: string;
 	options: RadioOption[];
+	question: React.ReactNode;
 };
 
 export default function RadioInput({
 	options,
 	name,
+	question,
 }: Readonly<RadioInputProps>) {
 	const [field, _meta, helpers] = useField(name);
 
@@ -30,6 +32,11 @@ export default function RadioInput({
 			aria-labelledby={"question"}
 			id={`radio-group-${name}`}
 		>
+			<Box asChild pb={{ initial: "7", sm: "8" }}>
+				<Text asChild align={"center"} id={"question"}>
+					<legend>{question}</legend>
+				</Text>
+			</Box>
 			<Flex gap={"4"} direction={"column"}>
 				{options.map((option: RadioOption, i) => {
 					return (

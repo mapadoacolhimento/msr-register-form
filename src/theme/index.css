@@ -27,10 +27,6 @@ fieldset {
 	background-color: #ebe5ef;
 }
 
-b,
-h1,
-h2,
-strong,
-a {
+.rt-Strong {
 	color: var(--purple-9);
 }

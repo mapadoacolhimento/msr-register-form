@@ -1,5 +1,5 @@
 import { useField } from "formik";
-import { CheckboxCards, Text } from "@radix-ui/themes";
+import { Box, CheckboxCards, Text } from "@radix-ui/themes";
 
 import ErrorMessage from "../ErrorMessage";
 import "./CheckboxInput.css";
@@ -12,11 +12,13 @@ type CheckboxOption = {
 type CheckboxInputProps = {
 	name: string;
 	options: CheckboxOption[];
+	question: React.ReactNode;
 };
 
 export default function CheckboxInput({
 	options,
 	name,
+	question,
 }: Readonly<CheckboxInputProps>) {
 	const [field, _meta, helpers] = useField({
 		name,
@@ -43,6 +45,11 @@ export default function CheckboxInput({
 			id={`checkbox-group-${name}`}
 			color={"purple"}
 		>
+			<Box asChild pb={{ initial: "7", sm: "8" }}>
+				<Text asChild align={"center"} id={"question"}>
+					<legend>{question}</legend>
+				</Text>
+			</Box>
 			{options.map((option: CheckboxOption, i) => {
 				return (
 					<CheckboxCards.Item
