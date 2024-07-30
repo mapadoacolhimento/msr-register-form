@@ -78,7 +78,6 @@ export const financialNeedOptions = [
 
 export const statusOnGoingMatch = [
 	MatchStatus.waiting_contact,
-	MatchStatus.started_contact,
 	MatchStatus.in_contact,
 ];
 
