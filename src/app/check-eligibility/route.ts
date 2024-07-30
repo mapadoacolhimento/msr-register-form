@@ -7,7 +7,6 @@ import {
 	statusSupportRequestOngoingSocialWorker,
 } from "../../lib";
 import { MSRPiiSec, SupportType } from "@prisma/client";
-import console from "console";
 
 type MsrSearchResponse = {
 	psychological?: {
@@ -54,7 +53,7 @@ async function checkMatchEligibility(
 		},
 	});
 
-	if (!!ongoingMatch) {
+	if (ongoingMatch) {
 		return {
 			supportRequestId: ongoingMatch.supportRequestId,
 			shouldCreateMatch: false,
