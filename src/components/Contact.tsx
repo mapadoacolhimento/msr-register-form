@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Flex, Text } from "@radix-ui/themes";
+import { Flex, Text, Link } from "@radix-ui/themes";
 import Image from "next/image";
 
 const Contact = () => (
@@ -14,7 +14,12 @@ const Contact = () => (
 		/>
 		<Flex direction={"column"}>
 			<Text size={"2"}>Ficou com alguma dúvida?</Text>
-			<Text size={"2"}>Fale conosco em contato@mapa.org.br</Text>
+			<Text size={"2"}>
+				Fale conosco em{" "}
+				<Link href={"mailto:contato@mapa.org.br"} target={"_blank"}>
+					contato@mapa.org.br
+				</Link>
+			</Text>
 		</Flex>
 	</Flex>
 );
