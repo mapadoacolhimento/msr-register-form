@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 		"Somos uma plataforma que conecta mulheres que sofreram violência a uma rede de psicólogas e advogadas dispostas a ajudá-las de forma voluntária. Clique aqui para acessar a nossa rede de apoio!",
 };
 
-export default function RootLayout({ children }: PropsWithChildren) {
+export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
 	return (
 		<html
 			lang="pt-BR"
