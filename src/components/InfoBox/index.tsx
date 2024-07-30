@@ -1,5 +1,6 @@
 import { Box, Heading, Flex, Text, Card } from "@radix-ui/themes";
 import Image from "next/image";
+import "./InfoBox.css";
 
 interface InfoBoxProps {
 	imgSrc: string;
@@ -10,16 +11,21 @@ interface InfoBoxProps {
 
 const InfoBox = ({ imgSrc, imgAlt, title, description }: InfoBoxProps) => (
 	<Card
+		className={"info-box-card"}
 		style={{
-			backgroundColor: "var(--pink-salmon)",
 			borderRadius: "var(--radius-3)",
+			borderColor: "var(--pink-5)",
 		}}
 	>
 		<Flex direction={"row"} gap={"4"}>
 			<Flex
-				style={{ backgroundColor: "var(--pink-soft)" }}
+				style={{
+					backgroundColor: "var(--pink-8)",
+					borderRadius: "var(--radius-3)",
+				}}
 				justify={"center"}
 				align={"center"}
+				px={"3"}
 			>
 				<Image src={imgSrc} alt={imgAlt} width={100} height={100} />
 			</Flex>
