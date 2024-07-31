@@ -18,11 +18,17 @@ const HeaderComponent: React.FC<HeaderComponentProps> = ({
 			alignItems: "center",
 		}}
 	>
-		<Heading as={"h2"} size={"8"} align={"center"}>
+		<Heading
+			as={"h1"}
+			size={"8"}
+			align={"center"}
+			color={"purple"}
+			highContrast
+		>
 			{title}
 		</Heading>
 		{subtitle && (
-			<Flex maxWidth={"30rem"}>
+			<Flex maxWidth={"23rem"}>
 				<Text align={"center"}>{subtitle}</Text>
 			</Flex>
 		)}
