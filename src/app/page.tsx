@@ -8,7 +8,7 @@ import {
 	Strong,
 	Text,
 } from "@radix-ui/themes";
-import DesktopIllustration from "@/components/DesktopIllustration";
+import DesktopIllustration from "../components/DesktopIllustration";
 import Image from "next/image";
 import Link from "next/link";
 
