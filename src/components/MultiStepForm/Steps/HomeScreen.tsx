@@ -1,6 +1,6 @@
 import { Box, Button, Link, Separator, Strong, Text } from "@radix-ui/themes";
 import HeaderComponent from "./HeaderComponent";
-import DesktopIllustration from "../../../DesktopIllustration";
+import DesktopIllustration from "../../DesktopIllustration";
 import Image from "next/image";
 
 export default function HomeScreen() {
