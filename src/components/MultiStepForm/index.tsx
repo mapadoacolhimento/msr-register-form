@@ -1,3 +1,5 @@
+"use client";
+
 import MultiStepFormWrapper from "./MultiStepFormWrapper";
 import {
 	BasicRegisterInformation,
