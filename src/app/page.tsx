@@ -125,28 +125,41 @@ export default function HomeScreen() {
 					</Text>
 				</Box>
 			</Box>
-
-			<DesktopIllustration
-				img={{
-					src: "/illustrations/three_women.svg",
-					alt: "Ilustração Desktop de três mulheres de costas se abraçando, vestidas de roxo, amarelo e rosa, respectivamente",
-				}}
-				data-testid="desktop-illustration"
-			/>
-			<Box
+			<Flex
+				display={{ initial: "none", md: "flex" }}
+				asChild
+				style={{ backgroundColor: "var(--yellow-2)", zIndex: "-1" }}
+				position={"absolute"}
+				bottom={"0"}
+				right={"0"}
+				width={"55%"}
+				height={"100%"}
+			>
+				<Box>
+					<img
+						src="/illustrations/three_women.svg"
+						alt="Ilustração Desktop de três mulheres de costas se abraçando, vestidas de roxo, amarelo e rosa, respectivamente"
+						style={{
+							maxWidth: "95%",
+							position: "absolute",
+							bottom: "0",
+						}}
+					/>
+				</Box>
+			</Flex>
+			<Flex
 				position={"absolute"}
 				right={"0"}
-				bottom="-15rem"
-				display={{ initial: "block", md: "none" }}
+				display={{ initial: "flex", md: "none" }}
 			>
 				<Image
 					src="/illustrations/three_women.svg"
-					width={1}
-					height={1}
+					width={200}
+					height={200}
 					alt="Ilustração mobile de três mulheres de costas se abraçando, vestidas de roxo, amarelo e rosa, respectivamente"
 					data-testid="mobile-illustration"
 				/>
-			</Box>
+			</Flex>
 		</>
 	);
 }
