@@ -1,3 +1,5 @@
+import { MatchStatus, SupportRequestsStatus } from "@prisma/client";
+
 export const colorOptions = [
 	{ value: "black", label: "Preta" },
 	{ value: "mixed", label: "Parda" },
@@ -73,3 +75,21 @@ export const financialNeedOptions = [
 		name: "Não",
 	},
 ];
+
+export const statusOnGoingMatch = [
+	MatchStatus.waiting_contact,
+	MatchStatus.in_contact,
+];
+
+export const statusSupportRequestOngoingSocialWorker = [
+	SupportRequestsStatus.scheduled_social_worker,
+	SupportRequestsStatus.social_worker,
+];
+export const statusSupportRequestisAlreadyInQueue = [
+	SupportRequestsStatus.waiting_for_match,
+	SupportRequestsStatus.waiting_for_match_with_priority,
+];
+
+export const ZENDESK_SUBDOMAIN = process.env["ZENDESK_SUBDOMAIN"];
+export const ZENDESK_API_USER = `${process.env["ZENDESK_API_USER"]}/token`;
+export const ZENDESK_API_TOKEN = process.env["ZENDESK_API_TOKEN"];
