@@ -106,8 +106,9 @@ export default function HomeScreen() {
 			<DesktopIllustration
 				img={{
 					src: "/illustrations/three_women.svg",
-					alt: "Três mulheres de costas se abraçando, vestidas de roxo, amarelo e rosa, respectivamente",
+					alt: "Ilustração Desktop de três mulheres de costas se abraçando, vestidas de roxo, amarelo e rosa, respectivamente",
 				}}
+				data-testid="desktop-illustration"
 			/>
 			<Box
 				position={"absolute"}
@@ -119,7 +120,8 @@ export default function HomeScreen() {
 					src="/illustrations/three_women.svg"
 					width={1}
 					height={1}
-					alt="Três mulheres de costas se abraçando, vestidas de roxo, amarelo e rosa, respectivamente"
+					alt="Ilustração mobile de três mulheres de costas se abraçando, vestidas de roxo, amarelo e rosa, respectivamente"
+					data-testid="mobile-illustration"
 				/>
 			</Box>
 		</>

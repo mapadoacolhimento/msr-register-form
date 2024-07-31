@@ -39,9 +39,14 @@ describe("<HomeScreen />", () => {
 	it("should render background image", () => {
 		setup();
 
-		const image1 = screen.getByRole("img", {
-			name: "Três mulheres de costas se abraçando, vestidas de roxo, amarelo e rosa, respectivamente",
+		const desktopImage = screen.getByRole("img", {
+			name: "Ilustração Desktop de três mulheres de costas se abraçando, vestidas de roxo, amarelo e rosa, respectivamente",
 		});
-		expect(image1).toBeInTheDocument();
+		expect(desktopImage).toBeInTheDocument();
+
+		const mobileImage = screen.getByRole("img", {
+			name: "Ilustração mobile de três mulheres de costas se abraçando, vestidas de roxo, amarelo e rosa, respectivamente",
+		});
+		expect(mobileImage).toBeInTheDocument();
 	});
 });
