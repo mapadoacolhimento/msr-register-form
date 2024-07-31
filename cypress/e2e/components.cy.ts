@@ -1,5 +1,6 @@
 it("should display error if name field is empty", () => {
 	cy.visit("/");
+	cy.goThroughHomePage();
 
 	cy.get("#email").type("msr@test.com");
 	cy.get("#confirmEmail").type("test@test.com");
@@ -12,6 +13,7 @@ it("should display error if name field is empty", () => {
 
 it("should display error if email field is empty", () => {
 	cy.visit("/");
+	cy.goThroughHomePage();
 
 	cy.get("#firstName").type("MSR teste");
 	cy.get("#confirmEmail").type("test@test.com");
@@ -24,6 +26,8 @@ it("should display error if email field is empty", () => {
 
 it("should display error if confirmEmail field is empty", () => {
 	cy.visit("/");
+	cy.goThroughHomePage();
+
 	cy.get("#firstName").type("MSR teste");
 	cy.get("#email").type("test@test.com");
 	cy.get("#phone").type("81999999999");
@@ -35,6 +39,7 @@ it("should display error if confirmEmail field is empty", () => {
 
 it("should display error if whatsapp field is empty", () => {
 	cy.visit("/");
+	cy.goThroughHomePage();
 
 	cy.get("#firstName").type("MSR teste");
 	cy.get("#email").type("test@test.com");
@@ -47,6 +52,7 @@ it("should display error if whatsapp field is empty", () => {
 
 it("should display error if confirm email does not match email", () => {
 	cy.visit("/");
+	cy.goThroughHomePage();
 
 	cy.get("#firstName").type("MSR teste");
 	cy.get("#email").type("msr@test.com");
@@ -59,6 +65,7 @@ it("should display error if confirm email does not match email", () => {
 
 it("should display error if invalid whatsapp format is entered", () => {
 	cy.visit("/");
+	cy.goThroughHomePage();
 
 	cy.get("#firstName").type("MSR teste");
 	cy.get("#email").type("msr@test.com");
@@ -72,6 +79,7 @@ it("should display error if invalid whatsapp format is entered", () => {
 
 it("should display error if date of birth field is empty", () => {
 	cy.visit("/");
+	cy.goThroughHomePage();
 
 	cy.get("#firstName").type("MSR teste");
 	cy.get("#email").type("msr@test.com");
@@ -85,6 +93,7 @@ it("should display error if date of birth field is empty", () => {
 it("should display error if color field is empty", () => {
 	const hasDisability = "Não";
 	cy.visit("/");
+	cy.goThroughHomePage();
 
 	cy.fillBasicRegisterInformationStep();
 	cy.findByRole("button", { name: "Continuar" }).click();
@@ -96,6 +105,7 @@ it("should display error if color field is empty", () => {
 it("should display error if disability status field is empty", () => {
 	const color = "Preta";
 	cy.visit("/");
+	cy.goThroughHomePage();
 
 	cy.fillBasicRegisterInformationStep();
 

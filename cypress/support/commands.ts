@@ -2,6 +2,9 @@
 /// <reference types="@testing-library/cypress" />
 
 import "@testing-library/cypress/add-commands";
+Cypress.Commands.add("goThroughHomePage", () => {
+	cy.findByRole("button", { name: "Quero ser acolhida" }).click();
+});
 
 Cypress.Commands.add("fillBasicRegisterInformationStep", () => {
 	const firstName = "MSR teste";
