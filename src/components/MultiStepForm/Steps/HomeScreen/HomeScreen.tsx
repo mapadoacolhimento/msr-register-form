@@ -1,22 +1,12 @@
-import {
-	Box,
-	Button,
-	Grid,
-	Link,
-	Separator,
-	Strong,
-	Text,
-} from "@radix-ui/themes";
+import { Box, Button, Link, Separator, Strong, Text } from "@radix-ui/themes";
 import HeaderComponent from "./HeaderComponent";
 import DesktopIllustration from "../../../DesktopIllustration";
 import Image from "next/image";
-import HomeHeader from "./HomeHeader";
 
 export default function HomeScreen() {
 	return (
-		<Grid columns={{ initial: "1", md: "1fr 55%" }} width="auto">
+		<>
 			<div>
-				<HomeHeader />
 				<HeaderComponent
 					title="Seja bem-vinda"
 					subtitle={
@@ -132,6 +122,6 @@ export default function HomeScreen() {
 					alt="Três mulheres de costas se abraçando, vestidas de roxo, amarelo e rosa, respectivamente"
 				/>
 			</Box>
-		</Grid>
+		</>
 	);
 }
