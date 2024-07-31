@@ -15,14 +15,14 @@ import Link from "next/link";
 export default function HomeScreen() {
 	return (
 		<>
-			<div>
-				<Box
-					style={{
-						display: "flex",
-						flexDirection: "column",
-						alignItems: "center",
-					}}
-				>
+			<Box
+				style={{
+					display: "flex",
+					flexDirection: "column",
+					alignItems: "center",
+				}}
+			>
+				<Box>
 					<Heading
 						as={"h1"}
 						size={"8"}
@@ -124,7 +124,7 @@ export default function HomeScreen() {
 						.
 					</Text>
 				</Box>
-			</div>
+			</Box>
 
 			<DesktopIllustration
 				img={{
