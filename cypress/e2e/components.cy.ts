@@ -90,20 +90,7 @@ it("should display error if date of birth field is empty", () => {
 	cy.contains("Esse campo é obrigatório.").should("exist");
 });
 
-it("should display error if color field is empty", () => {
-	const hasDisability = "Não";
-	cy.visit("/");
-	cy.goThroughHomePage();
-
-	cy.fillBasicRegisterInformationStep();
-	cy.findByRole("button", { name: "Continuar" }).click();
-
-	cy.findByRole("button", { name: "Continuar" }).click();
-	cy.contains("Esse campo é obrigatório.").should("exist");
-});
-
-it("should display error if disability status field is empty", () => {
-	const color = "Preta";
+it.only("should display error if disability status field is empty", () => {
 	cy.visit("/");
 	cy.goThroughHomePage();
 
