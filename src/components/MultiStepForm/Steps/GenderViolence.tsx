@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 import Step from "../Step";
 import RadioInput from "../../RadioInput";
-import { sleep, genderViolenceOptions } from "../../../lib";
+import { sleep, genderViolenceOptions, Values } from "../../../lib";
 
 const genderViolenceSchema = Yup.object({
 	genderViolence: Yup.string()
@@ -10,9 +10,16 @@ const genderViolenceSchema = Yup.object({
 });
 
 export default function GenderViolence() {
+	async function handleSubmit(values: Values) {
+		if (values.genderViolence === "no") {
+			return {
+				redirectTo: "/fora-criterios",
+			};
+		}
+	}
 	return (
 		<Step
-			onSubmit={() => sleep(300).then(() => console.log("Step6 onSubmit"))}
+			onSubmit={handleSubmit}
 			validationSchema={genderViolenceSchema}
 			title={"Sobre a violência"}
 			img={{
