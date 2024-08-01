@@ -42,13 +42,13 @@ export default function HomeScreen() {
 
 				<Box
 					py={"5"}
-					px={"5"}
+					px={"6"}
 					mt={"4"}
 					style={{
 						backgroundColor: "var(--pink-2)",
 						borderRadius: "var(--radius-3)",
 					}}
-					width={"28rem"}
+					maxWidth={"28rem"}
 				>
 					<Box
 						style={{
@@ -112,7 +112,7 @@ export default function HomeScreen() {
 					<Link href={"/cadastro"}>Quero ser acolhida</Link>
 				</Button>
 
-				<Box maxWidth="25rem">
+				<Flex maxWidth="23rem" px={"4"}>
 					<Text>
 						Ao responder as perguntas você está de acordo com a nossa{" "}
 						<ExternalLink
@@ -123,7 +123,7 @@ export default function HomeScreen() {
 						</ExternalLink>
 						.
 					</Text>
-				</Box>
+				</Flex>
 			</Box>
 			<Flex
 				display={{ initial: "none", md: "flex" }}
