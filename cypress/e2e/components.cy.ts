@@ -90,7 +90,7 @@ it("should display error if date of birth field is empty", () => {
 	cy.contains("Esse campo é obrigatório.").should("exist");
 });
 
-it.only("should display error if disability status field is empty", () => {
+it("should display error if disability status field is empty", () => {
 	cy.visit("/");
 	cy.goThroughHomePage();
 
