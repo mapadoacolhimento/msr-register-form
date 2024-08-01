@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 import Step from "../Step";
 import RadioInput from "../../RadioInput";
-import { sleep, violenceLocationOptions } from "../../../lib";
+import { sleep, Values, violenceLocationOptions } from "../../../lib";
 import { Strong } from "@radix-ui/themes";
 
 const violenceLocationSchema = Yup.object({
@@ -11,9 +11,16 @@ const violenceLocationSchema = Yup.object({
 });
 
 export default function ViolenceLocation() {
+	async function handleSubmit(values: Values) {
+		if (values.violenceLocation === "no") {
+			return {
+				redirectTo: "/fora-criterios",
+			};
+		}
+	}
 	return (
 		<Step
-			onSubmit={() => sleep(300).then(() => console.log("Step onSubmit"))}
+			onSubmit={handleSubmit}
 			validationSchema={violenceLocationSchema}
 			title={"Sobre a violência"}
 			img={{
