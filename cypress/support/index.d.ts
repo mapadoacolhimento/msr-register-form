@@ -11,12 +11,12 @@ declare namespace Cypress {
 			dateOfBirth?: string
 		): Chainable<any>;
 		fillDisabilityStep(hasDisability?: string): Chainable<any>;
-		fillGenderIdentityStep(): Chainable<any>;
+		fillGenderIdentityStep(gender: string): Chainable<any>;
 		fillAcceptsOnlineSupportStep(): Chainable<any>;
 		fillSupportTypeStep(): Chainable<any>;
-		fillGenderViolenceStep(): Chainable<any>;
-		fillViolenceLocationStep(): Chainable<any>;
-		fillExternalSupportStep(): Chainable<any>;
-		fillFinancialNeedStep(): Chainable<any>;
+		fillGenderViolenceStep(option: string): Chainable<any>;
+		fillViolenceLocationStep(option: string): Chainable<any>;
+		fillExternalSupportStep(option: string): Chainable<any>;
+		fillFinancialNeedStep(option: string): Chainable<any>;
 	}
 }
