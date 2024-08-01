@@ -4,7 +4,12 @@ import { type AnyObjectSchema } from "yup";
 import { type Values } from "./";
 
 export interface StepChildrenProps {
-	onSubmit: (values: Values, bag: FormikHelpers<Values>) => Promise<void>;
+	onSubmit: (
+		values: Values,
+		bag: FormikHelpers<Values>
+	) => Promise<{
+		redirectTo: string;
+	} | null | void>;
 	validationSchema: AnyObjectSchema;
 	title: string;
 	img: {

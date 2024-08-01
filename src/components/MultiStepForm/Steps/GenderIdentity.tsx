@@ -1,9 +1,9 @@
 import * as Yup from "yup";
+import { Strong } from "@radix-ui/themes";
 import Step from "../Step";
 import RadioInput from "../../RadioInput";
-import { sleep, genderIdentityOptions } from "../../../lib";
 import HoverInfo from "../../HoverInfo";
-import { Strong } from "@radix-ui/themes";
+import { genderIdentityOptions, Values } from "../../../lib";
 
 const genderIdentitySchema = Yup.object({
 	genderIdentity: Yup.string()
@@ -12,9 +12,16 @@ const genderIdentitySchema = Yup.object({
 });
 
 export default function GenderIdentity() {
+	async function handleSubmit(values: Values) {
+		if (values.genderIdentity === "no-woman") {
+			return {
+				redirectTo: "/fora-criterios",
+			};
+		}
+	}
 	return (
 		<Step
-			onSubmit={() => sleep(300).then(() => console.log("Step3 onSubmit"))}
+			onSubmit={handleSubmit}
 			validationSchema={genderIdentitySchema}
 			title={"Sobre você"}
 			img={{

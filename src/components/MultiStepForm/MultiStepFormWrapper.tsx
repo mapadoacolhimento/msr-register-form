@@ -4,6 +4,7 @@ import {
 	useState,
 	Children,
 } from "react";
+import { useRouter } from "next/navigation";
 import { type FormikHelpers, Form, Formik } from "formik";
 import { Box, Flex, Heading, IconButton } from "@radix-ui/themes";
 import { ChevronLeftIcon } from "@radix-ui/react-icons";
@@ -27,6 +28,7 @@ export default function MultiStepFormWrapper({
 	const [stepIndex, setStepIndex] = useState(0);
 	const [snapshot, setSnapshot] = useState(initialValues);
 	const childrenSteps = Children.toArray(children);
+	const router = useRouter();
 
 	const step = childrenSteps[stepIndex] as ReactElement<StepChildrenProps>;
 	const totalSteps = childrenSteps.length;
@@ -45,16 +47,25 @@ export default function MultiStepFormWrapper({
 	};
 
 	const handleSubmit = async (values: Values, bag: FormikHelpers<Values>) => {
-		if (step.props.onSubmit) {
-			await step.props.onSubmit(values, bag);
-		}
+		try {
+			if (step.props.onSubmit) {
+				const submit = await step.props.onSubmit(values, bag);
+				if (submit && submit.redirectTo) {
+					return router.push(submit.redirectTo);
+				}
+			}
 
-		if (isLastStep) {
-			return onSubmit(values, bag);
-		}
+			if (isLastStep) {
+				return onSubmit(values, bag);
+			}
 
-		await bag.setTouched({});
-		nextStep(values);
+			await bag.setTouched({});
+			nextStep(values);
+		} catch (e) {
+			console.log(
+				`Something went wrong when submitting the form: ${JSON.stringify(e)}`
+			);
+		}
 	};
 
 	return (
