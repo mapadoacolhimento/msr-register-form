@@ -157,7 +157,6 @@ export default function HomeScreen() {
 					width={200}
 					height={200}
 					alt="Ilustração mobile de três mulheres de costas se abraçando, vestidas de roxo, amarelo e rosa, respectivamente"
-					data-testid="mobile-illustration"
 				/>
 			</Flex>
 		</>
