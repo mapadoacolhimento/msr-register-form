@@ -137,7 +137,7 @@ export default function HomeScreen() {
 			>
 				<Box>
 					<img
-						src="/illustrations/three_women.svg"
+						src="/illustrations/women-support.svg"
 						alt="Ilustração Desktop de três mulheres de costas se abraçando, vestidas de roxo, amarelo e rosa, respectivamente"
 						style={{
 							maxWidth: "95%",
@@ -153,7 +153,7 @@ export default function HomeScreen() {
 				display={{ initial: "flex", md: "none" }}
 			>
 				<Image
-					src="/illustrations/three_women.svg"
+					src="/illustrations/women-support.svg"
 					width={200}
 					height={200}
 					alt="Ilustração mobile de três mulheres de costas se abraçando, vestidas de roxo, amarelo e rosa, respectivamente"
