@@ -6,6 +6,14 @@ import { sleep } from "../../../../lib";
 import { type Values } from "../..";
 import { disabilityOptions } from "../../../../lib/constants";
 
+vi.mock("next/navigation", () => ({
+	useRouter() {
+		return {
+			prefetch: () => null,
+		};
+	},
+}));
+
 const setup = () => {
 	return render(
 		<MultiStepFormWrapper
@@ -23,7 +31,7 @@ const setup = () => {
 	);
 };
 
-describe("<GenderIdentity />", () => {
+describe("<DisabilityInformatio />", () => {
 	it("should render fields", () => {
 		setup();
 
