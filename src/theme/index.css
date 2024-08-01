@@ -30,3 +30,8 @@ fieldset {
 .rt-Strong {
 	color: var(--purple-9);
 }
+
+.rt-BaseButton a {
+	color: white;
+	text-decoration: none;
+}

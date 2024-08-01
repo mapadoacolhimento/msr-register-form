@@ -2,6 +2,7 @@
 
 declare namespace Cypress {
 	interface Chainable<Subject = any> {
+		goThroughHomePage(): Chainable<any>;
 		fillBasicRegisterInformationStep(
 			firstName?: string,
 			email?: string,
