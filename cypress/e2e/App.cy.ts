@@ -44,7 +44,7 @@ describe("App", () => {
 		cy.fillGenderIdentityStep("Não me identifico como mulher");
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.url().should("be.equal", "http://localhost:3000/fora-criterios");
+		cy.url().should("include", "/fora-criterios");
 	});
 
 	it("should redirect to `fora-criterios` page if gender violence is filled with option `Não`", () => {
@@ -68,7 +68,7 @@ describe("App", () => {
 		cy.fillGenderViolenceStep("Não");
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.url().should("be.equal", "http://localhost:3000/fora-criterios");
+		cy.url().should("include", "/fora-criterios");
 	});
 
 	it("should redirect to `fora-criterios` page if external support  is filled with option `Sim`", () => {
@@ -95,7 +95,7 @@ describe("App", () => {
 		cy.fillExternalSupportStep("Sim");
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.url().should("be.equal", "http://localhost:3000/fora-criterios");
+		cy.url().should("include", "/fora-criterios");
 	});
 
 	it("should redirect to `fora-criterios` page if violence location is filled with option `Não`", () => {
@@ -125,7 +125,7 @@ describe("App", () => {
 		cy.fillViolenceLocationStep("Não");
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.url().should("be.equal", "http://localhost:3000/fora-criterios");
+		cy.url().should("include", "/fora-criterios");
 	});
 
 	it("should redirect to `fora-criterios` page if financial need is filled with option `Não`", () => {
@@ -160,7 +160,7 @@ describe("App", () => {
 		cy.get("#terms").click();
 		cy.findByRole("button", { name: "Enviar" }).click();
 
-		cy.url().should("be.equal", "http://localhost:3000/fora-criterios");
+		cy.url().should("include", "/fora-criterios");
 	});
 
 	it("should go back to the previous step when the back button is clicked", () => {
