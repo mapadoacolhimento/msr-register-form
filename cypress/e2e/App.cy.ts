@@ -31,7 +31,9 @@ describe("App", () => {
 
 		cy.fillFinancialNeedStep("Sim");
 	});
+});
 
+describe("When MSR does not meet the criteria", () => {
 	it("should redirect to `fora-criterios` page if gender identity is filled with option `Não me identifico como mulher`", () => {
 		cy.visit("/");
 		cy.goThroughHomePage();
@@ -73,7 +75,7 @@ describe("App", () => {
 		cy.url().should("include", "/fora-criterios");
 	});
 
-	it("should redirect to `fora-criterios` page if external support  is filled with option `Sim`", () => {
+	it("should redirect to `fora-criterios` page if MSR asks for legal support and they select that they already have external legal support", () => {
 		cy.visit("/");
 		cy.goThroughHomePage();
 
@@ -101,7 +103,7 @@ describe("App", () => {
 		cy.url().should("include", "/fora-criterios");
 	});
 
-	it("should redirect to `fora-criterios` page if violence location is filled with option `Não`", () => {
+	it("should redirect to `fora-criterios` page if MSR selects that the violence location wasn't in Brazil", () => {
 		cy.visit("/");
 		cy.goThroughHomePage();
 
@@ -132,7 +134,7 @@ describe("App", () => {
 		cy.url().should("include", "/fora-criterios");
 	});
 
-	it("should redirect to `fora-criterios` page if financial need is filled with option `Não`", () => {
+	it("should redirect to `fora-criterios` page if MSR signals they dont struggle financially", () => {
 		cy.visit("/");
 		cy.goThroughHomePage();
 
