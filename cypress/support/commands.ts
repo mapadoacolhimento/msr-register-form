@@ -40,22 +40,22 @@ Cypress.Commands.add("fillAcceptsOnlineSupportStep", () => {
 	cy.findByRole("heading", { name: "Sobre o acolhimento" }).should("exist");
 	cy.contains("Você aceitaria ser atendida online?").should("exist");
 	cy.findByRole("radio", {
-		name: acceptOnlineSupport[0],
+		name: acceptOnlineSupport.yes,
 	}).should("exist");
 	cy.findByRole("radio", {
-		name: acceptOnlineSupport[1],
+		name: acceptOnlineSupport.no,
 	}).should("exist");
 
 	cy.findByRole("radio", {
-		name: acceptOnlineSupport[0],
+		name: acceptOnlineSupport.yes,
 	}).click();
 });
 
 Cypress.Commands.add("fillSupportTypeStep", () => {
 	const { supportTypes } = userData;
 	cy.contains("Que tipo de acolhimento você precisa?").should("exist");
-	cy.findByLabelText(supportTypes[0]).click({ force: true });
-	cy.findByLabelText(supportTypes[1]).click({ force: true });
+	cy.findByLabelText(supportTypes.psychological).click({ force: true });
+	cy.findByLabelText(supportTypes.legal).click({ force: true });
 });
 
 Cypress.Commands.add("fillGenderViolenceStep", () => {

@@ -7,11 +7,14 @@
 	"colorOption": "Indígena",
 	"hasDisability": "Sim",
 	"gender": "Eu sou uma mulher cis",
-	"acceptOnlineSupport": [
-		"Sim, aceito ser atendida online",
-		"Não, só posso receber atendimento presencial"
-	],
-	"supportTypes": ["Acolhimento psicológico", "Acolhimento jurídico"],
+	"acceptOnlineSupport": {
+		"yes": "Sim, aceito ser atendida online",
+		"no": "Não, só posso receber atendimento presencial"
+	},
+	"supportTypes": {
+		"psychological": "Acolhimento psicológico",
+		"legal": "Acolhimento jurídico"
+	},
 	"genderViolence": "Não",
 	"violenceLocation": "Sim",
 	"externalSupport": "Sim",
