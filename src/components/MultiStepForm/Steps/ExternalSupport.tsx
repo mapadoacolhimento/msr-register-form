@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 import Step from "../Step";
-import { sleep, externalSupportOptions, Values } from "../../../lib";
+import { externalSupportOptions, Values } from "../../../lib";
 import RadioInput from "../../RadioInput";
 import { Strong } from "@radix-ui/themes";
 
