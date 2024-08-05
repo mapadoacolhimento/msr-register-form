@@ -1,3 +1,5 @@
+import userData from "../fixtures/userData.json";
+
 describe("App", () => {
 	it("should continue to next step if all fields are filled correctly", () => {
 		cy.visit("/");
@@ -30,7 +32,7 @@ describe("App", () => {
 		cy.fillFinancialNeedStep();
 	});
 
-	it("should go back to the previous step when the back button is clicked", () => {
+	it.only("should go back to the previous step when the back button is clicked", () => {
 		cy.visit("/");
 		cy.goThroughHomePage();
 
@@ -41,6 +43,8 @@ describe("App", () => {
 
 		cy.get('button[data-testid="back-button"]').click();
 
-		cy.fillBasicRegisterInformationStep();
+		const { firstName } = userData;
+
+		cy.get("#firstName").type(firstName);
 	});
 });
