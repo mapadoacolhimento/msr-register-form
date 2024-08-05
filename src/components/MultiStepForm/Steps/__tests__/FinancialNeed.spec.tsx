@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { useRouter } from "next/navigation";
 import FinancialNeed from "../FinancialNeed";
 import MultiStepFormWrapper from "../../MultiStepFormWrapper";
 import { sleep } from "../../../../lib";
@@ -7,11 +8,7 @@ import { type Values } from "../..";
 import { financialNeedOptions } from "../../../../lib/constants";
 
 vi.mock("next/navigation", () => ({
-	useRouter() {
-		return {
-			prefetch: () => null,
-		};
-	},
+	useRouter: vi.fn(),
 }));
 
 const setup = () => {
@@ -54,5 +51,22 @@ describe("<FinancialNeed />", () => {
 		expect(screen.getByRole("alert")).toHaveTextContent(
 			"Esse campo é obrigatório."
 		);
+	});
+
+	it("should redirect to `fora-criterios` if option `Não` is selected", async () => {
+		const pushMock = vi.fn();
+		useRouter.mockReturnValue({
+			push: pushMock,
+		});
+
+		setup();
+
+		const roleOptionElement = screen.getByRole("radio", {
+			name: "Não",
+		});
+		await userEvent.click(roleOptionElement);
+		const btn = screen.getByRole("button", { name: /enviar/i });
+		await userEvent.click(btn);
+		expect(pushMock).toHaveBeenCalledWith("/fora-criterios");
 	});
 });
