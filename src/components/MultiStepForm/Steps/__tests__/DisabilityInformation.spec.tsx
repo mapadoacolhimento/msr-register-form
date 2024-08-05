@@ -6,14 +6,6 @@ import { sleep } from "../../../../lib";
 import { type Values } from "../..";
 import { disabilityOptions } from "../../../../lib/constants";
 
-vi.mock("next/navigation", () => ({
-	useRouter() {
-		return {
-			prefetch: () => null,
-		};
-	},
-}));
-
 const setup = () => {
 	return render(
 		<MultiStepFormWrapper

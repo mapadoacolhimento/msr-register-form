@@ -7,10 +7,6 @@ import { sleep } from "../../../../lib";
 import { type Values } from "../..";
 import { genderViolenceOptions } from "../../../../lib/constants";
 
-vi.mock("next/navigation", () => ({
-	useRouter: vi.fn(),
-}));
-
 const setup = () => {
 	return render(
 		<MultiStepFormWrapper

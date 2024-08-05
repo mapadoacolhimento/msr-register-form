@@ -14,14 +14,6 @@ const img = {
 	alt: "test img",
 };
 
-vi.mock("next/navigation", () => ({
-	useRouter() {
-		return {
-			prefetch: () => null,
-		};
-	},
-}));
-
 const setup = () => {
 	return render(
 		<MultiStepFormWrapper

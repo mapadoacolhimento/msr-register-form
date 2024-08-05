@@ -6,10 +6,6 @@ import MultiStepFormWrapper from "../../MultiStepFormWrapper";
 import { sleep, externalSupportOptions } from "../../../../lib";
 import { type Values } from "../..";
 
-vi.mock("next/navigation", () => ({
-	useRouter: vi.fn(),
-}));
-
 const setup = () => {
 	return render(
 		<MultiStepFormWrapper
