@@ -5,7 +5,8 @@ import { Gender, MSRStatus, Race } from "@prisma/client";
 const payloadSchema = Yup.object({
 	msrZendeskUserId: Yup.number().required(),
 	email: Yup.string().email().required(),
-	phone: Yup.string().min(10).max(12).required(),
+	// removing the max length for phone number for now
+	phone: Yup.string().min(10).required(),
 	firstName: Yup.string().required(),
 	city: Yup.string().required(),
 	state: Yup.string().length(2).required(),
