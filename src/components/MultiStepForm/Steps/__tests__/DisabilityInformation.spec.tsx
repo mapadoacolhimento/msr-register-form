@@ -23,7 +23,7 @@ const setup = () => {
 	);
 };
 
-describe("<DisabilityInformatio />", () => {
+describe("<DisabilityInformation />", () => {
 	it("should render fields", () => {
 		setup();
 

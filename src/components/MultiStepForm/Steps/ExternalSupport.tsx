@@ -12,10 +12,9 @@ const externalSupportSchema = Yup.object({
 
 export default function ExternalSupport() {
 	async function handleSubmit(values: Values) {
-		if (
-			values.supportType.includes("legal") &&
-			values.externalSupport === "yes"
-		) {
+		const hasGovernmentLegalSupport =
+			values.supportType.includes("legal") && values.externalSupport === "yes";
+		if (hasGovernmentLegalSupport) {
 			return {
 				redirectTo: "/fora-criterios",
 			};

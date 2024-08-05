@@ -15,7 +15,8 @@ const financialNeedSchema = Yup.object({
 
 export default function FinancialNeed() {
 	async function handleSubmit(values: Values) {
-		if (values.financialNeed === "no") {
+		const hasNoFinancialVulnerability = values.financialNeed === "no";
+		if (hasNoFinancialVulnerability) {
 			return {
 				redirectTo: "/fora-criterios",
 			};

@@ -11,7 +11,8 @@ const genderViolenceSchema = Yup.object({
 
 export default function GenderViolence() {
 	async function handleSubmit(values: Values) {
-		if (values.genderViolence === "no") {
+		const notGenderViolence = values.genderViolence === "no";
+		if (notGenderViolence) {
 			return {
 				redirectTo: "/fora-criterios",
 			};

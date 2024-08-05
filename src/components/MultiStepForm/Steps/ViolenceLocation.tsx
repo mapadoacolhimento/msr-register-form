@@ -12,7 +12,8 @@ const violenceLocationSchema = Yup.object({
 
 export default function ViolenceLocation() {
 	async function handleSubmit(values: Values) {
-		if (values.violenceLocation === "no") {
+		const violenceOutsideBrazil = values.violenceLocation === "no";
+		if (violenceOutsideBrazil) {
 			return {
 				redirectTo: "/fora-criterios",
 			};
