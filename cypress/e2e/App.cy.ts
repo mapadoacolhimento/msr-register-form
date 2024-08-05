@@ -29,4 +29,18 @@ describe("App", () => {
 
 		cy.fillFinancialNeedStep();
 	});
+
+	it("should go back to the previous step when the back button is clicked", () => {
+		cy.visit("/");
+		cy.goThroughHomePage();
+
+		cy.fillBasicRegisterInformationStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillDisabilityStep();
+
+		cy.get('button[aria-label="back button"]').click();
+
+		cy.fillBasicRegisterInformationStep();
+	});
 });
