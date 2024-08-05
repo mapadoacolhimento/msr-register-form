@@ -39,7 +39,7 @@ describe("App", () => {
 
 		cy.fillDisabilityStep();
 
-		cy.get('button[aria-label="back button"]').click();
+		cy.get('button[data-testid="back-button"]').click();
 
 		cy.fillBasicRegisterInformationStep();
 	});
