@@ -32,7 +32,7 @@ describe("App", () => {
 		cy.fillFinancialNeedStep();
 	});
 
-	it.only("should go back to the previous step when the back button is clicked", () => {
+	it("should go back to the previous step when the back button is clicked", () => {
 		cy.visit("/");
 		cy.goThroughHomePage();
 
@@ -41,7 +41,7 @@ describe("App", () => {
 
 		cy.fillDisabilityStep();
 
-		cy.get('button[data-testid="back-button"]').click();
+		cy.findByRole("button", { name: "Voltar para o passo anterior" }).click();
 
 		const { firstName } = userData;
 

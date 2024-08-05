@@ -72,7 +72,6 @@ export default function MultiStepFormWrapper({
 								variant="ghost"
 								disabled={stepIndex === 0}
 								type={"button"}
-								data-testid="back-button"
 							>
 								<ChevronLeftIcon width="24" height="24" />
 								<VisuallyHidden.Root>
