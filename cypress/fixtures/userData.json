@@ -1,0 +1,19 @@
+{
+	"firstName": "MSR teste",
+	"email": "msr@test.com",
+	"confirmEmail": "msr@test.com",
+	"phone": "81999999999",
+	"dateOfBirth": "18111996",
+	"colorOption": "Indígena",
+	"hasDisability": "Sim",
+	"gender": "Eu sou uma mulher cis",
+	"acceptOnlineSupport": [
+		"Sim, aceito ser atendida online",
+		"Não, só posso receber atendimento presencial"
+	],
+	"supportTypes": ["Acolhimento psicológico", "Acolhimento jurídico"],
+	"genderViolence": "Não",
+	"violenceLocation": "Sim",
+	"externalSupport": "Sim",
+	"financialNeed": "Sim"
+}
