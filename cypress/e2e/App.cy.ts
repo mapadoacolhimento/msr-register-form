@@ -34,6 +34,7 @@ describe("App", () => {
 
 	it("should redirect to `fora-criterios` page if gender identity is filled with option `Não me identifico como mulher`", () => {
 		cy.visit("/");
+		cy.goThroughHomePage();
 
 		cy.fillBasicRegisterInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
@@ -49,6 +50,7 @@ describe("App", () => {
 
 	it("should redirect to `fora-criterios` page if gender violence is filled with option `Não`", () => {
 		cy.visit("/");
+		cy.goThroughHomePage();
 
 		cy.fillBasicRegisterInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
@@ -73,6 +75,7 @@ describe("App", () => {
 
 	it("should redirect to `fora-criterios` page if external support  is filled with option `Sim`", () => {
 		cy.visit("/");
+		cy.goThroughHomePage();
 
 		cy.fillBasicRegisterInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
@@ -100,6 +103,7 @@ describe("App", () => {
 
 	it("should redirect to `fora-criterios` page if violence location is filled with option `Não`", () => {
 		cy.visit("/");
+		cy.goThroughHomePage();
 
 		cy.fillBasicRegisterInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
@@ -130,6 +134,7 @@ describe("App", () => {
 
 	it("should redirect to `fora-criterios` page if financial need is filled with option `Não`", () => {
 		cy.visit("/");
+		cy.goThroughHomePage();
 
 		cy.fillBasicRegisterInformationStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
