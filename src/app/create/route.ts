@@ -71,6 +71,14 @@ export async function POST(request: Request) {
 				...msrPii,
 			},
 		});
+
+		await db.mSRStatusHistory.create({
+			data: {
+				msrId: payload.msrZendeskUserId,
+				status: payload.status,
+			},
+		});
+
 		return Response.json({
 			msrId: msrResult.msrId.toString(),
 		});
