@@ -23,7 +23,7 @@ const setup = () => {
 	);
 };
 
-describe("<GenderIdentity />", () => {
+describe("<DisabilityInformation />", () => {
 	it("should render fields", () => {
 		setup();
 

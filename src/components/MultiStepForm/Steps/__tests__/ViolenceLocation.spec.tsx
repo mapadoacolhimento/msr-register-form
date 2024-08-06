@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { useRouter } from "next/navigation";
 import ViolenceLocation from "../ViolenceLocation";
 import MultiStepFormWrapper from "../../MultiStepFormWrapper";
 import { sleep } from "../../../../lib";
@@ -44,5 +45,21 @@ describe("<ViolenceLocation />", () => {
 		expect(screen.getByRole("alert")).toHaveTextContent(
 			"Esse campo é obrigatório."
 		);
+	});
+	it("should redirect to `fora-criterios` if option `Não` is selected", async () => {
+		const pushMock = vi.fn();
+		useRouter.mockReturnValue({
+			push: pushMock,
+		});
+
+		setup();
+
+		const roleOptionElement = screen.getByRole("radio", {
+			name: "Não",
+		});
+		await userEvent.click(roleOptionElement);
+		const btn = screen.getByRole("button", { name: /enviar/i });
+		await userEvent.click(btn);
+		expect(pushMock).toHaveBeenCalledWith("/fora-criterios");
 	});
 });

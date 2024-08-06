@@ -28,8 +28,7 @@ Cypress.Commands.add("fillDisabilityStep", () => {
 	cy.contains(hasDisability).click();
 });
 
-Cypress.Commands.add("fillGenderIdentityStep", () => {
-	const { gender } = userData;
+Cypress.Commands.add("fillGenderIdentityStep", (gender: string) => {
 	cy.contains("Qual sua identidade de gênero?").should("exist");
 	cy.findByRole("radio", { name: gender }).click();
 });
@@ -58,34 +57,30 @@ Cypress.Commands.add("fillSupportTypeStep", () => {
 	cy.findByLabelText(supportTypes.legal).click({ force: true });
 });
 
-Cypress.Commands.add("fillGenderViolenceStep", () => {
-	const { genderViolence } = userData;
+Cypress.Commands.add("fillGenderViolenceStep", (option: string) => {
 	cy.contains("Você sofreu ou está sofrendo violência de gênero?").should(
 		"exist"
 	);
-	cy.findByLabelText(genderViolence).click({ force: true });
+	cy.findByLabelText(option).click({ force: true });
 });
 
-Cypress.Commands.add("fillViolenceLocationStep", () => {
-	const { violenceLocation } = userData;
+Cypress.Commands.add("fillViolenceLocationStep", (option: string) => {
 	cy.contains("A violência ocorreu no Brasil?").should("exist");
-	cy.findByLabelText(violenceLocation).click({ force: true });
+	cy.findByLabelText(option).click({ force: true });
 });
 
-Cypress.Commands.add("fillExternalSupportStep", () => {
-	const { externalSupport } = userData;
+Cypress.Commands.add("fillExternalSupportStep", (option: string) => {
 	cy.contains(
 		"Você está recebendo acompanhamento jurídico pela defensoria pública?"
 	).should("exist");
-	cy.findByLabelText(externalSupport).click({ force: true });
+	cy.findByLabelText(option).click({ force: true });
 });
 
-Cypress.Commands.add("fillFinancialNeedStep", () => {
-	const { financialNeed } = userData;
+Cypress.Commands.add("fillFinancialNeedStep", (option: string) => {
 	cy.contains(
 		"Você declara que não pode pagar por atendimento jurídico/psicológico?"
 	).should("exist");
-	cy.findByLabelText(financialNeed).click({ force: true });
+	cy.findByLabelText(option).click({ force: true });
 });
 
 export {};

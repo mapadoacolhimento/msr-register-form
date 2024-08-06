@@ -1,5 +1,11 @@
 import userData from "../fixtures/userData.json";
 
+const { gender } = userData;
+const { genderViolence } = userData;
+const { externalSupport } = userData;
+const { violenceLocation } = userData;
+const { financialNeed } = userData;
+
 describe("App", () => {
 	it("should continue to next step if all fields are filled correctly", () => {
 		cy.visit("/");
@@ -11,7 +17,7 @@ describe("App", () => {
 		cy.fillDisabilityStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillGenderIdentityStep();
+		cy.fillGenderIdentityStep(gender);
 		cy.findByRole("button", { name: "Continuar" }).click();
 
 		cy.fillAcceptsOnlineSupportStep();
@@ -20,16 +26,16 @@ describe("App", () => {
 		cy.fillSupportTypeStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillGenderViolenceStep();
+		cy.fillGenderViolenceStep(genderViolence);
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillExternalSupportStep();
+		cy.fillExternalSupportStep(externalSupport);
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillViolenceLocationStep();
+		cy.fillViolenceLocationStep(violenceLocation);
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillFinancialNeedStep();
+		cy.fillFinancialNeedStep(financialNeed);
 	});
 
 	it("should go back to the previous step when the back button is clicked", () => {
@@ -46,5 +52,143 @@ describe("App", () => {
 		const { firstName } = userData;
 
 		cy.get("#firstName").type(firstName);
+	});
+});
+
+describe("When MSR does not meet the criteria", () => {
+	it("should redirect to `fora-criterios` page if gender identity is filled with option `Não me identifico como mulher`", () => {
+		cy.visit("/");
+		cy.goThroughHomePage();
+
+		cy.fillBasicRegisterInformationStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillDisabilityStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillGenderIdentityStep("Não me identifico como mulher");
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.url().should("include", "/fora-criterios");
+	});
+
+	it("should redirect to `fora-criterios` page if gender violence is filled with option `Não`", () => {
+		cy.visit("/");
+		cy.goThroughHomePage();
+
+		cy.fillBasicRegisterInformationStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillDisabilityStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillGenderIdentityStep(gender);
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillAcceptsOnlineSupportStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillSupportTypeStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillGenderViolenceStep("Não");
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.url().should("include", "/fora-criterios");
+	});
+
+	it("should redirect to `fora-criterios` page if MSR asks for legal support and they select that they already have external legal support", () => {
+		cy.visit("/");
+		cy.goThroughHomePage();
+
+		cy.fillBasicRegisterInformationStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillDisabilityStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillGenderIdentityStep(gender);
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillAcceptsOnlineSupportStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillSupportTypeStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillGenderViolenceStep(genderViolence);
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillExternalSupportStep("Sim");
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.url().should("include", "/fora-criterios");
+	});
+
+	it("should redirect to `fora-criterios` page if MSR selects that the violence location wasn't in Brazil", () => {
+		cy.visit("/");
+		cy.goThroughHomePage();
+
+		cy.fillBasicRegisterInformationStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillDisabilityStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillGenderIdentityStep(gender);
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillAcceptsOnlineSupportStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillSupportTypeStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillGenderViolenceStep(genderViolence);
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillExternalSupportStep(externalSupport);
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillViolenceLocationStep("Não");
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.url().should("include", "/fora-criterios");
+	});
+
+	it("should redirect to `fora-criterios` page if MSR signals they dont struggle financially", () => {
+		cy.visit("/");
+		cy.goThroughHomePage();
+
+		cy.fillBasicRegisterInformationStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillDisabilityStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillGenderIdentityStep(gender);
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillAcceptsOnlineSupportStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillSupportTypeStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillGenderViolenceStep(genderViolence);
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillExternalSupportStep(externalSupport);
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillViolenceLocationStep(violenceLocation);
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillFinancialNeedStep("Não");
+
+		cy.get("#terms").click();
+		cy.findByRole("button", { name: "Enviar" }).click();
+
+		cy.url().should("include", "/fora-criterios");
 	});
 });

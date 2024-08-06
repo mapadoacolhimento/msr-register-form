@@ -4,7 +4,7 @@ import { Strong } from "@radix-ui/themes";
 import Step from "../Step";
 import RadioInput from "../../RadioInput";
 import CheckboxInfo from "../../CheckboxInfo";
-import { sleep, financialNeedOptions } from "../../../lib";
+import { financialNeedOptions, Values } from "../../../lib";
 
 const financialNeedSchema = Yup.object({
 	financialNeed: Yup.string()
@@ -14,9 +14,17 @@ const financialNeedSchema = Yup.object({
 });
 
 export default function FinancialNeed() {
+	async function handleSubmit(values: Values) {
+		const hasNoFinancialVulnerability = values.financialNeed === "no";
+		if (hasNoFinancialVulnerability) {
+			return {
+				redirectTo: "/fora-criterios",
+			};
+		}
+	}
 	return (
 		<Step
-			onSubmit={() => sleep(300).then(() => console.log("Step onSubmit"))}
+			onSubmit={handleSubmit}
 			validationSchema={financialNeedSchema}
 			title={"Sobre sua renda"}
 			img={{

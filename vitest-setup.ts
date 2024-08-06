@@ -7,5 +7,10 @@ const ResizeObserverMock = vi.fn(() => ({
 	disconnect: vi.fn(),
 }));
 
+// Mock the useRouter
+vi.mock("next/navigation", () => ({
+	useRouter: vi.fn(),
+}));
+
 // Stub the global ResizeObserver
 vi.stubGlobal("ResizeObserver", ResizeObserverMock);
