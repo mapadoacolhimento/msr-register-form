@@ -1,5 +1,11 @@
 import userData from "../fixtures/userData.json";
 
+const { gender } = userData;
+const { genderViolence } = userData;
+const { externalSupport } = userData;
+const { violenceLocation } = userData;
+const { financialNeed } = userData;
+
 describe("App", () => {
 	it("should continue to next step if all fields are filled correctly", () => {
 		cy.visit("/");
@@ -11,7 +17,7 @@ describe("App", () => {
 		cy.fillDisabilityStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillGenderIdentityStep("Eu sou uma mulher cis");
+		cy.fillGenderIdentityStep(gender);
 		cy.findByRole("button", { name: "Continuar" }).click();
 
 		cy.fillAcceptsOnlineSupportStep();
@@ -20,16 +26,32 @@ describe("App", () => {
 		cy.fillSupportTypeStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillGenderViolenceStep("Sim");
+		cy.fillGenderViolenceStep(genderViolence);
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillExternalSupportStep("Não");
+		cy.fillExternalSupportStep(externalSupport);
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillViolenceLocationStep("Sim");
+		cy.fillViolenceLocationStep(violenceLocation);
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillFinancialNeedStep("Sim");
+		cy.fillFinancialNeedStep(financialNeed);
+	});
+
+	it("should go back to the previous step when the back button is clicked", () => {
+		cy.visit("/");
+		cy.goThroughHomePage();
+
+		cy.fillBasicRegisterInformationStep();
+		cy.findByRole("button", { name: "Continuar" }).click();
+
+		cy.fillDisabilityStep();
+
+		cy.findByRole("button", { name: "Voltar para o passo anterior" }).click();
+
+		const { firstName } = userData;
+
+		cy.get("#firstName").type(firstName);
 	});
 });
 
@@ -60,7 +82,7 @@ describe("When MSR does not meet the criteria", () => {
 		cy.fillDisabilityStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillGenderIdentityStep("Eu sou uma mulher cis");
+		cy.fillGenderIdentityStep(gender);
 		cy.findByRole("button", { name: "Continuar" }).click();
 
 		cy.fillAcceptsOnlineSupportStep();
@@ -85,7 +107,7 @@ describe("When MSR does not meet the criteria", () => {
 		cy.fillDisabilityStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillGenderIdentityStep("Eu sou uma mulher cis");
+		cy.fillGenderIdentityStep(gender);
 		cy.findByRole("button", { name: "Continuar" }).click();
 
 		cy.fillAcceptsOnlineSupportStep();
@@ -94,7 +116,7 @@ describe("When MSR does not meet the criteria", () => {
 		cy.fillSupportTypeStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillGenderViolenceStep("Sim");
+		cy.fillGenderViolenceStep(genderViolence);
 		cy.findByRole("button", { name: "Continuar" }).click();
 
 		cy.fillExternalSupportStep("Sim");
@@ -113,7 +135,7 @@ describe("When MSR does not meet the criteria", () => {
 		cy.fillDisabilityStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillGenderIdentityStep("Eu sou uma mulher cis");
+		cy.fillGenderIdentityStep(gender);
 		cy.findByRole("button", { name: "Continuar" }).click();
 
 		cy.fillAcceptsOnlineSupportStep();
@@ -122,10 +144,10 @@ describe("When MSR does not meet the criteria", () => {
 		cy.fillSupportTypeStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillGenderViolenceStep("Sim");
+		cy.fillGenderViolenceStep(genderViolence);
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillExternalSupportStep("Não");
+		cy.fillExternalSupportStep(externalSupport);
 		cy.findByRole("button", { name: "Continuar" }).click();
 
 		cy.fillViolenceLocationStep("Não");
@@ -144,7 +166,7 @@ describe("When MSR does not meet the criteria", () => {
 		cy.fillDisabilityStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillGenderIdentityStep("Eu sou uma mulher cis");
+		cy.fillGenderIdentityStep(gender);
 		cy.findByRole("button", { name: "Continuar" }).click();
 
 		cy.fillAcceptsOnlineSupportStep();
@@ -153,13 +175,13 @@ describe("When MSR does not meet the criteria", () => {
 		cy.fillSupportTypeStep();
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillGenderViolenceStep("Sim");
+		cy.fillGenderViolenceStep(genderViolence);
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillExternalSupportStep("Não");
+		cy.fillExternalSupportStep(externalSupport);
 		cy.findByRole("button", { name: "Continuar" }).click();
 
-		cy.fillViolenceLocationStep("Sim");
+		cy.fillViolenceLocationStep(violenceLocation);
 		cy.findByRole("button", { name: "Continuar" }).click();
 
 		cy.fillFinancialNeedStep("Não");
@@ -168,21 +190,5 @@ describe("When MSR does not meet the criteria", () => {
 		cy.findByRole("button", { name: "Enviar" }).click();
 
 		cy.url().should("include", "/fora-criterios");
-	});
-
-	it("should go back to the previous step when the back button is clicked", () => {
-		cy.visit("/");
-		cy.goThroughHomePage();
-
-		cy.fillBasicRegisterInformationStep();
-		cy.findByRole("button", { name: "Continuar" }).click();
-
-		cy.fillDisabilityStep();
-
-		cy.findByRole("button", { name: "Voltar para o passo anterior" }).click();
-
-		const { firstName } = userData;
-
-		cy.get("#firstName").type(firstName);
 	});
 });

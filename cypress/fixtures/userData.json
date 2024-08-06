@@ -15,8 +15,8 @@
 		"psychological": "Acolhimento psicológico",
 		"legal": "Acolhimento jurídico"
 	},
-	"genderViolence": "Não",
+	"genderViolence": "Sim",
 	"violenceLocation": "Sim",
-	"externalSupport": "Sim",
+	"externalSupport": "Não",
 	"financialNeed": "Sim"
 }
