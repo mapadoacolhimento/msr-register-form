@@ -76,8 +76,8 @@ export default function Homepage() {
 				isForm={false}
 				align={"end"}
 				img={{
-					src: "/illustrations/women-support.svg",
-					alt: "Ilustração Desktop de três mulheres de costas se abraçando, vestidas de roxo, amarelo e rosa, respectivamente",
+					src: "/illustrations/therapy-session.svg",
+					alt: "Ilustração com duas mulheres sentadas em um sofá, uma delas está segurando um balão de pensamento com um coração dentro.",
 				}}
 			/>
 		</>
@@ -87,15 +87,24 @@ export default function Homepage() {
 function CriteriaBox() {
 	const criteria = [
 		{
-			icon: "/icons/heart.svg",
+			icon: {
+				src: "/icons/heart.svg",
+				alt: "Ícone de um coração",
+			},
 			text: "O atendimento é totalmente gratuito e exclusivo para mulheres vítimas de violência.",
 		},
 		{
-			icon: "/icons/user-profile.svg",
+			icon: {
+				src: "/icons/user-profile.svg",
+				alt: "Ícone de um perfil de usuário",
+			},
 			text: "Maiores de 18 anos, residentes do Brasil e em situação de baixa renda podem solicitar atendimento.",
 		},
 		{
-			icon: "/icons/planner.svg",
+			icon: {
+				src: "/icons/planner.svg",
+				alt: "Ícone de uma agenda",
+			},
 			text: "Todas as informações sobre o atendimento serão enviadas por e-mail.",
 		},
 	];
@@ -110,22 +119,17 @@ function CriteriaBox() {
 			}}
 		>
 			<ul style={{ margin: 0, padding: 0 }}>
-				{criteria.map(({ icon, text }, i) => (
+				{criteria.map(({ icon: { alt, src }, text }, i) => (
 					<>
 						<Flex
 							align={"center"}
-							key={`criteria-${icon}`}
+							key={`criteria-${alt}`}
 							gap={"4"}
 							py={"4"}
 							asChild
 						>
 							<li>
-								<Image
-									src={icon}
-									alt="coração dentro de um balão de pensamento"
-									width={30}
-									height={30}
-								/>
+								<Image src={src} alt={alt} width={30} height={30} />
 								<Text>{text}</Text>
 							</li>
 						</Flex>
