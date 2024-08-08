@@ -3,35 +3,16 @@ import {
 	ZENDESK_API_USER,
 	ZENDESK_SUBDOMAIN,
 } from "../constants";
+import { User } from "../types";
 import getErrorMessage from "../getErrorMessage";
 
-type TicketUpdate = {
-	ticket: {
-		status?: string;
-		comment?: {
-			body: string;
-			public: boolean;
-		};
-	};
-};
-
-type TicketsUpdate = {
-	tickets: {
-		id: number;
-	}[];
-};
-
-export default async function updateManyTickets(
-	ids: string,
-	ticketUpdate: TicketUpdate | TicketsUpdate
-) {
+export default async function createOrUpdateUser(user: User) {
 	try {
-		const endpoint =
-			ZENDESK_SUBDOMAIN + "/api/v2/tickets/update_many.json?ids=" + ids;
+		const endpoint = ZENDESK_SUBDOMAIN + "/api/v2/users/create_or_update";
 
 		const response = await fetch(endpoint, {
-			body: JSON.stringify({ ...ticketUpdate }),
-			method: "PUT",
+			body: JSON.stringify({ user }),
+			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 				Authorization:
@@ -46,7 +27,7 @@ export default async function updateManyTickets(
 			throw new Error(response.statusText);
 		}
 
-		return response;
+		return await response.json();
 	} catch (e) {
 		const error = e as Record<string, unknown>;
 
