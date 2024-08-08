@@ -136,9 +136,6 @@ jobs:
         run: |
           pnpm i --frozen-lockfile
 
-      - name: Run build
-        run: pnpm run build
-
       - name: Push current migrations to test database
         run: pnpm db:push
 
@@ -146,6 +143,7 @@ jobs:
         id: e2e
         uses: cypress-io/github-action@v6
         with:
+          build: pnpm run build
           start: pnpm run start
           wait-on: "http://localhost:3000"
           wait-on-timeout: 120
