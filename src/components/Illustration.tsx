@@ -1,7 +1,7 @@
 import { Box, Flex } from "@radix-ui/themes";
 import type { Responsive } from "@radix-ui/themes/props";
 
-export default function DesktopIllustration({
+export default function Illustration({
 	img,
 	align = "center",
 	isForm = true,
