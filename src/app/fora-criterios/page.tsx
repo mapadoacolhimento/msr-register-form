@@ -34,6 +34,7 @@ export default function Page() {
 				<Contact />
 			</Flex>
 			<DesktopIllustration
+				isForm={false}
 				img={{
 					src: "/illustrations/laptop.svg",
 					alt: "Computador branco com rosa, com a logo roxa do mapa do acolhimento na tela do monitor",
