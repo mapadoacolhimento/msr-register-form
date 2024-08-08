@@ -62,7 +62,7 @@ describe("<Homepage />", () => {
 
 	it("should render background image", () => {
 		const desktopImage = screen.getAllByRole("img", {
-			name: "Ilustração Desktop de três mulheres de costas se abraçando, vestidas de roxo, amarelo e rosa, respectivamente",
+			name: "Ilustração com duas mulheres sentadas em um sofá, uma delas está segurando um balão de pensamento com um coração dentro.",
 		});
 		expect(desktopImage).toHaveLength(2);
 	});

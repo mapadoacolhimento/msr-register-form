@@ -121,14 +121,8 @@ function CriteriaBox() {
 			<ul style={{ margin: 0, padding: 0 }}>
 				{criteria.map(({ icon: { alt, src }, text }, i) => (
 					<>
-						<Flex
-							align={"center"}
-							key={`criteria-${alt}`}
-							gap={"4"}
-							py={"4"}
-							asChild
-						>
-							<li>
+						<Flex align={"center"} gap={"4"} py={"4"} asChild>
+							<li key={`criteria-${alt}`}>
 								<Image src={src} alt={alt} width={30} height={30} />
 								<Text>{text}</Text>
 							</li>
