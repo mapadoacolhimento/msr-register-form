@@ -1,52 +1,69 @@
 import { render, screen } from "@testing-library/react";
-import HomeScreen from "../page";
+import Homepage from "../page";
 
 const setup = () => {
-	return render(<HomeScreen />);
+	return render(<Homepage />);
 };
 
-describe("<HomeScreen />", () => {
-	it("should render headers and descriptions", () => {
-		setup();
+describe("<Homepage />", () => {
+	beforeEach(setup);
 
-		const heading1 = screen.getByText("Seja bem-vinda");
+	it("should render heading", () => {
+		const heading1 = screen.getByRole("heading", {
+			name: "Estamos aqui por você",
+		});
 		expect(heading1).toBeInTheDocument();
+	});
 
+	it("should render subtitle", () => {
 		const description1 = screen.getByText(
-			"Responda as perguntas seguintes para receber acolhimento"
+			"Preencha o formulário a seguir para solicitar atendimento psicológico e/ou jurídico de nossas profissionais voluntárias."
 		);
 		expect(description1).toBeInTheDocument();
+	});
 
-		const description2 = screen.getByText(
-			"O atendimento do Mapa do Acolhimento é totalmente gratuito"
+	it("should render criteria", () => {
+		const list = screen.getAllByRole("listitem");
+		const findCriteriaItem = list.find(
+			(listitem) =>
+				listitem.textContent ===
+				"Maiores de 18 anos, residentes do Brasil e em situação de baixa renda podem solicitar atendimento."
 		);
-		expect(description2).toBeInTheDocument();
 
-		const contidion1 = screen.getByText(
-			"Para receber atendimento é preciso ser maior de 18 anos e residir no Brasil"
+		expect(findCriteriaItem).toBeDefined();
+	});
+
+	it("should render service conditions", () => {
+		const list = screen.getAllByRole("listitem");
+		const findFreeServiceItem = list.find(
+			(listitem) =>
+				listitem.textContent ===
+				"O atendimento é totalmente gratuito e exclusivo para mulheres vítimas de violência."
 		);
-		expect(contidion1).toBeInTheDocument();
 
-		const contidion2 = screen.getByText(
-			"Estar em situação de vulnerabilidade socioeconômica/baixa renda"
+		expect(findFreeServiceItem).toBeDefined();
+	});
+
+	it("should render that service communication is by email", () => {
+		const list = screen.getAllByRole("listitem");
+		const findCommunicationItem = list.find(
+			(listitem) =>
+				listitem.textContent ===
+				"Todas as informações sobre o atendimento serão enviadas por e-mail."
 		);
-		expect(contidion2).toBeInTheDocument();
 
+		expect(findCommunicationItem).toBeDefined();
+	});
+
+	it("should render button", () => {
 		const button = screen.getByRole("button", { name: "Quero ser acolhida" });
 		expect(button).toBeInTheDocument();
 	});
 
 	it("should render background image", () => {
-		setup();
-
-		const desktopImage = screen.getByRole("img", {
+		const desktopImage = screen.getAllByRole("img", {
 			name: "Ilustração Desktop de três mulheres de costas se abraçando, vestidas de roxo, amarelo e rosa, respectivamente",
 		});
-		expect(desktopImage).toBeInTheDocument();
-
-		const mobileImage = screen.getByRole("img", {
-			name: "Ilustração mobile de três mulheres de costas se abraçando, vestidas de roxo, amarelo e rosa, respectivamente",
-		});
-		expect(mobileImage).toBeInTheDocument();
+		expect(desktopImage).toHaveLength(2);
 	});
 });
