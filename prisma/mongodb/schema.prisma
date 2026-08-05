@@ -62,11 +62,14 @@ model MsrRegisterData {
   riskFactors                 String[]
 }
 
-model InterestFormRegister {
-  id              String          @id @default(auto()) @map("_id") @db.ObjectId
-  firstName       String
-  email           String          @unique
-  confirmEmail    String
-  state           String
-  supportType     SupportType[]
+model SupportInterestRegisterData {
+  id                          String        @id @default(auto()) @map("_id") @db.ObjectId
+  email                       String        @unique
+  confirmEmail                String
+  firstName                   String
+  state                       String
+  supportType                 String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
 }
