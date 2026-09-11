@@ -142,7 +142,7 @@ jobs:
         node-version: [20.x]
         pnpm-version: [9.x]
         group:
-          - name: Modern Form
+          - name: e2e
             spec: "cypress/e2e/modern-form/**/*.cy.{js,ts}"
       max-parallel: 1
     env:
