@@ -2,16 +2,11 @@
 import { formatRegisterFormValues } from "@/utils";
 import type { HandleRequestResponse, Values } from "@/types";
 import MultiStepFormWrapper from "./MultiStepFormWrapper";
-import { getFormSteps, getHiddenStepsForm } from "@/utils/getFormSteps";
+import { getFormSteps } from "@/utils/getFormSteps";
 import { useMemo } from "react";
 
-const ENABLE_NEW_STEPS = process.env.NEXT_PUBLIC_ENABLE_NEW_STEPS === "true";
-
 export default function MultiStepForm() {
-	const steps = useMemo(
-		() => (ENABLE_NEW_STEPS ? getHiddenStepsForm() : getFormSteps()),
-		[ENABLE_NEW_STEPS]
-	);
+	const steps = useMemo(() => getFormSteps(), []);
 
 	async function onSubmit(values: Values): Promise<HandleRequestResponse> {
 		const formattedValues = formatRegisterFormValues(values);
