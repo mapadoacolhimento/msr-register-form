@@ -59,7 +59,7 @@ describe("Happy path", () => {
 				cy.visit("/");
 				cy.goThroughHomePage();
 
-				cy.fillAllStepsApp2(supportTypes);
+				cy.fillAllSteps(supportTypes);
 			});
 
 			it("should go back to the previous step when the back button is clicked (App2)", () => {
@@ -173,7 +173,7 @@ describe("Happy path", () => {
 				cy.visit("/");
 				cy.goThroughHomePage();
 
-				cy.fillAllStepsApp2(supportTypes);
+				cy.fillAllSteps(supportTypes);
 			});
 
 			it("should go back to the previous step when the back button is clicked (App2)", () => {
